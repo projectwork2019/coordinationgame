@@ -32,7 +32,7 @@ public class Game {
     
     @NotBlank
     @Column(name = "gameData")
-    private JsonObject gameDataObject;  // Antti: Might not be compatible with JPA types, should be String (?)
+    private String gameDataObject;  // Antti: Might not be compatible with JPA types, should be String (?)
     
     // Database relation mappings - Game belongs to multiple categories
     @ManyToMany
