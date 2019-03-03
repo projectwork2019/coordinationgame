@@ -32,7 +32,7 @@ public class Game {
     
     @NotBlank
     @Column(name = "gameData")
-    private String gameDataObject;  // Antti: Might not be compatible with JPA types, should be String (?)
+    private String gameDataObject;
     
     // Database relation mappings - Game belongs to multiple categories
     @ManyToMany
@@ -64,11 +64,11 @@ public class Game {
         this.id = id;
     }
 
-    public JsonObject getGameDataObject() {
+    public String getGameDataObject() {
         return gameDataObject;
     }
 
-    public void setGameDataObject(JsonObject gameDataObject) {
+    public void setGameDataObject(String gameDataObject) {
         this.gameDataObject = gameDataObject;
     }
 
