@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import javax.json.JsonObject;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
@@ -30,7 +29,7 @@ public class Game {
     private String gameDataObject;
     
     // Database relation mappings - Game belongs to multiple categories
-    @ManyToMany
+    /*@ManyToMany
     @JoinTable(name = "game_category",
             // Junction table key names to be updated to match the created database
             // Foreign key referencing game-table primary key
@@ -38,16 +37,16 @@ public class Game {
             // Foreign key referecing category-table primary key
             inverseJoinColumns = {@JoinColumn(name = "fk_category")}
     )
-    private Set<Category> categories;
+    private Set<Category> categories;*/
     
     // Database relation mappings - Game has multiple presentations
-    @OneToMany(mappedBy = "game")   // Refers to "game" field in Presentation class mapping
-    private List<Presentation> presentations;
+    /* @OneToMany(mappedBy = "game")   // Refers to "game" field in Presentation class mapping
+    private List<Presentation> presentations; */
 
     // Constructor used only for initializing Set of categories and List of presentations
     public Game() {
-        this.categories = new HashSet<Category>();
-        this.presentations = new ArrayList<Presentation>();
+        /*this.categories = new HashSet<Category>();
+        this.presentations = new ArrayList<Presentation>();*/
     }
 
     // getters and setters auto-generated
@@ -96,6 +95,4 @@ public class Game {
         }
         return true;
     }
-
-    
 }
