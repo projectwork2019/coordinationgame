@@ -8,10 +8,10 @@ import javax.validation.constraints.NotBlank;
  *
  * @author antti
  */
-@Entity
-@Table(name = "presentation")
+/*@Entity
+@Table(name = "presentation") */
 public class Presentation {
-    @Id
+    /* @Id
     @GeneratedValue(generator = "presentation_generator")
     @SequenceGenerator(
             name = "presentation_generator",
@@ -76,6 +76,6 @@ public class Presentation {
         return true;
     }
     
-    
+    */
     
 }

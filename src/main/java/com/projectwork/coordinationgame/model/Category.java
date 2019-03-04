@@ -9,10 +9,10 @@ import javax.validation.constraints.NotBlank;
  *
  * @author antti
  */
-@Entity
-@Table(name = "category")
+/*@Entity
+@Table(name = "category")*/
 public class Category {
-    @Id
+   /* @Id
     @GeneratedValue(generator = "category_generator")
     @SequenceGenerator(
             name = "category_generator",
@@ -80,5 +80,5 @@ public class Category {
         }
         return true;
     }
-    
+    */
 }
