@@ -1,7 +1,6 @@
 package com.projectwork.coordinationgame.model;
 
 import java.util.Objects;
-import javax.json.JsonObject;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
