@@ -40,7 +40,7 @@ export class AppComponent implements OnInit{
 	}
 	
 	save() {
-		this.http.post("https://projectwork-coordinationgame.com/games", this.hierarchialGraph).subscribe(data => {
+		this.http.post("https://projectwork-coordinationgame.herokuapp.com/games", this.hierarchialGraph).subscribe(data => {
 			console.log(data);
 		});
 	}
