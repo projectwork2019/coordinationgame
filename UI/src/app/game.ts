@@ -14,7 +14,7 @@ export class Edge {
 	source: string;
     target: string;
 	label : string;
-	constructor(source : string, target : string, label: label) {
+	constructor(source : string, target : string, label: string) {
 		this.source = source;
 		this.target = target;
 		this.label = "";
