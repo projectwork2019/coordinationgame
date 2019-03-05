@@ -66,11 +66,11 @@ export class AppComponent implements OnInit{
 		
 	}
 	
-	addComponent(){
+	/*addComponent(){
 		this.currentComponent = new GameComponent();
 		this.game.components.push(this.currentComponent);
 		this.currentComponent.edges.push(new Edge());
-	}
+	}*/
 	
 	submitGame() {
 		console.log(JSON.stringify(this.game));
