@@ -36,7 +36,7 @@ public class GameController {
     }
 
     @PostMapping("/games")
-    @CrossOrigin(origins = "http://localhost:4200")
+    // @CrossOrigin(origins = "http://localhost:4200")
     public Game createGame(@RequestBody Game game) {
         System.out.println("POST: Received game data object: " + game.getGameDataObject());
         return gameRepository.save(game);
