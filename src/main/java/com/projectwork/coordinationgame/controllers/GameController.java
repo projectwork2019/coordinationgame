@@ -36,6 +36,7 @@ public class GameController {
     }
     
     @PostMapping("/games")
+    @CrossOrigin(origins = "https://projectwork-coordinationgame.herokuapp.com/")
     public Game createGame(@RequestBody Game game) {
         return gameRepository.save(game);
     }
