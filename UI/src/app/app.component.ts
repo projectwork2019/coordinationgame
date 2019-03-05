@@ -40,7 +40,7 @@ export class AppComponent implements OnInit{
 	}
 	
 	save() {
-		this.http.post("http://httpbin.org/post", this.hierarchialGraph).subscribe(data => {
+		this.http.post("http://localhost:8080/games", { 'gameDataObject' : JSON.stringify(this.hierarchialGraph) }).subscribe(data => {
 			console.log(data);
 		});
 	}
