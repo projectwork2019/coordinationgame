@@ -6,11 +6,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { GraphEditorComponent } from './graph-editor/graph-editor.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GraphEditorComponent
   ],
   imports: [
 	BrowserModule,
@@ -18,7 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 	NgxGraphModule,
 	HttpClientModule,
 	NgxChartsModule,
-	BrowserAnimationsModule
+	BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

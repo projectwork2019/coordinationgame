@@ -1,38 +1,17 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Game, Edge, GameComponent, Node } from "./game";
+import { Game, Edge, GameComponent, Node } from "../game";
 import * as shape from 'd3-shape';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { Subject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { CoordinationRestService } from './coordination-rest.service';
+import { CoordinationRestService } from '../coordination-rest.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'graph-editor',
+  templateUrl: './graph-editor.component.html',
+  styleUrls: ['./graph-editor.component.css']
 })
-
-export class AppComponent implements OnInit{
-	
-	constructor(private rest: CoordinationRestService) {}
-
-	ngOnInit() { 
-	}
-	
-	getTest() {
-		this.rest.getGame(255).subscribe((data: {}) => {
-			console.log(data);
-		});
-	}
-	
-	postTest() {
-		let testData = { gameDataObject : "" };
-		testData.gameDataObject = "asd";
-		this.rest.addOrEditGame(testData).subscribe( data => {
-			console.log(data);
-		})
-	}
-	/*title = 'coordgames';
+export class GraphEditorComponent implements OnInit {
+	title = 'coordgames';
 	currentNode = 0;
 	currentComponent : GameComponent;
 	curve = shape.curveBundle.beta(0);
@@ -50,7 +29,7 @@ export class AppComponent implements OnInit{
 	
 	update$: Subject<any> = new Subject();
 
-	constructor(private http: HttpClient) {}
+	constructor(private http: CoordinationRestService) {}
 
 	ngOnInit() { 
 		this.currentComponent = this.component;
@@ -60,7 +39,7 @@ export class AppComponent implements OnInit{
 	}
 	
 	save() {
-		this.http.post("http://httpbin.org/post", this.hierarchialGraph).subscribe(data => {
+		this.http.addOrEditGame({'gameDataObject' : JSON.stringify(this.hierarchialGraph)}).subscribe(data => {
 			console.log(data);
 		});
 	}
@@ -74,9 +53,6 @@ export class AppComponent implements OnInit{
 	addNode(){
 		this.gamenodes.push(new Node(this.currentNode.toString(), this.currentNode.toString(), "x" + this.currentNode.toString()));
 		this.edges.push([]);
-		if(this.currentNode > 0) {
-			//this.edges.push(new Edge((this.currentNode - 1).toString() , this.currentNode.toString() , ""));
-		}
 		this.currentNode = this.currentNode + 1;
 		this.hierarchialGraph.nodes = this.gamenodes;
 		this.hierarchialGraph.links = this.edges;
@@ -85,13 +61,6 @@ export class AppComponent implements OnInit{
 		console.log(JSON.stringify(this.edges));
 		
 	}
-	
-	/*addComponent(){
-		this.currentComponent = new GameComponent();
-		this.game.components.push(this.currentComponent);
-		this.currentComponent.edges.push(new Edge());
-	}*/
-	/*
 	submitGame() {
 		console.log(JSON.stringify(this.game));
 	}
@@ -99,5 +68,5 @@ export class AppComponent implements OnInit{
 	// Update function
 	updateChart(){
 		this.update$.next(true);
-	}*/
+	}
 }
