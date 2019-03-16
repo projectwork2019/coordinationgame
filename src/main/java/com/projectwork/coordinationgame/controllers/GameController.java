@@ -17,7 +17,7 @@ public class GameController {
     @Autowired
     private GameRepository gameRepository;
 
-    @GetMapping("/games")
+    @GetMapping("/api/games")
     public List<Game> getGames() {
         // create list for games to be returned
         List<Game> games = new ArrayList<>();
@@ -26,7 +26,7 @@ public class GameController {
         return games;
     }
     
-    @GetMapping("/games/{gameId}")
+    @GetMapping("/api/games/{gameId}")
     public Game getGames(@PathVariable Long gameId) {
         // Fetch the game from repository
         Optional<Game> optionalEntity = gameRepository.findById(gameId);
@@ -34,9 +34,11 @@ public class GameController {
         Game game = optionalEntity.get();
         return game;
     }
-    
-    @PostMapping("/games")
+
+    @PostMapping("/api/games")
+    // @CrossOrigin(origins = "http://localhost:4200")
     public Game createGame(@RequestBody Game game) {
+        System.out.println("POST: Received game data object: " + game.getGameDataObject());
         return gameRepository.save(game);
     }
 }

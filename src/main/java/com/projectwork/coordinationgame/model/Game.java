@@ -1,12 +1,9 @@
 package com.projectwork.coordinationgame.model;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import org.hibernate.annotations.Type;
 
 /**
  *
@@ -24,8 +21,8 @@ public class Game {
     )
     private Long id;
     
-    @NotBlank
     @Column(name = "gameData")
+    @Type(type = "text")
     private String gameDataObject;
     
     // Database relation mappings - Game belongs to multiple categories
