@@ -1,103 +1,22 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Game, Edge, GameComponent, Node } from "./game";
-import * as shape from 'd3-shape';
-import { NgxGraphModule } from '@swimlane/ngx-graph';
-import { Subject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { CoordinationRestService } from './coordination-rest.service';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { slideInAnimation } from './animations';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: 'app.component.html',
+  styleUrls: ['app.component.css'],
+  animations: [ slideInAnimation ]
 })
-
-export class AppComponent implements OnInit{
-	
-	constructor(private rest: CoordinationRestService) {}
-
-	ngOnInit() { 
-	}
-	
-	getTest() {
-		this.rest.getGame(255).subscribe((data: {}) => {
-			console.log(data);
-		});
-	}
-	
-	postTest() {
-		let testData = { gameDataObject : "" };
-		testData.gameDataObject = "asd";
-		this.rest.addOrEditGame(testData).subscribe( data => {
-			console.log(data);
-		})
-	}
-	/*title = 'coordgames';
-	currentNode = 0;
-	currentComponent : GameComponent;
-	curve = shape.curveBundle.beta(0);
-	gamenodes = [];
-	edges = [];
-	hierarchialGraph = {nodes: this.gamenodes, links: this.edges}
-	
-	component : GameComponent = {
-		edges : []
-	}
-	game : Game = {
-		name : "Testi",
-		components : []
-	}
-	
-	update$: Subject<any> = new Subject();
-
-	constructor(private http: HttpClient) {}
-
-	ngOnInit() { 
-		this.currentComponent = this.component;
-		this.game.name = "";
-		this.game.components.push(this.component);
-		console.log(this.game.components);	
-	}
-	
-	save() {
-		this.http.post("http://localhost:8080/games", { 'gameDataObject' : JSON.stringify(this.hierarchialGraph) }).subscribe(data => {
-			console.log(data);
-		});
-	}
-	
-	addLink(n : Node) {
-		let e : Edge = new Edge(n.id, "", "");
-		n.edges.push(e);
-		this.edges.push(e);
-	}
-	
-	addNode(){
-		this.gamenodes.push(new Node(this.currentNode.toString(), this.currentNode.toString(), "x" + this.currentNode.toString()));
-		this.edges.push([]);
-		if(this.currentNode > 0) {
-			//this.edges.push(new Edge((this.currentNode - 1).toString() , this.currentNode.toString() , ""));
-		}
-		this.currentNode = this.currentNode + 1;
-		this.hierarchialGraph.nodes = this.gamenodes;
-		this.hierarchialGraph.links = this.edges;
-		this.updateChart();
-		console.log(JSON.stringify(this.gamenodes));
-		console.log(JSON.stringify(this.edges));
-		
-	}
-	
-	/*addComponent(){
-		this.currentComponent = new GameComponent();
-		this.game.components.push(this.currentComponent);
-		this.currentComponent.edges.push(new Edge());
-	}*/
-	/*
-	submitGame() {
-		console.log(JSON.stringify(this.game));
-	}
-	
-	// Update function
-	updateChart(){
-		this.update$.next(true);
-	}*/
+export class AppComponent {
+  getAnimationData(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+  }
 }
+
+
+/*
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
+*/

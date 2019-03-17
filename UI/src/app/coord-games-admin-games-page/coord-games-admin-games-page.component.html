@@ -1,0 +1,36 @@
+<h1 class="title">Welcome!</h1>
+<button routerLink="/coord-games-admin-add-game-page">Add game...</button>
+
+<form class="inline_field">
+         <select name = "dropdown">
+            <option value = "Options for selected..." selected>Options for selected...</option>
+            <!-- <option value = "Edit">Edit</option> -->
+            <option value = "Remove">Remove</option>
+         </select>
+</form>
+
+<form class="game_list" method="post" action="/Tests/Post/">      
+   <!-- <fieldset>      
+        <legend>Select games to edit/remove them:</legend>      
+        <input type="checkbox" name="chosen_game" value="1">Game ID 1   (Unplayed)<br>      
+        <input type="checkbox" name="chosen_game" value="2">Game ID 2   (Played)<br>      
+        <input type="checkbox" name="chosen_game" value="3">Game ID 3   (Unplayed)<br>   
+        <input type="checkbox" name="chosen_game" value="4">Game ID 4   (Unplayed)<br>      
+        <input type="checkbox" name="chosen_game" value="5">Game ID 5   (Unplayed)<br>      
+        <input type="checkbox" name="chosen_game" value="6">Game ID 6   (Unplayed)<br>  
+        <br>      
+        <!-- <input type="submit" value="Submit now" />      
+    </fieldset>    -->  
+        
+    <fieldset>      
+        <legend>Select games to edit/remove them:</legend>      
+        <p><input type="checkbox" name="chosen_game" value="1">Game ID 1   (Unplayed)<button class="inline_block" routerLink="">Edit</button></p>      
+        <p><input type="checkbox" name="chosen_game" value="2">Game ID 2   (Played)<button class="inline_block" routerLink="">Edit</button></p>       
+        <p><input type="checkbox" name="chosen_game" value="3">Game ID 3   (Unplayed)<button class="inline_block" routerLink="">Edit</button></p>  
+        <p><input type="checkbox" name="chosen_game" value="4">Game ID 4   (Unplayed)<button class="inline_block" routerLink="">Edit</button></p>      
+        <p><input type="checkbox" name="chosen_game" value="5">Game ID 5   (Unplayed)<button class="inline_block" routerLink="">Edit</button></p>      
+        <p><input type="checkbox" name="chosen_game" value="6">Game ID 6   (Unplayed)<button class="inline_block" routerLink="">Edit</button></p> 
+        <br>      
+        <!-- <input type="submit" value="Submit now" />  -->    
+    </fieldset>    
+</form>
