@@ -5,6 +5,7 @@ import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { Subject } from 'rxjs';
 import { CoordinationRestService } from '../coordination-rest.service';
 
+
 @Component({
   selector: 'graph-editor',
   templateUrl: './graph-editor.component.html',

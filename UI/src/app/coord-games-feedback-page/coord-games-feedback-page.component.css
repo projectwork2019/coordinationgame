@@ -1,0 +1,28 @@
+.alignment_center {
+    text-align:center
+}
+
+.alignment_left {
+    text-align:left
+}
+
+.subtext {
+    font-size: 12px;
+    text-align: left;
+}
+
+.subtext_center {
+    font-size: 12px;
+    text-align: center;
+}
+
+.headline {
+    font-size: 28px;
+    text-align: center;
+}
+
+.id_field {
+    display: inline-block;
+    width: 50%;
+/*    text-align: center;*/
+}

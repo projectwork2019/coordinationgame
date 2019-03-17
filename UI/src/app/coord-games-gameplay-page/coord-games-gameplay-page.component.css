@@ -1,0 +1,63 @@
+.text {
+ font-family: Times New Roman;
+ font-size: 16px;
+ line-height: 17px;
+ letter-spacing: 2px;
+ display:inline-block;
+ margin-right:2px;
+ margin-left:2px;
+ text-align: justify;
+}
+
+.text2 {
+ font-family: Times New Roman;
+ font-size: 16px;
+ line-height: 17px;
+ letter-spacing: 2px;
+ margin-right:2px;
+ margin-left:2px;
+ text-align: justify;
+}
+
+.subtitle {
+ font-family: Times New Roman;
+ font-size: 20px;
+ line-height: 17px;
+ text-transform: uppercase;
+ letter-spacing: 2px;
+ font-weight: bold;
+}
+
+.italic_text {
+ font-family: Times New Roman;
+ font-size: 14px;
+ line-height: 17px;
+ letter-spacing: 2px;
+ font-style: italic;
+ display:inline-block;
+}
+
+.title {
+    text-align:center
+}
+
+.title2 {
+    text-align:center;
+    font-size: 40px;
+}
+
+.button {
+    float: right;
+    margin-right: 20%;
+}
+
+.blocks {
+    display:inline-block;
+    margin-left: 10%;
+}
+
+.confidence_label {
+    display:inline-block;
+    padding-right: 23%;
+    padding-left: 10%;
+}

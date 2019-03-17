@@ -1,83 +1,18 @@
-<label i18n>TEST GET:
-		<button (click)="getTest()">ADD</button>
-	</label>
-	<label i18n>Post GET:
-		<button (click)="postTest()">ADD</button>
-	</label>
-	
-<graph-editor></graph-editor>
-<!--<div>
-	<label i18n>Add Node:
-		<button (click)="addNode()">ADD</button>
-	</label>
-	
-	<table>
-		<tr i18n></tr>
-		<tr *ngFor="let node of gamenodes">
-			<label>{{node.id}}</label>
-			<td *ngFor="let edge of node.edges">
-				<input (change)="updateChart()" [(ngModel)]="edge.target">
-			</td>
-			<button (click)="addLink(node)">ADD LINK</button>
-		</tr>
-	</table>
-	
-	<button (click)="save()">SAVE</button>
+<!-- <h1 class="title">Angular Router</h1> -->
+<nav>
+  <!-- <a routerLink="/coord-games-main-page" routerLinkActive="active">Main page</a> -->
+  <!-- <a routerLink="/superheroes" routerLinkActive="active">Heroes</a> -->
+  <!-- <a routerLink="/admin" routerLinkActive="active">Admin</a> -->
+  <a routerLink="/login" routerLinkActive="active">Login</a> 
+  <!-- <a [routerLink]="[{ outlets: { popup: ['compose'] } }]">Contact</a> -->
+</nav>
+<div [@routeAnimation]="getAnimationData(routerOutlet)">
+  <router-outlet #routerOutlet="outlet"></router-outlet>
 </div>
+<router-outlet name="popup"></router-outlet>
 
-<div id="graph" style="height: 1000px">
-<ngx-graph
-  class="chart-container"
-  [links]="hierarchialGraph.links"
-  [nodes]="hierarchialGraph.nodes"
-  [legend]="false"
-  [curve]="curve"
-  [update$]="update$"
-  [draggingEnabled]="true"
-  >
-
-  <ng-template #defsTemplate>
-    <svg:marker id="arrow" viewBox="0 -5 10 10" refX="8" refY="0" markerWidth="4" markerHeight="4" orient="auto">
-      <svg:path d="M0,-5L10,0L0,5" class="arrow-head" />
-    </svg:marker>
-  </ng-template>
-
-  <ng-template #nodeTemplate let-node>
-    <svg:g class="node"
-    ngx-tooltip
-    [tooltipPlacement]="'top'"
-    [tooltipType]="'tooltip'"
-    [tooltipTitle]="node.position"
-    >
-      <!--<svg:circle [attr.r]="node.width/2" [attr.fill]="node.options.color" />-->
-     <!-- <svg:rect [attr.width]="node.width" [attr.height]="node.height" [attr.fill]="node.options.color" />
-      <svg:text alignment-baseline="central" [attr.x]="10" [attr.y]="node.height / 2">{{node.label}}</svg:text>
-    </svg:g>
-  </ng-template>
-
-  <ng-template #linkTemplate let-link>
-    <svg:g class="edge">
-      <svg:path
-        class="line"
-        stroke-width="2"
-        marker-end="url(#arrow)" >
-      </svg:path>
-      <svg:text
-        class="edge-label"
-        text-anchor="middle">
-      <textPath
-                style="fill: #666;"
-                [attr.href]="'#' + link.id"
-                startOffset="60%">
-        {{link.label}}
-      </textPath>
-    </svg:text>
-    </svg:g>
-  </ng-template>
-
-</ngx-graph>
-</div>
+<!-- 
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
 -->
-
-
-
