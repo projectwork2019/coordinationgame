@@ -20,7 +20,7 @@ presentation_id SERIAL,
 presentation_data JSON NOT NULL,
 game_id SERIAL,
 PRIMARY KEY(presentation_id),
-FOREIGN KEY (game_id) REFERENCES Game);
+FOREIGN KEY (game_id) REFERENCES game);
 
 
 CREATE TABLE project_work.selection (
@@ -30,7 +30,7 @@ times INT NOT NULL,
 selected_node INT NOT NULL,
 presentation_id SERIAL,
 PRIMARY KEY(selection_id, confidence, presentation_id, selected_node),
-FOREIGN KEY (presentation_id) REFERENCES Presentation,
+FOREIGN KEY (presentation_id) REFERENCES presentation,
 UNIQUE (selection_id));
 
 
@@ -45,7 +45,7 @@ FOREIGN KEY (game_session_id) REFERENCES game_session(game_session_id));
 CREATE TABLE project_work.category (
 category_id SERIAL,
 name VARCHAR(100) NOT NULL,
-PRIMARY KEY (category_id)
+PRIMARY KEY (category_id),
 UNIQUE (name));
 
 
@@ -53,6 +53,6 @@ CREATE TABLE project_work.game_category (
 category_id SERIAL,
 game_id SERIAL,
 PRIMARY KEY (category_id, game_id),
-FOREIGN KEY (game_id) REFERENCES Game,
-FOREIGN KEY (category_id) REFERENCES Category);
+FOREIGN KEY (game_id) REFERENCES game,
+FOREIGN KEY (category_id) REFERENCES category);
 
