@@ -1,5 +1,8 @@
-<h1 class="title">Game X/10</h1>
-<p class="title2"><b>Game is displayed here</b></p>
+<h1 class="title">Game {{gameNo}}/10</h1>
+<div *ngIf="isDataAvailable">
+	<app-show-graph [childMessage]="graph"></app-show-graph>
+</div>
+
 <p>Confidence: </p>
 
 <div class="blocks">
@@ -32,4 +35,5 @@
 <p class="confidence_label">Very low confidence</p>
 <p class="confidence_label">Very high confidence</p>
 
-<button class ="button" routerLink="/coord-games-feedback-page">Proceed...</button>
+<button class ="button" (click)="confirmSelection()">Proceed...</button>
+<!--<button class ="button" (click)=""routerLink="/coord-games-feedback-page">Proceed...</button>-->

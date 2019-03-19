@@ -8,6 +8,35 @@
 </nav>
 <div [@routeAnimation]="getAnimationData(routerOutlet)">
   <router-outlet #routerOutlet="outlet"></router-outlet>
+<!--
+<label i18n>TEST GET:
+		<button (click)="getTest()">ADD</button>
+	</label>
+	<label i18n>Post GET:
+		<button (click)="postTest()">ADD</button>
+	</label>
+	
+<div *ngIf="isDataAvailable">
+<app-show-graph [childMessage]="graph"></app-show-graph>
+</div>
+<!--<div>
+	<label i18n>Add Node:
+		<button (click)="addNode()">ADD</button>
+	</label>
+	
+	<table>
+		<tr i18n></tr>
+		<tr *ngFor="let node of gamenodes">
+			<label>{{node.id}}</label>
+			<td *ngFor="let edge of node.edges">
+				<input (change)="updateChart()" [(ngModel)]="edge.target">
+			</td>
+			<button (click)="addLink(node)">ADD LINK</button>
+		</tr>
+	</table>
+	
+	<button (click)="save()">SAVE</button>
+>>>>>>> Stashed changes
 </div>
 <router-outlet name="popup"></router-outlet>
 

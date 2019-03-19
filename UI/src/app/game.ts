@@ -36,3 +36,15 @@ export class Node {
 		this.edges = [];
 	}
  }
+ 
+ export class Selection {
+	nodeId : number;
+	confidence : number;
+	presentationId : number;
+	constructor(nodeId : number, confidence : number, presentationId : number) {
+		this.nodeId = nodeId;
+		this.confidence = confidence;
+		this.presentationId = presentationId;
+	}
+	
+}
