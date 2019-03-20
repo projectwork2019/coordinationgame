@@ -2,7 +2,6 @@ package com.projectwork.coordinationgame.model;
 
 import java.util.Objects;
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import org.hibernate.annotations.Type;
 
 /**

@@ -49,7 +49,8 @@ import { TestComponentComponent } from './test-component/test-component.componen
     CoordGamesGameplayPageComponent,
     CoordGamesAdminGamesPageComponent,
     CoordGamesAdminAddGamePageComponent,
-    GraphEditorComponent
+    GraphEditorComponent,
+    TestComponentComponent
   ],
   bootstrap: [ AppComponent ]
 })

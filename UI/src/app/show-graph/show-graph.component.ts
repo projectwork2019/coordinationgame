@@ -15,7 +15,7 @@ export class ShowGraphComponent implements OnInit {
 	@Input() childMessage: string;
 
 	curve = shape.curveBundle.beta(0);
-	hierarchialGraph = {};
+	hierarchialGraph;
 	
 	graph;
 	selectedNode;
