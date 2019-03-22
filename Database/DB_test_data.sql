@@ -1,5 +1,5 @@
-INSERT INTO game_session(voluntary_data) VALUES ('wsup?');
-INSERT INTO game_session(voluntary_data) VALUES ('Hello darkness my old friend...');
+INSERT INTO game_session(player_comment, first_time, start_timestamp, end_timestamp) VALUES ('Kappa > Keepo', true, '2019-03-22 10:00:25', '2019-03-22 10:10:25');
+INSERT INTO game_session(player_comment, first_time, start_timestamp, end_timestamp) VALUES ('Hello darkness my old friend', true, '2019-03-22 11:00:33', '2019-03-22 11:25:25');
 
 
 INSERT INTO category(name) VALUES ('3-Nodes');
@@ -24,24 +24,9 @@ INSERT INTO game_category VALUES (2,2);
 INSERT INTO game_category VALUES (3,2);
 
 
-INSERT INTO presentation(presentation_data, game_id)
-VALUES
- (
- '{ "Name": "Presentation1"}',
- 1
- );
- INSERT INTO presentation(presentation_data, game_id)
-VALUES
- (
- '{ "Name": "Presentation2"}',
- 1
- );
- INSERT INTO presentation(presentation_data, game_id)
-VALUES
- (
- '{ "Name": "Presentation1"}',
- 2
- );
+INSERT INTO presentation(component_order, mirror, game_id) VALUES ('{1,2}', false, 1);
+INSERT INTO presentation(component_order, mirror, game_id) VALUES ('{2,1}', false, 1);
+INSERT INTO presentation(component_order, mirror, game_id) VALUES ('{1,2}', false, 2);
  
  
 INSERT INTO selection(confidence, times, selected_node, presentation_id) 
