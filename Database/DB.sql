@@ -1,10 +1,12 @@
-
 CREATE SCHEMA project_work;
 
 
 CREATE TABLE project_work.game_session (
 game_session_id SERIAL,
-voluntary_data VARCHAR(500),
+player_comment VARCHAR(500),
+first_time BOOLEAN NOT NULL,
+start_timestamp TIMESTAMP NOT NULL,
+end_timestamp TIMESTAMP NOT NULL,
 PRIMARY KEY(game_session_id),
 UNIQUE (game_session_id));
 
@@ -17,7 +19,8 @@ PRIMARY KEY (game_id));
 
 CREATE TABLE project_work.presentation (
 presentation_id SERIAL,
-presentation_data JSON NOT NULL,
+component_order INTEGER[] NOT NULL,
+mirror BOOLEAN NOT NULL,
 game_id SERIAL,
 PRIMARY KEY(presentation_id),
 FOREIGN KEY (game_id) REFERENCES game);
@@ -55,4 +58,3 @@ game_id SERIAL,
 PRIMARY KEY (category_id, game_id),
 FOREIGN KEY (game_id) REFERENCES game,
 FOREIGN KEY (category_id) REFERENCES category);
-
