@@ -26,3 +26,22 @@
     width: 50%;
 /*    text-align: center;*/
 }
+
+.text2 {
+ font-family: Times New Roman;
+ font-size: 16px;
+ line-height: 17px;
+ letter-spacing: 2px;
+ margin-right:2px;
+ margin-left:2px;
+ text-align: justify;
+}
+
+.blocks {
+    display:inline-block;
+    margin-left: 10%;
+}
+
+.inline {
+    display:inline-block;
+}

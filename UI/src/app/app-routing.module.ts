@@ -10,6 +10,7 @@ import { CoordGamesGameplayPageComponent }    from './coord-games-gameplay-page/
 import { CoordGamesAdminGamesPageComponent }    from './coord-games-admin-games-page/coord-games-admin-games-page.component';
 import { CoordGamesAdminAddGamePageComponent }    from './coord-games-admin-add-game-page/coord-games-admin-add-game-page.component';
 import { GraphEditorComponent } from './graph-editor/graph-editor.component';
+import { CoordGamesFeedbackReceivedPageComponent } from './coord-games-feedback-received-page/coord-games-feedback-received-page.component';
 
 import { AuthGuard }                          from './auth/auth.guard';
 import { SelectivePreloadingStrategyService } from './selective-preloading-strategy.service';
@@ -20,6 +21,10 @@ const appRoutes: Routes = [
 //    component: ComposeMessageComponent,
 //    outlet: 'popup'
 //  },
+  {
+    path: 'coord-games-feedback-received-page',
+    component: CoordGamesFeedbackReceivedPageComponent
+  },
   {
    path: 'graph-editor',
    component: GraphEditorComponent

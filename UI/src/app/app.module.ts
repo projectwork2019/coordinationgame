@@ -25,6 +25,7 @@ import { CoordGamesAdminAddGamePageComponent } from './coord-games-admin-add-gam
 import { GraphEditorComponent } from './graph-editor/graph-editor.component';
 import { ShowGraphComponent } from './show-graph/show-graph.component';
 import { TestComponentComponent } from './test-component/test-component.component';
+import { CoordGamesFeedbackReceivedPageComponent } from './coord-games-feedback-received-page/coord-games-feedback-received-page.component';
 
 @NgModule({
  imports: [
@@ -50,7 +51,8 @@ import { TestComponentComponent } from './test-component/test-component.componen
     CoordGamesAdminGamesPageComponent,
     CoordGamesAdminAddGamePageComponent,
     GraphEditorComponent,
-    TestComponentComponent
+    TestComponentComponent,
+    CoordGamesFeedbackReceivedPageComponent
   ],
   bootstrap: [ AppComponent ]
 })
