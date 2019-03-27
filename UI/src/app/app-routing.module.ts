@@ -11,6 +11,9 @@ import { CoordGamesAdminGamesPageComponent }    from './coord-games-admin-games-
 import { CoordGamesAdminAddGamePageComponent }    from './coord-games-admin-add-game-page/coord-games-admin-add-game-page.component';
 import { GraphEditorComponent } from './graph-editor/graph-editor.component';
 import { CoordGamesFeedbackReceivedPageComponent } from './coord-games-feedback-received-page/coord-games-feedback-received-page.component';
+import { CoordGamesLoginFailedPageComponent } from './coord-games-login-failed-page/coord-games-login-failed-page.component';
+import { CoordGamesLogoutPageComponent } from './coord-games-logout-page/coord-games-logout-page.component';
+import { CoordGamesAccessDeniedPageComponent } from './coord-games-access-denied-page/coord-games-access-denied-page.component';
 
 import { AuthGuard }                          from './auth/auth.guard';
 import { SelectivePreloadingStrategyService } from './selective-preloading-strategy.service';
@@ -22,20 +25,35 @@ const appRoutes: Routes = [
 //    outlet: 'popup'
 //  },
   {
+    path: 'coord-games-access-denied-page',
+    component: CoordGamesAccessDeniedPageComponent
+  },
+  {
+    path: 'coord-games-logout-page',
+    component: CoordGamesLogoutPageComponent
+  },
+  {
+    path: 'coord-games-login-failed-page',
+    component: CoordGamesLoginFailedPageComponent
+  },
+  {
     path: 'coord-games-feedback-received-page',
     component: CoordGamesFeedbackReceivedPageComponent
   },
   {
    path: 'graph-editor',
-   component: GraphEditorComponent
+   component: GraphEditorComponent,
+   canActivate: [AuthGuard]
   },
   {
     path: 'coord-games-admin-add-game-page',
     component: CoordGamesAdminAddGamePageComponent
+    //canActivate: [AuthGuard]
   },
   {
     path: 'coord-games-admin-games-page',
-    component: CoordGamesAdminGamesPageComponent
+    component: CoordGamesAdminGamesPageComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'coord-games-gameplay-page',
@@ -52,7 +70,8 @@ const appRoutes: Routes = [
   {
     path: 'admin',
     loadChildren: './admin/admin.module#AdminModule',
-    canLoad: [AuthGuard]
+    //canLoad: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'coord-games-main-page',

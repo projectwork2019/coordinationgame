@@ -26,6 +26,9 @@ import { GraphEditorComponent } from './graph-editor/graph-editor.component';
 import { ShowGraphComponent } from './show-graph/show-graph.component';
 import { TestComponentComponent } from './test-component/test-component.component';
 import { CoordGamesFeedbackReceivedPageComponent } from './coord-games-feedback-received-page/coord-games-feedback-received-page.component';
+import { CoordGamesLoginFailedPageComponent } from './coord-games-login-failed-page/coord-games-login-failed-page.component';
+import { CoordGamesLogoutPageComponent } from './coord-games-logout-page/coord-games-logout-page.component';
+import { CoordGamesAccessDeniedPageComponent } from './coord-games-access-denied-page/coord-games-access-denied-page.component';
 
 @NgModule({
  imports: [
@@ -52,7 +55,10 @@ import { CoordGamesFeedbackReceivedPageComponent } from './coord-games-feedback-
     CoordGamesAdminAddGamePageComponent,
     GraphEditorComponent,
     TestComponentComponent,
-    CoordGamesFeedbackReceivedPageComponent
+    CoordGamesFeedbackReceivedPageComponent,
+    CoordGamesLoginFailedPageComponent,
+    CoordGamesLogoutPageComponent,
+    CoordGamesAccessDeniedPageComponent
   ],
   bootstrap: [ AppComponent ]
 })

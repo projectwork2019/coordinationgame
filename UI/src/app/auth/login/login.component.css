@@ -1,4 +1,13 @@
+.inline {
+    display:inline-block;
+}
 
+.inline_textfield {
+    display:inline-block;
+    float: right;
+    margin-right: 85%;
+    margin-top: 0.75%;
+}
 
 /*
 Copyright Google LLC. All Rights Reserved.
