@@ -48,7 +48,7 @@ const appRoutes: Routes = [
   {
     path: 'coord-games-admin-add-game-page',
     component: CoordGamesAdminAddGamePageComponent
-    //canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'coord-games-admin-games-page',

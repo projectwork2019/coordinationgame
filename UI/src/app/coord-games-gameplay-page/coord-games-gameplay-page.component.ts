@@ -28,6 +28,7 @@ export class CoordGamesGameplayPageComponent implements OnInit {
 	loadGame(){
 		this.rest.getGames().subscribe(data => {
 			this.graph = data[Math.floor(Math.random()*data.length)];
+                        console.log(this.graph);
 			this.isDataAvailable = true;
 			this.graphComponent.updateChart();
 		});
