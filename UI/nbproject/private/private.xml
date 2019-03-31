@@ -2,6 +2,19 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/aideb/coord-games/src/app/coord-games-feedback-page/coord-games-feedback-page.component.html</file>
+            <file>file:/C:/Users/aideb/coord-games/src/app/coord-games-final-page/coord-games-final-page.component.html</file>
+            <file>file:/C:/Users/aideb/coord-games/src/app/coord-games-feedback-received-page/coord-games-feedback-received-page.component.html</file>
+            <file>file:/C:/Users/aideb/coord-games/src/app/auth/login/login.component.css</file>
+            <file>file:/C:/Users/aideb/coord-games/src/app/auth/login/login.component.html</file>
+            <file>file:/C:/Users/aideb/coord-games/src/app/coord-games-gameplay-page/coord-games-gameplay-page.component.ts</file>
+            <file>file:/C:/Users/aideb/coord-games/src/app/auth/auth.service.ts</file>
+            <file>file:/C:/Users/aideb/coord-games/src/app/auth/auth.guard.ts</file>
+            <file>file:/C:/Users/aideb/coord-games/src/app/coordination-rest.service.ts</file>
+            <file>file:/C:/Users/aideb/coord-games/src/app/coord-games-gameplay-page/coord-games-gameplay-page.component.html</file>
+            <file>file:/C:/Users/aideb/coord-games/src/app/auth/login/login.component.ts</file>
+            <file>file:/C:/Users/aideb/coord-games/src/app/app-routing.module.ts</file>
+        </group>
     </open-files>
 </project-private>

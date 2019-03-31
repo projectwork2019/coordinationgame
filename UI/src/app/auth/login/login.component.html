@@ -9,17 +9,17 @@
 
 <!-- <fieldset> -->
 <div *ngIf="!authService.isLoggedIn">
-    <p class="inline">Username: </p><input class="inline_textfield" type="text" [(ngModel)]="username">
+    <p class="inline">Username: </p><input class="inline_textfield" type="text" value="djfdjfh" [(ngModel)]="username" >
     <!-- <p class="inline">Username: </p><input class="inline_textfield" type="text" id="username" name="username" size="10"> -->
 </div>
 <div *ngIf="!authService.isLoggedIn">
-    <p class="inline">Password: </p><input class="inline_textfield" type="password" [(ngModel)]="password">
+    <p class="inline">Password: </p><input class="inline_textfield" type="password" [(ngModel)]="password_field">
    <!-- <p class="inline">Password: </p><input class="inline_textfield" type="password" id="password" name="password" size="10"> -->
 </div>
 <!-- </fieldset> -->
 
 <p>
-  <button (click)="login(username.value, password.value)"  *ngIf="!authService.isLoggedIn">Login</button>
+  <button (click)="login(username, password_field)"  *ngIf="!authService.isLoggedIn">Login</button>
   <button (click)="logout()" *ngIf="authService.isLoggedIn">Logout</button>
 </p>
 

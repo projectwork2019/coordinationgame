@@ -14,6 +14,7 @@ import { CoordGamesFeedbackReceivedPageComponent } from './coord-games-feedback-
 import { CoordGamesLoginFailedPageComponent } from './coord-games-login-failed-page/coord-games-login-failed-page.component';
 import { CoordGamesLogoutPageComponent } from './coord-games-logout-page/coord-games-logout-page.component';
 import { CoordGamesAccessDeniedPageComponent } from './coord-games-access-denied-page/coord-games-access-denied-page.component';
+import { CoordGamesAdminChooseFromListPageComponent } from './coord-games-admin-choose-from-list-page/coord-games-admin-choose-from-list-page.component';
 
 import { AuthGuard }                          from './auth/auth.guard';
 import { SelectivePreloadingStrategyService } from './selective-preloading-strategy.service';
@@ -24,6 +25,16 @@ const appRoutes: Routes = [
 //    component: ComposeMessageComponent,
 //    outlet: 'popup'
 //  },
+  {
+    path: 'coord-games-admin-games-page',
+    component: CoordGamesAdminGamesPageComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+   path: 'coord-games-admin-choose-from-list-page',
+   component: CoordGamesAdminChooseFromListPageComponent,
+   canActivate: [AuthGuard]
+  },
   {
     path: 'coord-games-access-denied-page',
     component: CoordGamesAccessDeniedPageComponent
@@ -47,12 +58,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'coord-games-admin-add-game-page',
-    component: CoordGamesAdminAddGamePageComponent
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'coord-games-admin-games-page',
-    component: CoordGamesAdminGamesPageComponent,
+    component: CoordGamesAdminAddGamePageComponent,
     canActivate: [AuthGuard]
   },
   {
@@ -70,8 +76,8 @@ const appRoutes: Routes = [
   {
     path: 'admin',
     loadChildren: './admin/admin.module#AdminModule',
-    //canLoad: [AuthGuard]
-    canActivate: [AuthGuard]
+    canLoad: [AuthGuard]
+    //canActivate: [AuthGuard]
   },
   {
     path: 'coord-games-main-page',

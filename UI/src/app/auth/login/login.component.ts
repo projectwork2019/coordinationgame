@@ -3,6 +3,8 @@ import { Router,
          NavigationExtras } from '@angular/router';
 import { AuthService }      from '../auth.service';
 
+//import { NgModule } from '@angular/core';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

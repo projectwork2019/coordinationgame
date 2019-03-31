@@ -29,9 +29,11 @@ import { CoordGamesFeedbackReceivedPageComponent } from './coord-games-feedback-
 import { CoordGamesLoginFailedPageComponent } from './coord-games-login-failed-page/coord-games-login-failed-page.component';
 import { CoordGamesLogoutPageComponent } from './coord-games-logout-page/coord-games-logout-page.component';
 import { CoordGamesAccessDeniedPageComponent } from './coord-games-access-denied-page/coord-games-access-denied-page.component';
+import { CoordGamesAdminChooseFromListPageComponent } from './coord-games-admin-choose-from-list-page/coord-games-admin-choose-from-list-page.component';
 
 @NgModule({
  imports: [
+   //NgModule,
    BrowserModule,
    BrowserAnimationsModule,
    FormsModule,
@@ -58,7 +60,8 @@ import { CoordGamesAccessDeniedPageComponent } from './coord-games-access-denied
     CoordGamesFeedbackReceivedPageComponent,
     CoordGamesLoginFailedPageComponent,
     CoordGamesLogoutPageComponent,
-    CoordGamesAccessDeniedPageComponent
+    CoordGamesAccessDeniedPageComponent,
+    CoordGamesAdminChooseFromListPageComponent
   ],
   bootstrap: [ AppComponent ]
 })
