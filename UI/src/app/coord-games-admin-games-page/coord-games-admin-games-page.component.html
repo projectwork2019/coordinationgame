@@ -1,3 +1,17 @@
+<style>
+	table {
+		width: 100%;
+	}
+	.gameTableContainer {
+		width: 75%;
+	}
+	.mat-column-removeGame {
+		justify-content: flex-end;
+	}
+
+
+</style>
+
 <h1 class="title">Welcome!</h1>
 <button routerLink="/coord-games-admin-add-game-page">Add game...</button>
 
@@ -9,7 +23,25 @@
          </select>
 </form>
 
+<div class="gameTableContainer mat-elevation-z8">
+	<table mat-table [dataSource]="dataSource">
+		<ng-container matColumnDef="gameId">
+			<th mat-header-cell *matHeaderCellDef> ID </th>
+			<td mat-cell *matCellDef="let game"> <a href='graph-editor/{{game.id}}'>GAME ID: {{game.id}}</a> </td>
+		</ng-container>
+		<ng-container matColumnDef="removeGame">
+			<th mat-header-cell *matHeaderCellDef></th>
+			<td mat-cell *matCellDef="let game"> <button (click)=removeGame(game.id)> REMOVE </button> </td>
+		</ng-container>	
+		<tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+		<tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+	</table>
+	<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
+<!--
 <form class="game_list" method="post" action="/Tests/Post/">      
+
+	
    <!-- <fieldset>      
         <legend>Select games to edit/remove them:</legend>      
         <input type="checkbox" name="chosen_game" value="1">Game ID 1   (Unplayed)<br>      
@@ -21,7 +53,7 @@
         <br>      
         <!-- <input type="submit" value="Submit now" />      
     </fieldset>    -->  
-        
+        <!--
     <fieldset>      
         <legend>Select games to edit/remove them:</legend>      
         <p><input type="checkbox" name="chosen_game" value="1">Game ID 1   (Unplayed)<button class="inline_block" routerLink="">Edit</button></p>      
@@ -32,5 +64,5 @@
         <p><input type="checkbox" name="chosen_game" value="6">Game ID 6   (Unplayed)<button class="inline_block" routerLink="">Edit</button></p> 
         <br>      
         <!-- <input type="submit" value="Submit now" />  -->    
-    </fieldset>    
-</form>
+    <!--</fieldset>    
+</form> -->

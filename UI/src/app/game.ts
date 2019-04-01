@@ -1,3 +1,8 @@
+export class GameDisplay {
+	name : string;
+	gameObjectData : string;
+}
+
 export class Game {
 	name : string;
 	components : Array<GameComponent>;

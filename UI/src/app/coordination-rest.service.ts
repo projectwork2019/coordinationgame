@@ -42,7 +42,7 @@ export class CoordinationRestService {
 	}
 	
 	submitSession(data) : Observable<any> {
-		return this.http.post(endpoint + "/games", data);
+		return this.http.post(endpoint + "/gameSession", data);
 	}
 
 }
