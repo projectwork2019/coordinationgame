@@ -16,4 +16,4 @@
 	
 	- You can test with Postman, by setting Authorization to Basic Auth
 	
-	![Image of Postman authorization](https://github.com/projectwork2019/coordinationgame/Postman_auth.png)
+	![Image of Postman authorization](https://github.com/projectwork2019/coordinationgame/blob/master/Postman_auth.png)
