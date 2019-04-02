@@ -26,8 +26,8 @@ export class LoginComponent {
   login() {
     this.message = 'Trying to log in ...';
     
-    this.user = 'User: ' + username.value; //temporary code - for testing only. Will be removed later.
-    this.psw = 'Password: ' + password.value; //temporary code - for testing only. Will be removed later.
+    this.user = 'User: ' + "admin"; //temporary code - for testing only. Will be removed later.
+    this.psw = 'Password: ' + "2019coordAdmin"; //temporary code - for testing only. Will be removed later.
     
     console.log(this.user); //temporary code - for testing only. Will be removed later.
     console.log(this.psw); //temporary code - for testing only. Will be removed later.
@@ -39,8 +39,8 @@ export class LoginComponent {
       this.setMessage();
       if (this.authService.isLoggedIn) {
           
-        this.user = 'User: ' + username.value; //temporary code - for testing only. Will be removed later.
-        this.psw = 'Password: ' + password.value; //temporary code - for testing only. Will be removed later.
+        this.user = 'User: ' + "admin" //temporary code - for testing only. Will be removed later.
+        this.psw = 'Password: ' + "password.value"; //temporary code - for testing only. Will be removed later.
 
         // Get the redirect URL from our auth service
         // If no redirect has been set, use the default
