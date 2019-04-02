@@ -1,20 +1,21 @@
-<h1 class="title">Add Game</h1>
-<button routerLink="">Save Game</button>
+<h1 class="title">Choose Component From List</h1>
+<button routerLink="/coord-games-admin-games-page">Add Component</button>
 <button class="inline_field" routerLink="/coord-games-admin-games-page">Back</button>
 
 
 <form class="game_list" method="post" action="/Tests/Post/">      
     <fieldset>      
-        <legend>List of components currently added to this game:</legend>      
-        <p>Component 1 <button class="inline_block" routerLink="">Remove</button></p>
+        <legend>List of saved components:</legend>      
+        <!-- <p>Component 1 <button class="inline_block" routerLink="">Remove</button></p> --> 
+        <p><input type="checkbox" name="chosen_comp" value="1">Component 1</p> 
         <p><img src="../../assets/Untitled.png" alt="Thumbnail" width="150" height="150"/></p>
-        <p>Component 2 <button class="inline_block" routerLink="">Remove</button></p>
+        <p><input type="checkbox" name="chosen_comp" value="2">Component 2</p> 
         <p><img src="../../assets/Untitled.png" alt="Thumbnail" width="150" height="150"/></p>
-        <p>Component 3 <button class="inline_block" routerLink="">Remove</button></p>
+        <p><input type="checkbox" name="chosen_comp" value="3">Component 3</p> 
         <p><img src="../../assets/Untitled.png" alt="Thumbnail" width="150" height="150"/></p>
-        <p><button routerLink="/graph-editor">+</button></p>
+        <!--<p><button routerLink="/graph-editor">+</button></p>-->
         <!--<p><button routerLink="">Choose a component from the list...</button></p>  --> 
-        <a routerLink="/coord-games-admin-choose-from-list-page">Choose a component from the list...</a>
+        <!--<a href="">Choose a component from the list...</a>-->
         <!-- <br> -->       
         <!-- <input type="submit" value="Submit now" />  -->    
     </fieldset>      

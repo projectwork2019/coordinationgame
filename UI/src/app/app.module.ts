@@ -2,6 +2,8 @@ import { NgModule }       from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
 import { FormsModule }    from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from  '@angular/material';
+import { MatPaginatorModule } from '@angular/material';
 
 import { HttpClientModule } from '@angular/common/http';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
@@ -12,6 +14,7 @@ import { Router } from '@angular/router';
 import { AppComponent }            from './app.component';
 import { PageNotFoundComponent }   from './page-not-found/page-not-found.component';
 import { ComposeMessageComponent } from './compose-message/compose-message.component';
+
 
 import { AppRoutingModule }        from './app-routing.module';
 import { HeroesModule }            from './heroes/heroes.module';
@@ -29,9 +32,11 @@ import { CoordGamesFeedbackReceivedPageComponent } from './coord-games-feedback-
 import { CoordGamesLoginFailedPageComponent } from './coord-games-login-failed-page/coord-games-login-failed-page.component';
 import { CoordGamesLogoutPageComponent } from './coord-games-logout-page/coord-games-logout-page.component';
 import { CoordGamesAccessDeniedPageComponent } from './coord-games-access-denied-page/coord-games-access-denied-page.component';
+import { CoordGamesAdminChooseFromListPageComponent } from './coord-games-admin-choose-from-list-page/coord-games-admin-choose-from-list-page.component';
 
 @NgModule({
  imports: [
+   //NgModule,
    BrowserModule,
    BrowserAnimationsModule,
    FormsModule,
@@ -40,7 +45,9 @@ import { CoordGamesAccessDeniedPageComponent } from './coord-games-access-denied
    AppRoutingModule,
    NgxGraphModule,
    NgxChartsModule,
-   HttpClientModule
+   HttpClientModule,
+   MatTableModule,
+   MatPaginatorModule
  ],
   declarations: [
     AppComponent,
@@ -58,7 +65,8 @@ import { CoordGamesAccessDeniedPageComponent } from './coord-games-access-denied
     CoordGamesFeedbackReceivedPageComponent,
     CoordGamesLoginFailedPageComponent,
     CoordGamesLogoutPageComponent,
-    CoordGamesAccessDeniedPageComponent
+    CoordGamesAccessDeniedPageComponent,
+    CoordGamesAdminChooseFromListPageComponent
   ],
   bootstrap: [ AppComponent ]
 })

@@ -3,6 +3,8 @@ import { Router,
          NavigationExtras } from '@angular/router';
 import { AuthService }      from '../auth.service';
 
+//import { NgModule } from '@angular/core';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -23,11 +25,11 @@ export class LoginComponent {
     this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
   }
 
-  login() {
+  login(username : string, password : string) {
     this.message = 'Trying to log in ...';
     
-    this.user = 'User: ' + "admin"; //temporary code - for testing only. Will be removed later.
-    this.psw = 'Password: ' + "2019coordAdmin"; //temporary code - for testing only. Will be removed later.
+    this.user = 'User: ' + username; //temporary code - for testing only. Will be removed later.
+    this.psw = 'Password: ' + password; //temporary code - for testing only. Will be removed later.
     
     console.log(this.user); //temporary code - for testing only. Will be removed later.
     console.log(this.psw); //temporary code - for testing only. Will be removed later.
@@ -39,8 +41,8 @@ export class LoginComponent {
       this.setMessage();
       if (this.authService.isLoggedIn) {
           
-        this.user = 'User: ' + "admin" //temporary code - for testing only. Will be removed later.
-        this.psw = 'Password: ' + "password.value"; //temporary code - for testing only. Will be removed later.
+          this.user = 'User: ' + username; //temporary code - for testing only. Will be removed later.
+          this.psw = 'Password: ' + password; //temporary code - for testing only. Will be removed later.
 
         // Get the redirect URL from our auth service
         // If no redirect has been set, use the default
