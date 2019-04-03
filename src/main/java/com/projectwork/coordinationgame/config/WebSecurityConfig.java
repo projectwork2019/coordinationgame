@@ -36,7 +36,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //.formLogin().permitAll().and()
                 //.logout().permitAll()
                 //.and()
-                .csrf().disable();
+                .csrf().disable()
+                .requiresChannel()
+                .requestMatchers(r -> r.getHeader("X-Forwarded-Proto") != null)
+                .requiresSecure();
         
         
     }
