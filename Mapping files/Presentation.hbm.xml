@@ -1,0 +1,22 @@
+?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+
+	<class name = "Presentation" table = "PRESENTATION">
+	
+		<id name = "presentation_id" type = "int" column = "presentation_id">
+			<generator class="native"/>
+		</id>
+		
+		<array name = "component_order" column = "component_order" type = "int"/>
+		<property name = "mirror" column = "mirror" type = "boolean"/>
+		<many-to-one name = "GAME" class = "Game">
+			<column name="game_id" not-null="true" />
+		</many-to-one>
+		
+	</class>
+
+</hibernate-mapping>

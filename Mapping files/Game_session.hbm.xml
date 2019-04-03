@@ -1,0 +1,30 @@
+?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+
+	<class name = "Game_session" table = "GAME_SESSION">
+		
+		<id name = "game_session_id" type = "int" column = "game_session_id">
+			<generator class="native"/>
+		</id>
+		
+		<property name = "player_comment" column = "player_comment" type = "string"/>
+		<property name = "first_time" column = "first_time" type = "boolean"/>
+		<timestamp name="start_timestamp" column= "start_timestamp"/>
+		<timestamp name="end_timestamp" column= "end_timestamp"/>
+		
+		<set name = "selections" table = "GAME_SESSION_SELECTION">
+			<key>
+				<column name = "game_session_id" not-null="true" />
+			</key>
+			<many-to-many entity-name="Selection">
+				<column name="selection_id" not-null="true" />
+			</many-to-many>
+		</set>
+		
+	</class>
+
+</hibernate-mapping>

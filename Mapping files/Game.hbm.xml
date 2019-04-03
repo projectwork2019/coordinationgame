@@ -1,0 +1,27 @@
+?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+
+	<class name = "Game" table = "GAME">
+	
+		<id name = "game_id" type = "int" column = "game_id">
+			<generator class="native"/>
+		</id>
+		
+		<property name = "gamedata" column = "gamedata" type = "JSON"/>
+
+		<set name = "categories" table = "GAME_CATEGORY">
+			<key>
+				<column name = "game_id" not-null="true" />
+			</key>
+			<many-to-many entity-name="Category">
+				<column name="category_id" not-null="true" />
+			</many-to-many>
+		</set>
+		
+	</class>
+	
+</hibernate-mapping>
