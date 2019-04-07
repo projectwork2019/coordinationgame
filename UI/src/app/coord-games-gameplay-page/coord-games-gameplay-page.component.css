@@ -51,6 +51,11 @@
     margin-right: 20%;
 }
 
+.confidence_label_2 {
+    float: right;
+    margin-right: 20%;
+}
+
 .blocks {
     display:inline-block;
     margin-left: 10%;
@@ -58,6 +63,57 @@
 
 .confidence_label {
     display:inline-block;
-    padding-right: 23%;
-    padding-left: 10%;
+/*    padding-right: 23%;
+    padding-left: 10%;*/
+
+    padding-right: 29%;
+    padding-left: 7%;
+}
+
+.slider {
+    display: contents;
+/*    display: inline-block;*/
+}
+
+.slider2 {
+    width:90%
+}
+
+.blocks2 {
+    display:inline-block;
+}
+
+.range {
+  position: relative;
+  width: 550px;
+  height: 5px;
+}
+
+.range-labels {
+  margin: 18px -41px 0;
+  padding: 0;
+  list-style: none;
+  
+  li {
+    position: relative;
+    float: left;
+    width: 90.25px;
+    text-align: center;
+    color: #b2b2b2;
+    font-size: 14px;
+    cursor: pointer;
+    
+    &::before {
+      position: absolute;
+      top: -25px;
+      right: 0;
+      left: 0;
+      content: "";
+      margin: 0 auto;
+      width: 9px;
+      height: 9px;
+      background: #b2b2b2;
+      border-radius: 50%;
+    }
+  }
 }

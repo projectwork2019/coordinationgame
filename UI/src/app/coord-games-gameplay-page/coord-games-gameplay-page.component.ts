@@ -4,6 +4,8 @@ import { ShowGraphComponent } from '../show-graph/show-graph.component';
 import { Routes, RouterModule, Router} from '@angular/router'
 import { Selection } from '../game';
 
+import { Options } from 'ng5-slider';
+
 @Component({
   selector: 'app-coord-games-gameplay-page',
   templateUrl: './coord-games-gameplay-page.component.html',
@@ -48,5 +50,10 @@ export class CoordGamesGameplayPageComponent implements OnInit {
 			this.loadGame();
 		}
 	}
-	
+        
+	value: number = 1;
+        options: Options = {
+             floor: 1,
+             ceil: 5
+          };
 }

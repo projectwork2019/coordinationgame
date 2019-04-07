@@ -1,0 +1,40 @@
+.title {
+    text-align:center
+}
+
+.title2 {
+    text-align:center;
+    font-size: 40px;
+}
+
+.inline_field {
+    display: inline-block;
+    float: right;
+    margin-right: 10%;
+}
+
+.inline_block {
+    display: inline-block;
+    float: right;
+    margin-right: 2%;
+}
+
+.inline {
+    display: inline-block;
+}
+
+.inline2 {
+    display: inline-block;
+    margin-left: 2%;
+}
+
+
+
+.game_list {
+    width: 90%;
+}
+/*
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
+*/

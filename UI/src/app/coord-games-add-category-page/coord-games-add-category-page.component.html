@@ -1,0 +1,23 @@
+<h1 class="title">Choose Category</h1>
+<button routerLink="/coord-games-admin-games-page">Add Category</button>
+<button class="inline_field" routerLink="/coord-games-admin-games-page">Back</button>
+
+
+<form class="game_list" method="post" action="/Tests/Post/">      
+    <fieldset>      
+        <legend>List of saved categories:</legend>      
+        <!-- <p>Component 1 <button class="inline_block" routerLink="">Remove</button></p> --> 
+        <p><input type="checkbox" name="chosen_cat" value="1">Category 1</p> 
+        <p><input type="checkbox" name="chosen_cat" value="2">Category 2</p> 
+        <p><input type="checkbox" name="chosen_cat" value="3">Category 3</p> 
+        
+        <p class="inline">New Category: </p><input class="inline2" type="text" value="" [(ngModel)]="newCategory" >
+        <p class="inline2"><button routerLink="">Add</button></p>
+        
+        <!--<p><button routerLink="/graph-editor">+</button></p>-->
+        <!--<p><button routerLink="">Choose a component from the list...</button></p>  --> 
+        <!--<a href="">Choose a component from the list...</a>-->
+        <!-- <br> -->       
+        <!-- <input type="submit" value="Submit now" />  -->    
+    </fieldset>      
+</form>

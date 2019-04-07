@@ -5,6 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from  '@angular/material';
 import { MatPaginatorModule } from '@angular/material';
 
+import { Ng5SliderModule } from 'ng5-slider';
+
 import { HttpClientModule } from '@angular/common/http';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -33,11 +35,13 @@ import { CoordGamesLoginFailedPageComponent } from './coord-games-login-failed-p
 import { CoordGamesLogoutPageComponent } from './coord-games-logout-page/coord-games-logout-page.component';
 import { CoordGamesAccessDeniedPageComponent } from './coord-games-access-denied-page/coord-games-access-denied-page.component';
 import { CoordGamesAdminChooseFromListPageComponent } from './coord-games-admin-choose-from-list-page/coord-games-admin-choose-from-list-page.component';
+import { CoordGamesAddCategoryPageComponent } from './coord-games-add-category-page/coord-games-add-category-page.component';
 
 @NgModule({
  imports: [
    //NgModule,
    BrowserModule,
+   Ng5SliderModule,
    BrowserAnimationsModule,
    FormsModule,
    HeroesModule,
@@ -66,7 +70,8 @@ import { CoordGamesAdminChooseFromListPageComponent } from './coord-games-admin-
     CoordGamesLoginFailedPageComponent,
     CoordGamesLogoutPageComponent,
     CoordGamesAccessDeniedPageComponent,
-    CoordGamesAdminChooseFromListPageComponent
+    CoordGamesAdminChooseFromListPageComponent,
+    CoordGamesAddCategoryPageComponent
   ],
   bootstrap: [ AppComponent ]
 })

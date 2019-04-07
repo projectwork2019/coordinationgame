@@ -5,7 +5,7 @@
 
 <p>Confidence: </p>
 
-<div class="blocks">
+<!-- <div class="blocks">
   <input type="radio" name="confidence" id=1 >
   <label>1</label>
 </div>
@@ -28,12 +28,39 @@
 <div class="blocks">
   <input type="radio" name="confidence" id=5 >
   <label>5</label>
+</div> -->
+
+<!-- <input type="range" list="tickmarks" min="1" max="5" step="1">
+
+<datalist class="slider" id="tickmarks">
+  <option class="blocks2" value="1" label="1">
+  <option class="blocks2" value="2">
+  <option class="blocks2" value="3">
+  <option class="blocks2" value="4">
+  <option class="blocks2" value="5" label="5">
+</datalist>
+
+<div class="range">
+  <input type="range" min="1" max="5" step="1">
 </div>
+
+<ul class="range-labels">
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+  <li>4</li>
+  <li>5</li>
+</ul> -->
+
+<p class="slider2"><ng5-slider [(value)]="value" [options]="options"></ng5-slider></p>
+
 
 <p></p>
 
 <p class="confidence_label">Very low confidence</p>
-<p class="confidence_label">Very high confidence</p>
+<p class="confidence_label_2">Very high confidence</p>
+
+<p></p>
 
 <button class ="button" (click)="confirmSelection()">Proceed...</button>
 <!--<button class ="button" (click)=""routerLink="/coord-games-feedback-page">Proceed...</button>-->
