@@ -1,3 +1,8 @@
+export class Category {
+	name : string;
+	id : number;
+}
+
 export class GameDisplay {
 	name : string;
 	gameObjectData : string;
