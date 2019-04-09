@@ -22,25 +22,35 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Override
+    /*@Override
     protected void configure(HttpSecurity http) throws Exception
     {
-        // define filter rules for security
-        // form login currently disabled, will be added later
-        http.httpBasic().and()
+        // DEFINE SECURITY RULES FOR HTTP BASIC AUTH
+        /*http.httpBasic().and()
         .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/api/games").hasRole("USER")
                 .antMatchers(HttpMethod.PUT, "/api/games").hasRole("USER")
                 .antMatchers(HttpMethod.DELETE, "/api/games").hasRole("USER")
                 .anyRequest().permitAll().and()
-                //.formLogin().permitAll().and()
-                //.logout().permitAll()
-                //.and()
                 .csrf().disable()
-                .requiresChannel()
+                /*.requiresChannel()
                 .requestMatchers(r -> r.getHeader("X-Forwarded-Proto") != null)
                 .requiresSecure();
         
+        // DEFINE SECURITY RULES FOR FORM LOGIN
+        http
+            .authorizeRequests()
+                .antMatchers(HttpMethod.POST, "/api/games").hasRole("USER")
+                .antMatchers(HttpMethod.PUT, "/api/games").hasRole("USER")
+                .antMatchers(HttpMethod.DELETE, "/api/games").hasRole("USER")
+                .anyRequest().permitAll()
+                .and()
+            .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .and()
+            .logout()
+                .permitAll();
     }
 
     @Autowired
@@ -53,5 +63,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
+    }*/
 }

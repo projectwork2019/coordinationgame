@@ -27,7 +27,7 @@ public class GameController {
     }
     
     @GetMapping("/api/games/{gameId}")
-    public Game getGames(@PathVariable Long gameId) {
+    public Game getGames(@PathVariable Integer gameId) {
         // Fetch the game from repository
         Optional<Game> optionalEntity = gameRepository.findById(gameId);
         // Convert the Optional to Game object

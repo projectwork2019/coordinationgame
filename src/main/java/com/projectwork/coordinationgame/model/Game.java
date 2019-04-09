@@ -12,13 +12,8 @@ import org.hibernate.annotations.Type;
 @Table(name = "game")
 public class Game {
     @Id
-    @GeneratedValue(generator = "game_generator")
-    @SequenceGenerator(
-            name = "game_generator",
-            sequenceName = "game_sequence",
-            initialValue = 1
-    )
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     
     @Column(name = "gameData")
     @Type(type = "text")
@@ -46,11 +41,11 @@ public class Game {
     }
 
     // getters and setters auto-generated
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

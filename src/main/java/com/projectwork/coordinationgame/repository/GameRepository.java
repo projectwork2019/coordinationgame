@@ -12,5 +12,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 // @CrossOrigin(origins = "http://localhost:4200")
-public interface GameRepository extends CrudRepository<Game, Long> {
+public interface GameRepository extends CrudRepository<Game, Integer> {
 }
