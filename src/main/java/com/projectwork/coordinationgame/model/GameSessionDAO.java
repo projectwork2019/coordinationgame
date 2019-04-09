@@ -26,7 +26,7 @@ public class GameSessionDAO {
             //Send ResultSet to the getGameSessionFromResultSet method and get game session object
             GameSession gameSession = getGameSessionFromResultSet(rsGS);
  
-            //Return employee object
+            //Return game session object
             return gameSession;
         } catch (SQLException e) {
             System.out.println("While searching a game session with " + gameSessionId + " id, an error occurred: " + e);
@@ -35,7 +35,7 @@ public class GameSessionDAO {
         }
     }
  
-    //Use ResultSet from DB as parameter and set GameSession Object's attributes and return employee object.
+    //Use ResultSet from DB as parameter and set GameSession Object's attributes and return game session object.
     private static GameSession getGameSessionFromResultSet(ResultSet rs) throws SQLException
     {
         GameSession gs = null;
@@ -80,7 +80,7 @@ public class GameSessionDAO {
         ArrayList<GameSession> gsList = new ArrayList();
  
         while (rs.next()) {
-            gs = new GaneSession();
+            gs = new GameSession();
             gs.setGameSessionId(rs.getInt("game_session_id"));
             gs.setPlayerComment(rs.getString("player_comment"));
             gs.setFirstTime(rs.getBoolean("first_time"));
@@ -118,7 +118,7 @@ public class GameSessionDAO {
     //INSERT a game session
     //*************************************
     public static void insertGS (String playerComment, String firstTime, String startDateTime, String endDateTime) throws SQLException, ClassNotFoundException {
-        //Declare a DELETE statement
+        //Declare an INSERT statement
         String updateStmt =
                 "BEGIN\n" +
                         "INSERT INTO project_work.game_session\n" +
@@ -127,11 +127,11 @@ public class GameSessionDAO {
                         "(game_session_id.nextval, '"+playerComment+"', '"+firstTime+"','"+startDateTime+"','"+endDateTime+"'\n"+
                         "END;";
  
-        //Execute DELETE operation
+        //Execute INSERT operation
         try {
             DBUtil.dbExecuteUpdate(updateStmt);
         } catch (SQLException e) {
-            System.out.print("Error occurred while DELETE Operation: " + e);
+            System.out.print("Error occurred while INSERT Operation: " + e);
             throw e;
         }
     }
