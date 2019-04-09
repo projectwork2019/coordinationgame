@@ -1,5 +1,5 @@
 
-import coordinationgame.util.DBUtil;
+import com.projectwork.coordinationgame.util.DBUtil;
  
 import java.sql.ResultSet;
 import java.sql.SQLException;
