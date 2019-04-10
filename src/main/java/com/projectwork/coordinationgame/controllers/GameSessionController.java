@@ -46,5 +46,4 @@ public class GameSessionController {
         System.out.println("POST: Received game session with ID: " + gameSession.getId());
         return gameSessionRepository.save(gameSession);
     }   
-    
 }
