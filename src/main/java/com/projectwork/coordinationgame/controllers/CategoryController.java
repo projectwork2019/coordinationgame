@@ -49,12 +49,16 @@ public class CategoryController {
         // create list for games to be returned
         List<Category> categories = new ArrayList<>();
         
+        for (Category c : categoryRepository.values()) {
+            categories.add(c);
+        }
+        
         // Call gameRepository interface to find all games
         return categories;
     }
     
     @GetMapping("/api/caregory/{categoryId}")
-    public Game getGames(@PathVariable Integer categoryId) {
-        return game;
+    public Category getCategories(@PathVariable Integer categoryId) {
+        return categoryRepository.getOrDefault(categoryId, null);
     }
 }
