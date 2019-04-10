@@ -1,8 +1,13 @@
 
+import com.projectwork.coordinationgame.model.Game;
+import com.projectwork.coordinationgame.model.GameSession;
 import com.projectwork.coordinationgame.util.DBUtil;
  
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
  
 public class GameDAO {
  
