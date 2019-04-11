@@ -24,7 +24,8 @@ public class GameSession {
     private boolean prevKnowledge;
     private LocalDateTime startTimestamp;
     private LocalDateTime endTimestamp;
-
+    
+    
     public Integer getId() {
         return id;
     }
@@ -64,48 +65,4 @@ public class GameSession {
     public void setEndTimestamp(LocalDateTime endTimestamp) {
         this.endTimestamp = endTimestamp;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 71 * hash + Objects.hashCode(this.id);
-        hash = 71 * hash + (this.firstTime ? 1 : 0);
-        hash = 71 * hash + (this.prevKnowledge ? 1 : 0);
-        hash = 71 * hash + Objects.hashCode(this.startTimestamp);
-        hash = 71 * hash + Objects.hashCode(this.endTimestamp);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final GameSession other = (GameSession) obj;
-        if (this.firstTime != other.firstTime) {
-            return false;
-        }
-        if (this.prevKnowledge != other.prevKnowledge) {
-            return false;
-        }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.startTimestamp, other.startTimestamp)) {
-            return false;
-        }
-        if (!Objects.equals(this.endTimestamp, other.endTimestamp)) {
-            return false;
-        }
-        return true;
-    }
-    
-    
-    
 }

@@ -8,6 +8,9 @@ package com.projectwork.coordinationgame.controllers;
 import com.projectwork.coordinationgame.model.Game;
 import org.springframework.web.bind.annotation.*;
 import com.projectwork.coordinationgame.model.GameSession;
+import com.projectwork.coordinationgame.model.Selection;
+import com.projectwork.coordinationgame.model.SelectionWrapper;
+
 import com.projectwork.coordinationgame.repository.GameRepository;
 import com.projectwork.coordinationgame.repository.GameSessionRepository;
 import java.util.ArrayList;
@@ -39,17 +42,19 @@ public class GameSessionController {
             return gameIdList;
         }
     }
-    
-    @GetMapping("/api/gamesessions/{gameSessionId}")
-    public GameSession getGameSession (@PathVariable Integer gameId) {
-        // TODO: GET games based on category
-        return null;
-    }
 
     @PostMapping("/api/gamesessions")
-    // @CrossOrigin(origins = "http://localhost:4200")
-    public GameSession createGame(@RequestBody GameSession gameSession) {
-        // TODO: Save gameSession with Selections to Database
-        return null;
+    public List<String> createGameSession(@RequestBody List<Selection> selections) {
+        // Create new gameSession instance
+        
+        // Get gameSession ID
+        
+        // Persist selections (SelectionDAO) related to session ID
+        ArrayList<String> response = new ArrayList<>();
+        selections.forEach((s) -> {
+            response.add("Added selection: " + s.toString());
+        });
+        //  
+        return response;
     }   
 }
