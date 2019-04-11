@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
-import { Selection, Category } from 'game';
+import { Selection, Category } from './game';
 
 const endpoint = "https://projectwork-coordinationgame.herokuapp.com/api";
 const httpOptions = {
