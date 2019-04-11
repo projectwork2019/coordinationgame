@@ -62,6 +62,7 @@ public class CategoryController {
     @PostMapping("/api/category")
     public Category createCategory(@RequestBody Category newCategory) {
         // Create new Category
+        newCategory.setCategory_id(id);
         categoryRepository.put(id, newCategory);
         return newCategory;
     }
