@@ -8,6 +8,11 @@ export class GameDisplay {
 	gameObjectData : string;
 }
 
+export class CategoryDisplay {
+	name : string;
+	categoryObjectData : string;
+}
+
 export class Game {
 	name : string;
 	components : Array<GameComponent>;

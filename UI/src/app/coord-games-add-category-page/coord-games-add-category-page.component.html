@@ -6,13 +6,29 @@
 <form class="game_list" method="post" action="/Tests/Post/">      
     <fieldset>      
         <legend>List of saved categories:</legend>      
-        <!-- <p>Component 1 <button class="inline_block" routerLink="">Remove</button></p> --> 
+        <!-- <p>Component 1 <button class="inline_block" routerLink="">Remove</button></p> //
         <p><input type="checkbox" name="chosen_cat" value="1">Category 1</p> 
         <p><input type="checkbox" name="chosen_cat" value="2">Category 2</p> 
-        <p><input type="checkbox" name="chosen_cat" value="3">Category 3</p> 
+        <p><input type="checkbox" name="chosen_cat" value="3">Category 3</p>  -->
         
-        <p class="inline">New Category: </p><input class="inline2" type="text" value="" [(ngModel)]="newCategory" >
-        <p class="inline2"><button routerLink="">Add</button></p>
+        <div class="gameTableContainer mat-elevation-z8">
+	<table mat-table [dataSource]="dataSource">
+		<ng-container matColumnDef="categoryId">
+			<th mat-header-cell *matHeaderCellDef> ID </th>
+			<td mat-cell *matCellDef="let category"> <input type="checkbox" name="chosen_cat" value="{{category.id}}"> <a href='/api/categories/{{category.category_id}}'>CATEGORY ID: {{category.category_id}}</a> </td>
+		</ng-container>
+		<ng-container matColumnDef="name">
+			<th mat-header-cell *matHeaderCellDef></th>
+			<td mat-cell *matCellDef="let category">  {{category.name}}  </td>
+		</ng-container>	
+		<tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+		<tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+	</table>
+	<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+        
+        <p class="inline">New Category: </p><input class="inline2" type="text" value="" [(ngModel)]="newCategory" name="newCategoryNameTag" >
+        <p class="inline2"><button (click)="addCategory(newCategory)">Add</button></p>
         
         <!--<p><button routerLink="/graph-editor">+</button></p>-->
         <!--<p><button routerLink="">Choose a component from the list...</button></p>  --> 
