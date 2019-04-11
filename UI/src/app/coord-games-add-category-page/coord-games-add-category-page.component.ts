@@ -9,6 +9,8 @@ import { CategoryDisplay } from '../game'
   styleUrls: ['./coord-games-add-category-page.component.css']
 })
 export class CoordGamesAddCategoryPageComponent implements OnInit {
+    
+  newCategory:string;
 
   dataSource = new MatTableDataSource<CategoryDisplay>();
   columnsToDisplay = ['categoryId', 'name'];
