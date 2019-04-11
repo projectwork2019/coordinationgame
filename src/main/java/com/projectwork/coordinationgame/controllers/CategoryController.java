@@ -46,14 +46,8 @@ public class CategoryController {
     
     @GetMapping("/api/category")
     public List<Category> getCategories() {
-        // create list for games to be returned
         List<Category> categories = new ArrayList<>();
-        
-        for (Category c : categoryRepository.values()) {
-            categories.add(c);
-        }
-        
-        // Call gameRepository interface to find all games
+        categoryRepository.values().forEach(categories::add);
         return categories;
     }
     
