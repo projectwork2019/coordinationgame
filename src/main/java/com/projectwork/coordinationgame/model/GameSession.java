@@ -7,6 +7,7 @@ package com.projectwork.coordinationgame.model;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.*;
 import org.hibernate.annotations.Type;
 /**
@@ -20,11 +21,11 @@ public class GameSession {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
+    private Set<Selection> selections;
     private boolean firstTime;
     private boolean prevKnowledge;
     private LocalDateTime startTimestamp;
     private LocalDateTime endTimestamp;
-    
     
     public Integer getId() {
         return id;

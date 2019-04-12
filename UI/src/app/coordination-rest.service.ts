@@ -42,7 +42,7 @@ export class CoordinationRestService {
 		map(this.extractData));
 	}
 	
-	submitSession(data : Selection[]) : Observable<any> {
+	postSession(data : Selection[]) : Observable<any> {
 		return this.http.post(endpoint + "/gameSession", data);
 	}
 	
@@ -51,9 +51,9 @@ export class CoordinationRestService {
 		map(this.extractData));
 	}
 	
-	postAdditionalInformation(data) : Observable<any> {
+	/*postAdditionalInformation(data) : Observable<any> {
 		return this.http.post(endpoint + "/gameSession/additionalInfo", data);
-	}
+	}*/
 	
 	postComment(data) : Observable<any> {
 		return this.http.post(endpoint + "/comments", data);
@@ -65,11 +65,11 @@ export class CoordinationRestService {
 	}
 	
 	addCategory(data : Category) : Observable<any> {
-		return this.http.post(endpoint + "/category", data);
+		return this.http.post(endpoint + "/categories", data);
 	}
 	
 	getCategories() : Observable<any> {
-		return this.http.get(endpoint + "/category").pipe(
+		return this.http.get(endpoint + "/categories").pipe(
 		map(this.extractData));
 	}
 }
