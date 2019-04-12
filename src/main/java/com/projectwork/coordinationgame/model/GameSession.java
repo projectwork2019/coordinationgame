@@ -21,7 +21,7 @@ public class GameSession {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
-    private Set<Selection> selections;
+    
     private boolean firstTime;
     private boolean prevKnowledge;
     private LocalDateTime startTimestamp;
