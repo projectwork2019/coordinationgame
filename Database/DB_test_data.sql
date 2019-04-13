@@ -41,7 +41,6 @@ INSERT INTO game_session_selection VALUES (1,1);
 INSERT INTO game_session_selection VALUES (2,1);
 INSERT INTO game_session_selection VALUES (3,2);
 
-
 -- Test query to get data of one game_session_id
 SELECT game_session.game_session_id, selection.selection_id, selection.presentation_id, category.name
 FROM game_session, game_session_selection, selection, presentation, game, game_category, category
