@@ -30,7 +30,7 @@ FOREIGN KEY (game_id) REFERENCES game);
 CREATE TABLE project_work.selection (
 selection_id SERIAL,
 confidence INT NOT NULL,
-times INT NOT NULL,
+frequency INT NOT NULL,
 selected_node INT NOT NULL,
 presentation_id SERIAL,
 PRIMARY KEY(selection_id, confidence, presentation_id, selected_node),
