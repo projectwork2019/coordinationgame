@@ -61,5 +61,14 @@ export class Node {
 		this.confidence = confidence;
 		this.presentationId = presentationId;
 	}
+ }
+        
+ export class FeedbackPageAnswers {
+	firsTime : boolean;
+	readResearch : boolean;
+	constructor(firsTime : boolean, readResearch : boolean) {
+		this.firsTime = firsTime;
+		this.readResearch = readResearch;
+	}
 	
 }

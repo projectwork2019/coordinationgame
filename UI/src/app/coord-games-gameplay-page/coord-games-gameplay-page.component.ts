@@ -3,6 +3,7 @@ import { CoordinationRestService } from '../coordination-rest.service';
 import { ShowGraphComponent } from '../show-graph/show-graph.component';
 import { Routes, RouterModule, Router} from '@angular/router'
 import { Selection } from '../game';
+//import { DateFormat } from '@angular/dateformat'
 
 import { Options } from 'ng5-slider';
 
@@ -20,6 +21,7 @@ export class CoordGamesGameplayPageComponent implements OnInit {
 	isDataAvailable:boolean = false;
 	selections : any[] = [];
 	gameNo : number = 1;
+        value: number = 1; //for slider
 	
 	constructor(private rest: CoordinationRestService, private router:Router) {}
 
@@ -39,10 +41,26 @@ export class CoordGamesGameplayPageComponent implements OnInit {
 	confirmSelection() {
 		let selectedNode = this.graphComponent.selectedNode;
 		console.log(this.graphComponent);
-		let selection = new Selection(selectedNode.id, selectedNode.id, this.graphComponent.graph.id);
+		let selection = new Selection(selectedNode.id, this.value, this.graphComponent.graph.id);
 		console.log(selection);
-		this.selections.push(this.graphComponent.selectedNode);
+                
+                if(this.gameNo == 1 ){ 
+                    
+                    //let dateFormat = require('dateformat');
+                    let now = new Date();
+                    
+                    this.rest.postAnswers(now);
+                }
+                
+		//this.selections.push(this.graphComponent.selectedNode);
+                this.selections.push(selection);
+                
+                
+                
+                
 		if(this.gameNo == 10 ){
+                        this.rest.postSession(this.selections);
+                        console.log(this.selections);
 			this.router.navigate(['/coord-games-feedback-page']);
 		}
 		else {
@@ -51,9 +69,11 @@ export class CoordGamesGameplayPageComponent implements OnInit {
 		}
 	}
         
-	value: number = 1;
+	
         options: Options = {
              floor: 1,
-             ceil: 5
+             ceil: 5,
+             showTicks: true,
+             showTicksValues: true
           };
 }

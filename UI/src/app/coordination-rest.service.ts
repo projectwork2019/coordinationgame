@@ -72,4 +72,8 @@ export class CoordinationRestService {
 		return this.http.get(endpoint + "/categories").pipe(
 		map(this.extractData));
 	}
+        
+        postAnswers(data) : Observable<any> {
+		return this.http.post(endpoint + "/gameSession", data);
+	}
 }
