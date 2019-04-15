@@ -44,11 +44,11 @@ export class CoordinationRestService {
 	
 	postSession(data : any[]) : Observable<any> {
 		console.log("POSTING SESSION: " + data);
-		return this.http.post(endpoint + "/gameSession", data);
+		return this.http.post(endpoint + "/gamesessions", data);
 	}
 	
 	getSession(id : number) : Observable<any> {
-		return this.http.get(endpoint + "/gameSession/" + id).pipe(
+		return this.http.get(endpoint + "/gamesessions/" + id).pipe(
 		map(this.extractData));
 	}
 	
@@ -75,6 +75,6 @@ export class CoordinationRestService {
 	}
         
         postAnswers(data) : Observable<any> {
-		return this.http.post(endpoint + "/gameSession", data);
+		return this.http.post(endpoint + "/gamesessions", data);
 	}
 }

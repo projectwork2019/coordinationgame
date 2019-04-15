@@ -40,8 +40,8 @@ export class CoordGamesGameplayPageComponent implements OnInit {
 	
 	confirmSelection() {
 		let selectedNode = this.graphComponent.selectedNode;
-		console.log(this.graphComponent);
-		let selection = new Selection(selectedNode.id, this.value, this.graphComponent.graph.id);
+		console.log(selectedNode);
+		let selection = new Selection(Number(selectedNode.id), this.value, this.graphComponent.graph.id);
 		console.log(selection);
                 
                 if(this.gameNo == 1 ){ 
@@ -49,7 +49,9 @@ export class CoordGamesGameplayPageComponent implements OnInit {
                     //let dateFormat = require('dateformat');
                     let now = new Date();
                     
-                    this.rest.postAnswers(now);
+                    this.rest.postAnswers(now).subscribe(data => {
+						console.log(data);
+					};
                 }
                 
 		//this.selections.push(this.graphComponent.selectedNode);
@@ -59,8 +61,13 @@ export class CoordGamesGameplayPageComponent implements OnInit {
                 
                 
 		if(this.gameNo == 10 ){
-                        this.rest.postSession(this.selections);
-                        console.log(this.selections);
+			
+			this.rest.postSession(this.selections).subscribe(data => {
+				console.log(data);
+			});
+			/*
+            this.rest.postSession(this.selections);
+            console.log(this.selections);*/
 			this.router.navigate(['/coord-games-feedback-page']);
 		}
 		else {

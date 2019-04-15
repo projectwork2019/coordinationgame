@@ -35,20 +35,20 @@
   </ng-template>
 
   <ng-template #nodeTemplate let-node>
-    <svg:g class="node" (click)=addEdge(node)
+    <svg:g class="node" (click)=addEdge(node) (dblclick)=removeEdges(node)
     ngx-tooltip
     [tooltipPlacement]="'top'"
     [tooltipType]="'tooltip'"
     [tooltipTitle]="node.position"
     >
       <!--<svg:circle [attr.r]="node.width/2" [attr.fill]="node.options.color" />-->
-      <svg:rect [attr.width]="node.width" [attr.height]="node.height" [attr.fill]="node.options.color" />
+      <svg:rect [attr.width]="node.width" [attr.height]="node.height" [attr.fill]="node.options.color" stroke="black" [attr.stroke-width]="5" [attr.stroke-opacity]="node.selected ? 1 : 0"/>
       <svg:text alignment-baseline="central" [attr.x]="10" [attr.y]="node.height / 2">{{node.label}}</svg:text>
     </svg:g>
   </ng-template>
 
   <ng-template #linkTemplate let-link>
-    <svg:g class="edge">
+    <svg:g class="edge" (click)=removeEdge(link)>
       <svg:path
         class="line"
         stroke-width="2"
