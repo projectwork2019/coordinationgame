@@ -49,7 +49,6 @@ export class ShowGraphComponent implements OnInit {
 		if(node.edges.length > 0){
 			this.selectedNode = node;
 			node.selected = true;
-			console.log(node.edges.length);
 		}
 	}
 	

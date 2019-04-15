@@ -5,13 +5,13 @@
 	
 	<table>
 		<tr i18n></tr>
-		<tr *ngFor="let node of gamenodes">
+		<!--<tr *ngFor="let node of gamenodes">
 			<label>{{node.id}}</label>
 			<td *ngFor="let edge of node.edges">
 				<input (change)="updateChart()" [(ngModel)]="edge.target">
 			</td>
 			<button (click)="addLink(node)">ADD LINK</button>
-		</tr>
+		</tr>-->
 	</table>
 	
 	<button (click)="save()">SAVE</button>
@@ -35,7 +35,7 @@
   </ng-template>
 
   <ng-template #nodeTemplate let-node>
-    <svg:g class="node"
+    <svg:g class="node" (click)=addEdge(node)
     ngx-tooltip
     [tooltipPlacement]="'top'"
     [tooltipType]="'tooltip'"

@@ -20,6 +20,8 @@ export class GraphEditorComponent implements OnInit {
 	edges = [];
 	hierarchialGraph = {nodes: this.gamenodes, links: this.edges}
 	
+	edgeFrom : Node;
+	
 	component : GameComponent = {
 		edges : []
 	}
@@ -66,6 +68,18 @@ export class GraphEditorComponent implements OnInit {
 		console.log(JSON.stringify(this.game));
 	}
 	
+	addEdge(node : Node) {
+		if(this.edgeFrom != null && this.edgeFrom.id != node.id) {
+			let e : Edge = new Edge(this.edgeFrom.id, node.id, "");
+			node.edges.push(e);
+			this.edges.push(e);
+			this.updateChart();
+			this.edgeFrom = null;
+		}
+		else {
+			this.edgeFrom = node;
+		}
+	}
 	// Update function
 	updateChart(){
 		this.update$.next(true);
