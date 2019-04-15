@@ -1,9 +1,10 @@
-<h1 class="title">Game {{gameNo}}/10</h1>
+<div style="height: 70vh">
+<h2 class="title">Game {{gameNo}}/10</h2>
 <div *ngIf="isDataAvailable">
 	<app-show-graph [childMessage]="graph"></app-show-graph>
 </div>
+</div>
 
-<p>Confidence: </p>
 
 <!-- <div class="blocks">
   <input type="radio" name="confidence" id=1 >
@@ -52,16 +53,19 @@
   <li>5</li>
 </ul> -->
 
+<div style="height: 30vh">
+<p>Confidence: </p>
 <p class="slider2"><ng5-slider [(value)]="value" [options]="options"></ng5-slider></p>
 <!-- <p>Value: <input type="number" [(ngModel)]="value"></p> -->
 
-
+<!--
 <p></p>
 
 <p class="confidence_label">Very low confidence</p>
 <p class="confidence_label_2">Very high confidence</p>
 
-<p></p>
+<p></p>-->
 
 <button class ="button" (click)="confirmSelection()">Proceed...</button>
+<div>
 <!--<button class ="button" (click)=""routerLink="/coord-games-feedback-page">Proceed...</button>-->

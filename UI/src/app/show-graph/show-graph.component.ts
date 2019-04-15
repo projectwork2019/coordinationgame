@@ -45,9 +45,12 @@ export class ShowGraphComponent implements OnInit {
 		if(this.selectedNode != null){
 			this.selectedNode.selected = false;
 		}
-		this.selectedNode = node;
-		node.selected = true;
-		console.log(node.selected);
+		// TODO: Making node non-clickable should be handled better. This solution won't work if graph with more layers than 2 need to be playable
+		if(node.edges.length > 0){
+			this.selectedNode = node;
+			node.selected = true;
+			console.log(node.edges.length);
+		}
 	}
 	
 }

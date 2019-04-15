@@ -42,7 +42,8 @@ export class CoordinationRestService {
 		map(this.extractData));
 	}
 	
-	postSession(data : Selection[]) : Observable<any> {
+	postSession(data : any[]) : Observable<any> {
+		console.log("POSTING SESSION: " + data);
 		return this.http.post(endpoint + "/gameSession", data);
 	}
 	
