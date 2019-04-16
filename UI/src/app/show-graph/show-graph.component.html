@@ -1,5 +1,5 @@
 <!--<div id="graph" style="height: 500px">-->
-<div id="graph" style="height: 60vh">
+<div id="graph" style="height: 40vh">
 <ngx-graph
   class="chart-container"
   [links]="hierarchialGraph.links"
@@ -8,6 +8,9 @@
   [curve]="curve"
   [update$]="update$"
   [draggingEnabled]="false"
+  [panningEnabled]="false"
+  [autoZoom] = "true"
+  [autoCenter] = "true"
   >
 
   <ng-template #defsTemplate>
@@ -27,6 +30,7 @@
 	  
 	  <svg:rect [attr.width]="node.height" [attr.height]="node.height" [attr.fill]="none" stroke="black" [attr.stroke-width]="5" [attr.stroke-opacity]="node.selected ? 1 : 0"/>
       <svg:rect [attr.width]="node.height" [attr.height]="node.height" [attr.fill]="node.options.color" />
+	  
       <!--<svg:text alignment-baseline="central" [attr.x]="10" [attr.y]="node.height / 2">{{node.label}}</svg:text>-->
     </svg:g>
   </ng-template>
