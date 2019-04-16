@@ -1,5 +1,7 @@
 CREATE SCHEMA project_work;
 
+SET SEARCH_PATH TO project_work;
+
 
 CREATE TABLE project_work.game_session (
 game_session_id SERIAL,
@@ -14,7 +16,7 @@ UNIQUE (game_session_id));
 
 CREATE TABLE project_work.game (
 game_id SERIAL,
-gamedata JSON NOT NULL,
+gamedata VARCHAR(4096) NOT NULL,
 PRIMARY KEY (game_id));
 
 
@@ -43,7 +45,7 @@ selection_id SERIAL,
 game_session_id SERIAL,
 PRIMARY KEY (selection_id, game_session_id),
 FOREIGN KEY (selection_id) REFERENCES selection(selection_id),
-FOREIGN KEY (game_session_id) REFERENCES game_session(game_session_id));
+FOREIGN KEY (game_session_id) REFERENCES game_session);
 
 
 CREATE TABLE project_work.category (

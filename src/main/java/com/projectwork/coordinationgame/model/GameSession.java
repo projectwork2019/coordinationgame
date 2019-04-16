@@ -5,11 +5,14 @@
  */
 package com.projectwork.coordinationgame.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.*;
 import org.hibernate.annotations.Type;
+import org.springframework.format.annotation.DateTimeFormat;
 /**
  *
  * @author Antti Manninen <antti.e.manninen@tuni.fi>
@@ -18,7 +21,7 @@ import org.hibernate.annotations.Type;
 @Table(name = "game_session")
 public class GameSession {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "game_session_id")
     private Integer id;
     
@@ -29,9 +32,12 @@ public class GameSession {
     private boolean prevKnowledge;
     
     @Column(name = "start_timestamp")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime startTimestamp;
     
-    @Column(name = "end_timestamp")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime endTimestamp;
     
     /*
@@ -50,11 +56,19 @@ public class GameSession {
     @ManyToMany
     @JoinTable(
             name="game_session_selection",
-            joinColumns = @JoinColumn("game_session_id"),
-            inverseJoinColumns = @JoinColumn("selection_id")
+            joinColumns = @JoinColumn(name = "game_session_id"),
+            inverseJoinColumns = @JoinColumn(name = "selection_id")
     )
     private Set<Selection> selections;
     
+    @Override
+    public String toString() {
+        return "GameSession - first time: " + this.firstTime + " start: " + startTimestamp.toString() + " end: " + endTimestamp.toString();
+    }
+    
+    private Set<Selection> getSelections() {
+        return this.selections;
+    }
     
     public Integer getId() {
         return id;

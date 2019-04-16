@@ -51,7 +51,7 @@ export class CoordGamesGameplayPageComponent implements OnInit {
                     
                     this.rest.postAnswers(now).subscribe(data => {
 						console.log(data);
-					};
+					});
                 }
                 
 		//this.selections.push(this.graphComponent.selectedNode);

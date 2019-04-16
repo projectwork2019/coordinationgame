@@ -12,10 +12,10 @@ import org.hibernate.annotations.Type;
 @Table(name = "game")
 public class Game {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
     
-    @Column(name = "gameData")
+    @Column(name = "gamedata")
     @Type(type = "text")
     private String gameDataObject;
     

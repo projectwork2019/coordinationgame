@@ -18,16 +18,27 @@ import org.hibernate.annotations.Type;
 @Table(name = "selection")
 public class Selection implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer selection_id;
     
+    /*
+    export class Selection {
+	nodeId : number;
+	confidence : number;
+	presentationId : number;
+    }
+    */
+    @Column(name = "confidence")
     private Integer confidence;
+    
+    @Column(name = "freuency")
     private Integer frequency;
     
     @Column(name = "selected_id")
     private Integer nodeId;
     
-    private Integer presentation_id;
+    @Column(name = "presentation_id")
+    private Integer presentationId;
     
     public Integer getSelection_id() {
         return selection_id;
@@ -53,20 +64,20 @@ public class Selection implements Serializable {
         this.frequency = frequency;
     }
 
-    public Integer getSelected_node() {
+    public Integer getNodeId() {
         return nodeId;
     }
 
-    public void setSelected_node(int selected_node) {
-        this.nodeId = selected_node;
+    public void setNodeId(int nodeId) {
+        this.nodeId = nodeId;
     }
 
     public Integer getPresentation_id() {
-        return presentation_id;
+        return presentationId;
     }
 
-    public void setPresentation_id(int presentation_id) {
-        this.presentation_id = presentation_id;
+    public void setPresentation_id(int presentationId) {
+        this.presentationId = presentationId;
     }
 
     @Override
@@ -76,7 +87,7 @@ public class Selection implements Serializable {
         hash = 11 * hash + this.confidence;
         hash = 11 * hash + this.frequency;
         hash = 11 * hash + this.nodeId;
-        hash = 11 * hash + this.presentation_id;
+        hash = 11 * hash + this.presentationId;
         return hash;
     }
 
@@ -101,7 +112,7 @@ public class Selection implements Serializable {
         if (this.nodeId != other.nodeId) {
             return false;
         }
-        if (this.presentation_id != other.presentation_id) {
+        if (this.presentationId != other.presentationId) {
             return false;
         }
         if (!Objects.equals(this.selection_id, other.selection_id)) {
@@ -112,6 +123,6 @@ public class Selection implements Serializable {
     
     @Override
     public String toString() {
-        return "Selection - selected node: " + getSelected_node() + " confidence: " + getConfidence();
+        return "Selection - selected node: " + getNodeId() + " confidence: " + getConfidence();
     }   
 }

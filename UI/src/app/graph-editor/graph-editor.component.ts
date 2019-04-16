@@ -70,7 +70,7 @@ export class GraphEditorComponent implements OnInit {
 		console.log(JSON.stringify(this.game));
 	}
 	
-	addEdge(node : Node) {
+	addEdge(node) {
 		if(this.edgeFrom != null && this.edgeFrom.id != node.id) {
 			let e : Edge = new Edge(this.edgeFrom.id, node.id, "");
 			node.edges.push(e);
@@ -90,8 +90,8 @@ export class GraphEditorComponent implements OnInit {
 		}
 	}
 	
-	removeEdge(lnk : Link) {
-		this.edges.splice(this.edges.findIndex(item => item.id === lnk.id), 1));
+	removeEdge(lnk) {
+		this.edges.splice(this.edges.findIndex(item => item.id === lnk.id), 1);
 		this.updateChart();
 	}
 	// Update function

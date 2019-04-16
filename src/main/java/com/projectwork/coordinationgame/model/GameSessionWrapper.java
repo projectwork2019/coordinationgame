@@ -9,17 +9,20 @@ import java.util.List;
 
 /**
  *
+ * 
+ * 
+ * 
  * @author Antti Manninen <antti.e.manninen@tuni.fi>
  */
-public class SelectionWrapper {
-    
+public class GameSessionWrapper {
+    private GameSession gameSession;
     private List<Selection> selections;
     
-    public List<Selection> getSelections() {
-        return selections;
+    public GameSession getGameSession() {
+        return this.gameSession;
     }
     
-    public void setSelections(List<Selection> selections) {
-        this.selections = selections;
+    public List<Selection> getSelections() {
+        return this.selections;
     }
 }
