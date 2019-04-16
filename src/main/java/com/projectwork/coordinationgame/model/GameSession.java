@@ -47,7 +47,7 @@ public class GameSession {
     first_time BOOLEAN NOT NULL,
     prev_knowledge BOOLEAN NOT NULL,
     start_timestamp TIMESTAMP NOT NULL,
-    end_timestamp TIMESTAMP NOT NULL,
+    end_timestamp TIMESTAMP NOT NULL, 
     PRIMARY KEY(game_session_id),
     UNIQUE (game_session_id));
     */

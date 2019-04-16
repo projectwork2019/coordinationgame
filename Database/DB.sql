@@ -22,6 +22,7 @@ PRIMARY KEY (game_id));
 
 CREATE TABLE project_work.presentation (
 presentation_id SERIAL,
+presentation_name VARCHAR(100),
 component_order INTEGER[] NOT NULL,
 mirror BOOLEAN NOT NULL,
 game_id SERIAL,
@@ -32,7 +33,6 @@ FOREIGN KEY (game_id) REFERENCES game);
 CREATE TABLE project_work.selection (
 selection_id SERIAL,
 confidence INT NOT NULL,
-frequency INT NOT NULL,
 selected_node INT NOT NULL,
 presentation_id SERIAL,
 PRIMARY KEY(selection_id, confidence, presentation_id, selected_node),

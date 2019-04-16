@@ -5,7 +5,11 @@
  */
 package com.projectwork.coordinationgame.model;
 
+import java.io.Serializable;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 import javax.persistence.*;
 
 /**
@@ -14,29 +18,68 @@ import javax.persistence.*;
  */
 
 @Entity
-public class Presentation {
+public class Presentation implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int presentation_id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "presentation_id")
+    private int presentationId;
     
-    private int[] component_order;
+    /*
+    CREATE TABLE project_work.presentation (
+    presentation_id SERIAL,
+    component_order INTEGER[] NOT NULL,
+    mirror BOOLEAN NOT NULL,
+    game_id SERIAL,
+    PRIMARY KEY(presentation_id),
+    FOREIGN KEY (game_id) REFERENCES game);
+    */
+       
+    @Column(name = "presentation_name")
+    private String presentationName;
+    
+    @Column(name = "component_order")
+    private Integer[] componentOrder;
+    
+    @Column(name = "mirror")
     private boolean mirror;
-    private int game_id;
+    
+    @Column(name = "gameId")
+    private int gameId;
 
-    public int getPresentation_id() {
-        return presentation_id;
+       
+    @OneToMany(mappedBy="presentation_id", cascade = CascadeType.ALL)
+    private final Set<Selection> selections;
+    
+    public Presentation() {
+        this.selections = new HashSet<>();
     }
 
-    public void setPresentation_id(int presentation_id) {
-        this.presentation_id = presentation_id;
+    @Override
+    public String toString() {
+        return "ID: " + presentationId + " name: " + presentationName + " componentOrder: " + componentOrder + " mirror: " + mirror + " gameId: " + gameId;
+    }
+    public int getPresentationId() {
+        return presentationId;
     }
 
-    public int[] getComponent_order() {
-        return component_order;
+    public void setPresentationId(int presentationId) {
+        this.presentationId = presentationId;
     }
 
-    public void setComponent_order(int[] component_order) {
-        this.component_order = component_order;
+    public String getPresentationName() {
+        return presentationName;
+    }
+
+    public void setPresentationName(String presentationName) {
+        this.presentationName = presentationName;
+    }
+
+    public Integer[] getComponentOrder() {
+        return componentOrder;
+    }
+
+    public void setComponentOrder(Integer[] componentOrder) {
+        this.componentOrder = componentOrder;
     }
 
     public boolean isMirror() {
@@ -47,21 +90,23 @@ public class Presentation {
         this.mirror = mirror;
     }
 
-    public int getGame_id() {
-        return game_id;
+    public int getGameId() {
+        return gameId;
     }
 
-    public void setGame_id(int game_id) {
-        this.game_id = game_id;
+    public void setGameId(int gameId) {
+        this.gameId = gameId;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 17 * hash + this.presentation_id;
-        hash = 17 * hash + Arrays.hashCode(this.component_order);
-        hash = 17 * hash + (this.mirror ? 1 : 0);
-        hash = 17 * hash + this.game_id;
+        hash = 89 * hash + this.presentationId;
+        hash = 89 * hash + Objects.hashCode(this.presentationName);
+        hash = 89 * hash + Arrays.deepHashCode(this.componentOrder);
+        hash = 89 * hash + (this.mirror ? 1 : 0);
+        hash = 89 * hash + this.gameId;
+        hash = 89 * hash + Objects.hashCode(this.selections);
         return hash;
     }
 
@@ -77,18 +122,26 @@ public class Presentation {
             return false;
         }
         final Presentation other = (Presentation) obj;
-        if (this.presentation_id != other.presentation_id) {
+        if (this.presentationId != other.presentationId) {
             return false;
         }
         if (this.mirror != other.mirror) {
             return false;
         }
-        if (this.game_id != other.game_id) {
+        if (this.gameId != other.gameId) {
             return false;
         }
-        if (!Arrays.equals(this.component_order, other.component_order)) {
+        if (!Objects.equals(this.presentationName, other.presentationName)) {
+            return false;
+        }
+        if (!Arrays.deepEquals(this.componentOrder, other.componentOrder)) {
+            return false;
+        }
+        if (!Objects.equals(this.selections, other.selections)) {
             return false;
         }
         return true;
     }
+    
+    
 }

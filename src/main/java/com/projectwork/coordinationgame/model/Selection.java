@@ -30,19 +30,18 @@ public class Selection implements Serializable {
     */
     @Column(name = "confidence")
     private Integer confidence;
-    
-    @Column(name = "frequency")
-    private Integer frequency;
-    
+        
     @Column(name = "selected_node")
     private Integer nodeId;
     
     @Column(name = "presentation_id")
+    @ManyToOne
+    @JoinColumn
     private Integer presentationId;
     
     public Integer getSelection_id() {
         return selection_id;
-    }
+    }    
 
     public void setSelection_id(Integer selection_id) {
         this.selection_id = selection_id;
@@ -54,14 +53,6 @@ public class Selection implements Serializable {
 
     public void setConfidence(int confidence) {
         this.confidence = confidence;
-    }
-
-    public Integer getFrequency() {
-        return frequency;
-    }
-
-    public void setFrequency(int frequency) {
-        this.frequency = frequency;
     }
 
     public Integer getNodeId() {
@@ -85,7 +76,6 @@ public class Selection implements Serializable {
         int hash = 3;
         hash = 11 * hash + Objects.hashCode(this.selection_id);
         hash = 11 * hash + this.confidence;
-        hash = 11 * hash + this.frequency;
         hash = 11 * hash + this.nodeId;
         hash = 11 * hash + this.presentationId;
         return hash;
@@ -106,9 +96,6 @@ public class Selection implements Serializable {
         if (this.confidence != other.confidence) {
             return false;
         }
-        if (this.frequency != other.frequency) {
-            return false;
-        }
         if (this.nodeId != other.nodeId) {
             return false;
         }
@@ -123,6 +110,6 @@ public class Selection implements Serializable {
     
     @Override
     public String toString() {
-        return "Selection - selected node: " + getNodeId() + " confidence: " + getConfidence() + " presentation " + getPresentationId() + " freq " + getFrequency();
+        return "Selection - selected node: " + getNodeId() + " confidence: " + getConfidence() + " presentation " + getPresentationId();
     }   
 }
