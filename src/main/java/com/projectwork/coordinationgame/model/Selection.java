@@ -31,10 +31,10 @@ public class Selection implements Serializable {
     @Column(name = "confidence")
     private Integer confidence;
     
-    @Column(name = "freuency")
+    @Column(name = "frequency")
     private Integer frequency;
     
-    @Column(name = "selected_id")
+    @Column(name = "selected_node")
     private Integer nodeId;
     
     @Column(name = "presentation_id")
@@ -72,11 +72,11 @@ public class Selection implements Serializable {
         this.nodeId = nodeId;
     }
 
-    public Integer getPresentation_id() {
+    public Integer getPresentationId() {
         return presentationId;
     }
 
-    public void setPresentation_id(int presentationId) {
+    public void setPresentationId(int presentationId) {
         this.presentationId = presentationId;
     }
 
@@ -123,6 +123,6 @@ public class Selection implements Serializable {
     
     @Override
     public String toString() {
-        return "Selection - selected node: " + getNodeId() + " confidence: " + getConfidence();
+        return "Selection - selected node: " + getNodeId() + " confidence: " + getConfidence() + " presentation " + getPresentationId() + " freq " + getFrequency();
     }   
 }

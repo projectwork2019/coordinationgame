@@ -7,9 +7,8 @@ package com.projectwork.coordinationgame.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Objects;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
 import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -36,6 +35,7 @@ public class GameSession {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime startTimestamp;
     
+    @Column(name = "end_timestamp")
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime endTimestamp;
@@ -53,21 +53,29 @@ public class GameSession {
     */
     
     // Definition for many-to-many join table between GameSession and Selection
-    @ManyToMany
+    @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
             name="game_session_selection",
             joinColumns = @JoinColumn(name = "game_session_id"),
             inverseJoinColumns = @JoinColumn(name = "selection_id")
     )
-    private Set<Selection> selections;
+    private final List<Selection> selections;
+    
+    public GameSession() {
+        this.selections = new ArrayList<>();
+    }
     
     @Override
     public String toString() {
         return "GameSession - first time: " + this.firstTime + " start: " + startTimestamp.toString() + " end: " + endTimestamp.toString();
     }
     
-    private Set<Selection> getSelections() {
+    public List<Selection> getSelections() {
         return this.selections;
+    }
+    
+    public void addSelection(Selection selection) {
+        this.selections.add(selection);
     }
     
     public Integer getId() {

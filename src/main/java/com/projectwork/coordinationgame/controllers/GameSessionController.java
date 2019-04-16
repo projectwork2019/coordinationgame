@@ -50,13 +50,18 @@ public class GameSessionController {
     public List<String> createGameSession(@RequestBody GameSessionWrapper gameSessionWrapper) {        
         GameSession gameSession = gameSessionWrapper.getGameSession();
         List<Selection> selections = gameSessionWrapper.getSelections();
-        
+                
         ArrayList<String> response = new ArrayList<>();
         response.add(gameSession.toString());
         selections.forEach((s) -> {
+            if (s != null) {
+                gameSession.addSelection(s);
+            }
             response.add("Added selection: " + s.toString());
         });
-        //      
+        
+        gameSessionRepository.save(gameSession);
+        
         return response;
     }   
 }
