@@ -13,6 +13,7 @@ import com.projectwork.coordinationgame.model.SelectionWrapper;
 
 import com.projectwork.coordinationgame.repository.GameRepository;
 import com.projectwork.coordinationgame.repository.GameSessionRepository;
+import com.projectwork.coordinationgame.repository.SelectionRepository;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -29,6 +30,8 @@ public class GameSessionController {
     private GameSessionRepository gameSessionRepository;
     @Autowired
     private GameRepository gameRepository;
+    @Autowired
+    private SelectionRepository selectionRepository;
     
      @GetMapping("/api/gamesessions")
     public List<Integer> getGameSessions() {

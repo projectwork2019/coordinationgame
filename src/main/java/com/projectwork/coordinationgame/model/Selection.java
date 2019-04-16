@@ -23,9 +23,12 @@ public class Selection implements Serializable {
     
     private Integer confidence;
     private Integer frequency;
-    private Integer selected_node;
+    
+    @Column(name = "selected_id")
+    private Integer nodeId;
+    
     private Integer presentation_id;
-
+    
     public Integer getSelection_id() {
         return selection_id;
     }
@@ -51,11 +54,11 @@ public class Selection implements Serializable {
     }
 
     public Integer getSelected_node() {
-        return selected_node;
+        return nodeId;
     }
 
     public void setSelected_node(int selected_node) {
-        this.selected_node = selected_node;
+        this.nodeId = selected_node;
     }
 
     public Integer getPresentation_id() {
@@ -72,7 +75,7 @@ public class Selection implements Serializable {
         hash = 11 * hash + Objects.hashCode(this.selection_id);
         hash = 11 * hash + this.confidence;
         hash = 11 * hash + this.frequency;
-        hash = 11 * hash + this.selected_node;
+        hash = 11 * hash + this.nodeId;
         hash = 11 * hash + this.presentation_id;
         return hash;
     }
@@ -95,7 +98,7 @@ public class Selection implements Serializable {
         if (this.frequency != other.frequency) {
             return false;
         }
-        if (this.selected_node != other.selected_node) {
+        if (this.nodeId != other.nodeId) {
             return false;
         }
         if (this.presentation_id != other.presentation_id) {

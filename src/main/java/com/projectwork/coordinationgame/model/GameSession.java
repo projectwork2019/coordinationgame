@@ -19,16 +19,46 @@ import org.hibernate.annotations.Type;
 public class GameSession {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "game_session_id")
     private Integer id;
     
-    
+    @Column(name = "first_time")
     private boolean firstTime;
+    
+    @Column(name = "prev_knowledge")
     private boolean prevKnowledge;
+    
+    @Column(name = "start_timestamp")
     private LocalDateTime startTimestamp;
+    
+    @Column(name = "end_timestamp")
     private LocalDateTime endTimestamp;
+    
+    /*
+    CREATE TABLE project_work.game_session (
+    game_session_id SERIAL,
+    player_comment VARCHAR(500),
+    first_time BOOLEAN NOT NULL,
+    prev_knowledge BOOLEAN NOT NULL,
+    start_timestamp TIMESTAMP NOT NULL,
+    end_timestamp TIMESTAMP NOT NULL,
+    PRIMARY KEY(game_session_id),
+    UNIQUE (game_session_id));
+    */
+    
+    // Definition for many-to-many join table between GameSession and Selection
+    @ManyToMany
+    @JoinTable(
+            name="game_session_selection",
+            joinColumns = @JoinColumn("game_session_id"),
+            inverseJoinColumns = @JoinColumn("selection_id")
+    )
+    private Set<Selection> selections;
+    
     
     public Integer getId() {
         return id;
+        
     }
 
     public void setId(Integer id) {

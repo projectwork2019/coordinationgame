@@ -5,15 +5,14 @@
  */
 package com.projectwork.coordinationgame.repository;
 
-import com.projectwork.coordinationgame.model.GameSession;
+import com.projectwork.coordinationgame.model.Selection;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-// import org.springframework.web.bind.annotation.CrossOrigin;
+
 /**
  *
  * @author Antti Manninen <antti.e.manninen@tuni.fi>
  */
 @Repository
-public interface GameSessionRepository extends CrudRepository<GameSession, Integer> {
-    
+public interface SelectionRepository extends CrudRepository<Selection, Integer> {
 }
