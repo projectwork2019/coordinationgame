@@ -9,7 +9,8 @@ import { CoordinationRestService } from '../coordination-rest.service';
 @Component({
   selector: 'graph-editor',
   templateUrl: './graph-editor.component.html',
-  styleUrls: ['./graph-editor.component.css']
+  styleUrls: ['./graph-editor.component.css'],
+  providers: [ CoordinationRestService ]
 })
 export class GraphEditorComponent implements OnInit {
 	title = 'coordgames';

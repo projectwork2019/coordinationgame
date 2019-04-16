@@ -17,7 +17,6 @@ import { AppComponent }            from './app.component';
 import { PageNotFoundComponent }   from './page-not-found/page-not-found.component';
 import { ComposeMessageComponent } from './compose-message/compose-message.component';
 
-
 import { AppRoutingModule }        from './app-routing.module';
 import { HeroesModule }            from './heroes/heroes.module';
 import { AuthModule }              from './auth/auth.module';

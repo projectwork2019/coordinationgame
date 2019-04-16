@@ -8,7 +8,8 @@ import { CoordinationRestService } from '../coordination-rest.service';
 @Component({
   selector: 'app-show-graph',
   templateUrl: './show-graph.component.html',
-  styleUrls: ['./show-graph.component.css']
+  styleUrls: ['./show-graph.component.css'],
+  providers: [ CoordinationRestService ]
 })
 export class ShowGraphComponent implements OnInit {
 	
@@ -46,7 +47,7 @@ export class ShowGraphComponent implements OnInit {
 			this.selectedNode.selected = false;
 		}
 		// TODO: Making node non-clickable should be handled better. This solution won't work if graph with more layers than 2 need to be playable
-		if(node.edges.length > 0){
+		if(node.edges.length == 0){
 			this.selectedNode = node;
 			node.selected = true;
 		}
