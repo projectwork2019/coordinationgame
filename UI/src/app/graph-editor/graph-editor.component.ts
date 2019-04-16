@@ -20,6 +20,8 @@ export class GraphEditorComponent implements OnInit {
 	edges = [];
 	hierarchialGraph = {nodes: this.gamenodes, links: this.edges}
 	
+	selectedNode;
+	
 	edgeFrom : Node;
 	
 	component : GameComponent = {
@@ -72,13 +74,25 @@ export class GraphEditorComponent implements OnInit {
 		if(this.edgeFrom != null && this.edgeFrom.id != node.id) {
 			let e : Edge = new Edge(this.edgeFrom.id, node.id, "");
 			node.edges.push(e);
-			this.edges.push(e);
+			this.edges.push(node.edges[node.edges.length - 1]);
 			this.updateChart();
 			this.edgeFrom = null;
+			this.selectedNode = null;
+			node.selected = false;
 		}
 		else {
+		
+		//TODO: Making node non-clickable should be handled better. This solution won't work if graph with more layers than 2 need to be playable
+		
+			this.selectedNode = node;
+			node.selected = true;
 			this.edgeFrom = node;
 		}
+	}
+	
+	removeEdge(lnk : Link) {
+		this.edges.splice(this.edges.findIndex(item => item.id === lnk.id), 1));
+		this.updateChart();
 	}
 	// Update function
 	updateChart(){
