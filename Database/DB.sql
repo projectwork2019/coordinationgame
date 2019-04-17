@@ -5,13 +5,20 @@ SET SEARCH_PATH TO project_work;
 
 CREATE TABLE project_work.game_session (
 game_session_id SERIAL,
-player_comment VARCHAR(500),
 first_time BOOLEAN NOT NULL,
 prev_knowledge BOOLEAN NOT NULL,
 start_timestamp TIMESTAMP NOT NULL,
 end_timestamp TIMESTAMP NOT NULL,
 PRIMARY KEY(game_session_id),
 UNIQUE (game_session_id));
+        
+
+CREATE TABLE project_work.comments (
+comment_id SERIAL,
+player_comment VARCHAR(1000),
+game_session_id int,
+PRIMARY KEY(comment_id),
+FOREIGN KEY(game_session_id) REFERENCES project_work.game_session);
 
 
 CREATE TABLE project_work.game (
