@@ -17,3 +17,8 @@
 	- You can test with Postman, by setting Authorization to Basic Auth
 	
 	![Image of Postman authorization](https://github.com/projectwork2019/coordinationgame/blob/master/Postman_auth.png)
+	
+	
+## UI Angular Build
+- Note! Build the production version of the UI with following command (flags are mandatory or UI is broken)
+		- `ng build --prod --aot=false --build-optimizer=false`
