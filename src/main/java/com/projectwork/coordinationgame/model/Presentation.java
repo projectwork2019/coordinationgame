@@ -49,6 +49,10 @@ public class Presentation {
     public String toString() {
         return "ID: " + presentationId + " componentOrder: " + componentOrder + " mirror: " + mirror + " gameId: " + gameId;
     }
+    
+    public void addSelection(Selection selection) {
+        this.selections.add(selection);
+    }
 
     public Integer getPresentationId() {
         return presentationId;

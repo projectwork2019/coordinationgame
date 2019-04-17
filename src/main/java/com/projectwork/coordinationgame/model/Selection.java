@@ -34,8 +34,11 @@ public class Selection implements Serializable {
     @Column(name = "selected_node")
     private Integer nodeId;
     
+    @Column(name = "presentation_id")
+    private Integer presentationId;
+    
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "presentation_id")
+    @JoinColumn(name = "presentation_id", insertable = false, updatable = false)
     private Presentation presentation;
     
     public Integer getSelection_id() {
@@ -62,42 +65,16 @@ public class Selection implements Serializable {
         this.nodeId = nodeId;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 11 * hash + Objects.hashCode(this.selection_id);
-        hash = 11 * hash + this.confidence;
-        hash = 11 * hash + this.nodeId;
-        return hash;
+    public Integer getPresentationId() {
+        return presentationId;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Selection other = (Selection) obj;
-        if (this.confidence != other.confidence) {
-            return false;
-        }
-        if (this.nodeId != other.nodeId) {
-            return false;
-        }
-
-        if (!Objects.equals(this.selection_id, other.selection_id)) {
-            return false;
-        }
-        return true;
+    public void setPresentationId(Integer presentationId) {
+        this.presentationId = presentationId;
     }
     
     @Override
     public String toString() {
-        return "Selection - selected node: " + getNodeId() + " confidence: " + getConfidence();
+        return "Selection - selected node: " + getNodeId() + " confidence: " + getConfidence() + " presentation ID: " + getPresentationId();
     }   
 }

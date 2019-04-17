@@ -9,16 +9,19 @@ import com.projectwork.coordinationgame.model.Game;
 import org.springframework.web.bind.annotation.*;
 import com.projectwork.coordinationgame.model.GameSession;
 import com.projectwork.coordinationgame.model.GameSessionWrapper;
+import com.projectwork.coordinationgame.model.Presentation;
 import com.projectwork.coordinationgame.model.Selection;
 
 import com.projectwork.coordinationgame.repository.GameRepository;
 import com.projectwork.coordinationgame.repository.GameSessionRepository;
+import com.projectwork.coordinationgame.repository.PresentationRepository;
 import com.projectwork.coordinationgame.repository.SelectionRepository;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 /**
  *
  * @author Antti Manninen <antti.e.manninen@tuni.fi>
@@ -32,6 +35,8 @@ public class GameSessionController {
     private GameRepository gameRepository;
     @Autowired
     private SelectionRepository selectionRepository;
+    @Autowired
+    private PresentationRepository presentationRepository;
     
      @GetMapping("/api/gamesessions")
     public List<Integer> getGameSessions() {
@@ -50,16 +55,23 @@ public class GameSessionController {
     public List<String> createGameSession(@RequestBody GameSessionWrapper gameSessionWrapper) {        
         GameSession gameSession = gameSessionWrapper.getGameSession();
         List<Selection> selections = gameSessionWrapper.getSelections();
-                
         ArrayList<String> response = new ArrayList<>();
+
         response.add(gameSession.toString());
         selections.forEach((s) -> {
             if (s != null) {
+                Integer presentationId = s.getPresentationId();
+                Optional<Presentation> optionalEntity = presentationRepository.findById(presentationId);
+                Presentation presentation = optionalEntity.get();
+                presentation.addSelection(s);
+                presentationRepository.save(presentation);
                 gameSession.addSelection(s);
+                response.add("Added selection: " + s.toString());
+            } else {
+                response.add("Null");
             }
-            response.add("Added selection: " + s.toString());
+
         });
-        
         gameSessionRepository.save(gameSession);
         
         return response;

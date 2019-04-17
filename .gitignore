@@ -24,3 +24,7 @@ HELP.md
 /nbdist/
 /.nb-gradle/
 /build/
+
+### ALLOW EXCEPTIONS
+
+!/src/main/resources/banner.txt
