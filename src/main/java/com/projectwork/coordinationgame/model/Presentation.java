@@ -5,8 +5,11 @@
  */
 package com.projectwork.coordinationgame.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -18,37 +21,25 @@ import javax.persistence.*;
  */
 
 @Entity
-public class Presentation implements Serializable {
+@Table(name = "presentation")
+public class Presentation {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "presentation_id")
-    private int presentationId;
-    
-    /*
-    CREATE TABLE project_work.presentation (
-    presentation_id SERIAL,
-    component_order INTEGER[] NOT NULL,
-    mirror BOOLEAN NOT NULL,
-    game_id SERIAL,
-    PRIMARY KEY(presentation_id),
-    FOREIGN KEY (game_id) REFERENCES game);
-    */
-       
-    @Column(name = "presentation_name")
-    private String presentationName;
-    
+    private Integer presentationId;
+
     @Column(name = "component_order")
-    private Integer[] componentOrder;
+    private String componentOrder;
     
     @Column(name = "mirror")
     private boolean mirror;
     
-    @Column(name = "gameId")
-    private int gameId;
-
-       
-    @OneToMany(mappedBy="presentation_id", cascade = CascadeType.ALL)
-    private final Set<Selection> selections;
+    @Column(name = "game_id")
+    private Integer gameId;
+    
+    @OneToMany(mappedBy = "presentation", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<Selection> selections;
     
     public Presentation() {
         this.selections = new HashSet<>();
@@ -56,29 +47,22 @@ public class Presentation implements Serializable {
 
     @Override
     public String toString() {
-        return "ID: " + presentationId + " name: " + presentationName + " componentOrder: " + componentOrder + " mirror: " + mirror + " gameId: " + gameId;
+        return "ID: " + presentationId + " componentOrder: " + componentOrder + " mirror: " + mirror + " gameId: " + gameId;
     }
-    public int getPresentationId() {
+
+    public Integer getPresentationId() {
         return presentationId;
     }
 
-    public void setPresentationId(int presentationId) {
+    public void setPresentationId(Integer presentationId) {
         this.presentationId = presentationId;
     }
-
-    public String getPresentationName() {
-        return presentationName;
-    }
-
-    public void setPresentationName(String presentationName) {
-        this.presentationName = presentationName;
-    }
-
-    public Integer[] getComponentOrder() {
+    
+    public String getComponentOrder() {
         return componentOrder;
     }
 
-    public void setComponentOrder(Integer[] componentOrder) {
+    public void setComponentOrder(String componentOrder) {
         this.componentOrder = componentOrder;
     }
 
@@ -102,8 +86,7 @@ public class Presentation implements Serializable {
     public int hashCode() {
         int hash = 7;
         hash = 89 * hash + this.presentationId;
-        hash = 89 * hash + Objects.hashCode(this.presentationName);
-        hash = 89 * hash + Arrays.deepHashCode(this.componentOrder);
+        hash = 89 * hash + Objects.hashCode(this.componentOrder);
         hash = 89 * hash + (this.mirror ? 1 : 0);
         hash = 89 * hash + this.gameId;
         hash = 89 * hash + Objects.hashCode(this.selections);
@@ -131,10 +114,8 @@ public class Presentation implements Serializable {
         if (this.gameId != other.gameId) {
             return false;
         }
-        if (!Objects.equals(this.presentationName, other.presentationName)) {
-            return false;
-        }
-        if (!Arrays.deepEquals(this.componentOrder, other.componentOrder)) {
+
+        if (!Objects.equals(this.componentOrder, other.componentOrder)) {
             return false;
         }
         if (!Objects.equals(this.selections, other.selections)) {

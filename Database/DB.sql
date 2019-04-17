@@ -22,8 +22,7 @@ PRIMARY KEY (game_id));
 
 CREATE TABLE project_work.presentation (
 presentation_id SERIAL,
-presentation_name VARCHAR(100),
-component_order INTEGER[] NOT NULL,
+component_order VARCHAR(100) NOT NULL,
 mirror BOOLEAN NOT NULL,
 game_id SERIAL,
 PRIMARY KEY(presentation_id),

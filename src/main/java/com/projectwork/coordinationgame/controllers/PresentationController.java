@@ -15,16 +15,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
  * @author Antti Manninen <antti.e.manninen@tuni.fi>
  */
+@RestController
 public class PresentationController {
     @Autowired
     private PresentationRepository presentationRepository;
     
-    @GetMapping("/api/presentation")
+    @GetMapping("/api/presentations")
     public List<Presentation> getPresentations() {
         // create list for games to be returned
         List<Presentation> presentations = new ArrayList<>();
@@ -49,3 +51,4 @@ public class PresentationController {
         return presentationRepository.save(presentation);
     }
 }
+    

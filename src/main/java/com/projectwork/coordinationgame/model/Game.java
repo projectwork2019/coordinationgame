@@ -14,7 +14,7 @@ public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
-    
+
     @Column(name = "gamedata")
     @Type(type = "text")
     private String gameDataObject;
