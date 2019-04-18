@@ -59,7 +59,7 @@ public class CategoryService {
         categoryDAO.closeCurrentSessionWithTransaction();
     }
  
-    public CategoryDAO ctegoryDao() {
+    public CategoryDAO categoryDao() {
         return categoryDAO;
     }
 }
