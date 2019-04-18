@@ -59,7 +59,7 @@ public class GameSessionService {
         gameSessionDAO.closeCurrentSessionWithTransaction();
     }
  
-    public GameSessionDAO bookDao() {
+    public GameSessionDAO gameSessionDao() {
         return gameSessionDAO;
     }
 }
