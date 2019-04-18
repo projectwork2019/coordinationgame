@@ -59,7 +59,7 @@ public class PresentationService {
         presentationDAO.closeCurrentSessionWithTransaction();
     }
  
-    public PresentationDAO bookDao() {
+    public PresentationDAO presentationDao() {
         return presentationDAO;
     }
 }
