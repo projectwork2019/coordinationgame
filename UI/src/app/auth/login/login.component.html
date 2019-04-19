@@ -7,6 +7,17 @@
     <!-- <p>{{psw}}</p> <!--  temporary code  - for testing only. Will be removed later. -->
 <!-- </div> <!--  temporary code  - for testing only. Will be removed later. -->
 
+<div *ngIf="!authService.isLoggedIn">
+    <p class="inline">For players: </p>
+</div>
+<div *ngIf="!authService.isLoggedIn">
+    <p class="inline">Player ID: </p><input class="inline_textfield" type="text" value="djfdjfh" [(ngModel)]="playerID" >
+    <!-- <p class="inline">Username: </p><input class="inline_textfield" type="text" id="username" name="username" size="10"> -->
+</div>
+
+<div *ngIf="!authService.isLoggedIn">
+    <p class="inline">For staff: </p>
+</div>
 <!-- <fieldset> -->
 <div *ngIf="!authService.isLoggedIn">
     <p class="inline">Username: </p><input class="inline_textfield" type="text" value="djfdjfh" [(ngModel)]="username" >

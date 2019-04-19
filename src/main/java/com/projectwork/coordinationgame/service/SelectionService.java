@@ -59,7 +59,7 @@ public class SelectionService {
         selectionDAO.closeCurrentSessionWithTransaction();
     }
  
-    public SelectionDAO bookDao() {
+    public SelectionDAO selectionDao() {
         return selectionDAO;
     }
 }

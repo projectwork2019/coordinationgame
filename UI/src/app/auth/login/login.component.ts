@@ -14,6 +14,7 @@ export class LoginComponent {
   message: string;
   user: string; 
   psw: string; 
+  playerId: string;
 
   constructor(public authService: AuthService, public router: Router) {
     this.setMessage();

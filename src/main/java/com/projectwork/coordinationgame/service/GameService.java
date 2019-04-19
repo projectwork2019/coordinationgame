@@ -58,8 +58,8 @@ public class GameService {
         gameDAO.deleteAll();
         gameDAO.closeCurrentSessionWithTransaction();
     }
- 
-    public GameDAO bookDao() {  
+
+    public GameDAO gameDao() {
         return gameDAO;
     }
     
