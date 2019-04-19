@@ -47,19 +47,19 @@ public class CategoryController {
         }
     }
     
-    @GetMapping("/api/category")
+    @GetMapping("/api/categories")
     public List<Category> getCategories() {
         List<Category> categories = new ArrayList<>();
         categoryRepository.values().forEach(categories::add);
         return categories;
     }
     
-    @GetMapping("/api/category/{categoryId}")
+    @GetMapping("/api/categories/{categoryId}")
     public Category getCategories(@PathVariable Integer categoryId) {
         return categoryRepository.getOrDefault(categoryId, null);
     }
     
-    @PostMapping("/api/category")
+    @PostMapping("/api/categories")
     public Category createCategory(@RequestBody Category newCategory) {
         // Create new Category
         newCategory.setCategory_id(id);

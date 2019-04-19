@@ -59,7 +59,7 @@ public class GameService {
         gameDAO.closeCurrentSessionWithTransaction();
     }
  
-    public GameDAO bookDao() {
+    public GameDAO bookDao() {  
         return gameDAO;
     }
     
