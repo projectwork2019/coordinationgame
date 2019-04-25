@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { CoordinationRestService } from '../coordination-rest.service';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
 import { CategoryDisplay } from '../game'
@@ -19,7 +19,7 @@ export class CoordGamesAddCategoryPageComponent implements OnInit {
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private http: CoordinationRestService) { }
+  constructor(private http: CoordinationRestService, private changeDetectorRefs: ChangeDetectorRef) { }
 
   ngOnInit() {
 	  this.http.getCategories().subscribe((result) => {
@@ -28,6 +28,7 @@ export class CoordGamesAddCategoryPageComponent implements OnInit {
                 //let num = this.dataSource.data.length - 1;
                 //this.lastId = this.dataSource.data.num.category_id
 		console.log(this.dataSource);
+                this.refresh();
 	  })
   }
   
@@ -40,6 +41,17 @@ export class CoordGamesAddCategoryPageComponent implements OnInit {
           let category = new Category(name, this.lastId);
           console.log(category);
           this.http.addCategory(category);
+          console.log(this.dataSource);
+          this.refresh();
   }
+  
+   refresh() {
+//    this.authService.getAuthenticatedUser().subscribe((res) => {
+//      this.user = res;
+//      this.teachDS = new LanguageDataSource(this.user.profile.languages.teach);
+      this.changeDetectorRefs.detectChanges();
+    //});
+  }
+//}
 
 }
