@@ -12,7 +12,7 @@ import { Category } from '../game'
 export class CoordGamesAddCategoryPageComponent implements OnInit {
     
   newCategory:string;
-  //lastId:number;
+  lastId:number;
 
   dataSource = new MatTableDataSource<CategoryDisplay>();
   columnsToDisplay = ['categoryId', 'name'];
