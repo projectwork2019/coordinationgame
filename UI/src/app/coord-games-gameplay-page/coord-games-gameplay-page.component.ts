@@ -22,6 +22,7 @@ export class CoordGamesGameplayPageComponent implements OnInit {
 	selections : any[] = [];
 	gameNo : number = 1;
         value: number = 1; //for slider
+        numberOfGames: number = 10;
 	
 	constructor(private rest: CoordinationRestService, private router:Router) {}
 
@@ -60,7 +61,7 @@ export class CoordGamesGameplayPageComponent implements OnInit {
                 
                 
                 
-		if(this.gameNo == 10 ){
+		if(this.gameNo == this.numberOfGames ){
 			
 			this.rest.postSession(this.selections).subscribe(data => {
 				console.log(data);

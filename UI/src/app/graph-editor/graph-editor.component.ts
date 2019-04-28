@@ -57,7 +57,8 @@ export class GraphEditorComponent implements OnInit {
 	}
 	
 	addNode(){
-		this.gamenodes.push(new Node(this.currentNode.toString(), this.currentNode.toString(), "x" + this.currentNode.toString()));
+		//this.gamenodes.push(new Node(this.currentNode.toString(), this.currentNode.toString(), "x" + this.currentNode.toString()));
+                this.gamenodes.push(new Node(this.currentNode.toString(), "", "x" + this.currentNode.toString()));
 		this.edges.push([]);
 		this.currentNode = this.currentNode + 1;
 		this.hierarchialGraph.nodes = this.gamenodes;
