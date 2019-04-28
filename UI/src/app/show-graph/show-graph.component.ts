@@ -18,7 +18,10 @@ export class ShowGraphComponent implements OnInit {
 	curve = shape.curveBundle.beta(0);
 	hierarchialGraph;
 	
-	nodeSize;
+	//String:
+	//"LR" = Left to right (default)
+	//"RL" = Right to left (mirrored)
+	orientation = "LR";
 	
 	graph;
 	selectedNode;
@@ -28,7 +31,6 @@ export class ShowGraphComponent implements OnInit {
 	constructor(private http: CoordinationRestService) {}
 
 	ngOnInit() {
-		this.nodeSize = 0.03 * window.innerHeight;
 		this.graph = this.childMessage;
 		this.hierarchialGraph = JSON.parse(this.graph.gameDataObject);
 		this.updateChart();
@@ -49,7 +51,7 @@ export class ShowGraphComponent implements OnInit {
 		if(this.selectedNode != null){
 			this.selectedNode.selected = false;
 		}
-		if(node.edges.length ==0){
+		if(node.edges.length == 0){
 		// TODO: Making node non-clickable should be handled better. This solution won't work if graph with more layers than 2 need to be playable
 			this.selectedNode = node;
 			node.selected = true;

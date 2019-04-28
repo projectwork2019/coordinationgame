@@ -25,8 +25,8 @@ export class NgxGraphParserService {
 	}
 	
 	serializeGraphJSON(json) {
-		let nodes : [] = [];
-		let edges : [] = [];
+		let nodes = [];
+		let edges = [];
 		console.log(json);
 		
 		json.nodes.forEach(function (value) {
