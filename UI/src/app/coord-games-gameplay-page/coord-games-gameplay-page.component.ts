@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { CoordinationRestService } from '../coordination-rest.service';
 import { ShowGraphComponent } from '../show-graph/show-graph.component';
 import { Routes, RouterModule, Router} from '@angular/router'
-import { Selection } from '../game';
+import { Selection, GameSession } from '../game';
 //import { DateFormat } from '@angular/dateformat'
 
 import { Options } from 'ng5-slider';
@@ -18,6 +18,8 @@ export class CoordGamesGameplayPageComponent implements OnInit {
 	graph : any = {};
 	@Input() childMessage : any = this.graph;
 	
+	gameSession : GameSession = new GameSession();
+	
 	isDataAvailable:boolean = false;
 	selections : any[] = [];
 	gameNo : number = 1;
@@ -28,6 +30,7 @@ export class CoordGamesGameplayPageComponent implements OnInit {
 
 	ngOnInit() {
 		this.loadGame();
+		this.gameSession.selections = this.selections;
 	}
 	
 	loadGame(){
@@ -49,7 +52,7 @@ export class CoordGamesGameplayPageComponent implements OnInit {
                     
                     //let dateFormat = require('dateformat');
                     let now = new Date();
-                    
+                    this.gameSession.startTimestamp = now;
                     this.rest.postAnswers(now).subscribe(data => {
 						console.log(data);
 					});
@@ -63,7 +66,7 @@ export class CoordGamesGameplayPageComponent implements OnInit {
                 
 		if(this.gameNo == this.numberOfGames ){
 			
-			this.rest.postSession(this.selections).subscribe(data => {
+			this.rest.postSession(this.gameSession).subscribe(data => {
 				console.log(data);
 			});
 			/*

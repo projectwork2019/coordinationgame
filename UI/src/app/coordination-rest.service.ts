@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
-import { Selection, Category } from './game';
+import { Selection, Category, GameSession } from './game';
 
 const endpoint = "https://projectwork-coordinationgame.herokuapp.com/api";
 const httpOptions = {
@@ -42,7 +42,7 @@ export class CoordinationRestService {
 		map(this.extractData));
 	}
 	
-	postSession(data : any[]) : Observable<any> {
+	postSession(data : GameSession) : Observable<any> {
 		console.log("POSTING SESSION: " + data);
 		return this.http.post(endpoint + "/gamesessions", data);
 	}

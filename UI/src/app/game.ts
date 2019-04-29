@@ -75,5 +75,13 @@ export class Node {
 		this.firsTime = firsTime;
 		this.readResearch = readResearch;
 	}
+ }
 	
+export class GameSession {
+	id: number;
+	firstTime: boolean;
+	prevKnowledge: boolean;
+	startTimestamp: any;
+	endTimestamp: any;
+	selections : Array<Selection>;
 }
