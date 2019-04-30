@@ -22,7 +22,7 @@ public class GameSession {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "game_session_id")
-    private Integer id;
+    private Integer gameSessionID;
     
     @Column(name = "first_time")
     private boolean firstTime;
@@ -79,12 +79,12 @@ public class GameSession {
     }
     
     public Integer getId() {
-        return id;
+        return gameSessionID;
         
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.gameSessionID = id;
     }
 
     public boolean isFirstTime() {
