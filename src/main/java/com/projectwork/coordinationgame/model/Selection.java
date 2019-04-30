@@ -19,7 +19,7 @@ import org.hibernate.annotations.Type;
 public class Selection implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Integer selection_id;
+    private Integer selectionID;
     
     /*
     export class Selection {
@@ -42,11 +42,11 @@ public class Selection implements Serializable {
     private Presentation presentation;
     
     public Integer getSelection_id() {
-        return selection_id;
+        return selectionID;
     }    
 
     public void setSelection_id(Integer selection_id) {
-        this.selection_id = selection_id;
+        this.selectionID = selection_id;
     }
 
     public Integer getConfidence() {
