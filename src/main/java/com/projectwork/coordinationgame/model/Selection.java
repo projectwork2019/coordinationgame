@@ -41,7 +41,7 @@ public class Selection implements Serializable {
     @JoinColumn(name = "presentation_id", insertable = false, updatable = false)
     private Presentation presentation;
     
-    public Integer getSelection_id() {
+    public Integer getSelectionID() {
         return selectionID;
     }    
 

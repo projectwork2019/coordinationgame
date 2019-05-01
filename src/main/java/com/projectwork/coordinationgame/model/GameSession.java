@@ -78,7 +78,7 @@ public class GameSession {
         this.selections.add(selection);
     }
     
-    public Integer getId() {
+    public Integer getGameSessionID() {
         return gameSessionID;
         
     }
