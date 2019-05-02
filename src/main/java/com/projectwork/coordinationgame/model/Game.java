@@ -12,7 +12,8 @@ import org.hibernate.annotations.Type;
 @Table(name = "game")
 public class Game {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="game_id")
     private Integer id;
 
     @Column(name = "gamedata")

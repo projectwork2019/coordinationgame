@@ -15,7 +15,8 @@
 	<table mat-table [dataSource]="dataSource">
 		<ng-container matColumnDef="categoryId">
 			<th mat-header-cell *matHeaderCellDef> ID </th>
-			<td mat-cell *matCellDef="let category"> <input type="checkbox" name="chosen_cat" value="{{category.id}}"> <a href='/api/categories/{{category.category_id}}'>CATEGORY ID: {{category.category_id}}</a> </td>
+			<td mat-cell *matCellDef="let category"> <input type="checkbox" name="chosen_cat" value="{{category.category_id}}"> <a href='/api/categories/{{category.category_id}}'>CATEGORY ID: {{category.category_id}}</a> </td> <!-- category_id -->
+                        
 		</ng-container>
 		<ng-container matColumnDef="name">
 			<th mat-header-cell *matHeaderCellDef></th>

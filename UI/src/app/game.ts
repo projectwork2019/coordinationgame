@@ -1,6 +1,11 @@
 export class Category {
 	name : string;
 	id : number;
+        
+        constructor(name : string, id : number) {
+            this.name = name;
+            this.id = id;
+	}
 }
 
 export class GameDisplay {
@@ -53,11 +58,11 @@ export class Node {
  }
  
  export class Selection {
-	nodeId : number;
+	selectedNode : number;
 	confidence : number;
 	presentationId : number;
-	constructor(nodeId : number, confidence : number, presentationId : number) {
-		this.nodeId = nodeId;
+	constructor(selectedNode : number, confidence : number, presentationId : number) {
+		this.selectedNode = selectedNode; 
 		this.confidence = confidence;
 		this.presentationId = presentationId;
 	}
@@ -70,5 +75,13 @@ export class Node {
 		this.firsTime = firsTime;
 		this.readResearch = readResearch;
 	}
+ }
 	
+export class GameSession {
+	id: number;
+	firstTime: boolean;
+	prevKnowledge: boolean;
+	startTimestamp: any;
+	endTimestamp: any;
+	selections : Array<Selection>;
 }

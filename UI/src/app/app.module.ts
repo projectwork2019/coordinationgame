@@ -35,6 +35,7 @@ import { CoordGamesLogoutPageComponent } from './coord-games-logout-page/coord-g
 import { CoordGamesAccessDeniedPageComponent } from './coord-games-access-denied-page/coord-games-access-denied-page.component';
 import { CoordGamesAdminChooseFromListPageComponent } from './coord-games-admin-choose-from-list-page/coord-games-admin-choose-from-list-page.component';
 import { CoordGamesAddCategoryPageComponent } from './coord-games-add-category-page/coord-games-add-category-page.component';
+import { CoordGamesExtendedMainPagesComponent } from './coord-games-extended-main-pages/coord-games-extended-main-pages.component';
 
 @NgModule({
  imports: [
@@ -70,7 +71,8 @@ import { CoordGamesAddCategoryPageComponent } from './coord-games-add-category-p
     CoordGamesLogoutPageComponent,
     CoordGamesAccessDeniedPageComponent,
     CoordGamesAdminChooseFromListPageComponent,
-    CoordGamesAddCategoryPageComponent
+    CoordGamesAddCategoryPageComponent,
+    CoordGamesExtendedMainPagesComponent
   ],
   bootstrap: [ AppComponent ]
 })

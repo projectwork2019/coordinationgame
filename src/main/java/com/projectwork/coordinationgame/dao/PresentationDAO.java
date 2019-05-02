@@ -1,7 +1,10 @@
 package com.projectwork.coordinationgame.dao;
 
 import com.projectwork.coordinationgame.model.Presentation;
+import com.projectwork.coordinationgame.service.HibernateUtil;
 import java.util.List;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -22,34 +25,34 @@ public class PresentationDAO implements DAOInterface<Presentation, Integer> {
     public PresentationDAO() {
     }
 
-    public Session openCurrentSession() {
-        currentSession = getSessionFactory().openSession();
-        currentTransaction = currentSession.beginTransaction();
-        return currentSession;
-    }
-    
-    public Session openCurrentSessionWithTransaction() {
-        currentSession = getSessionFactory().openSession();
-        currentTransaction = currentSession.beginTransaction();
-        return currentSession;
-    }
-
-    public void closeCurrentSession() {
-        currentSession.close();
-    }
-
-    public void closeCurrentSessionWithTransaction() {
-        currentTransaction.commit();
-        currentSession.close();
-    }
-
-    private static SessionFactory getSessionFactory() {
-        Configuration configuration = new Configuration().configure();
-        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
-                .applySettings(configuration.getProperties());
-        SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
-        return sessionFactory;
-    }
+//    public Session openCurrentSession() {
+//        currentSession = getSessionFactory().openSession();
+//        currentTransaction = currentSession.beginTransaction();
+//        return currentSession;
+//    }
+//    
+//    public Session openCurrentSessionWithTransaction() {
+//        currentSession = getSessionFactory().openSession();
+//        currentTransaction = currentSession.beginTransaction();
+//        return currentSession;
+//    }
+//
+//    public void closeCurrentSession() {
+//        currentSession.close();
+//    }
+//
+//    public void closeCurrentSessionWithTransaction() {
+//        currentTransaction.commit();
+//        currentSession.close();
+//    }
+//
+//    private static SessionFactory getSessionFactory() {
+//        Configuration configuration = new Configuration().configure();
+//        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
+//                .applySettings(configuration.getProperties());
+//        SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
+//        return sessionFactory;
+//    }
 
     public Session getCurrentSession() {
         return currentSession;
@@ -69,12 +72,39 @@ public class PresentationDAO implements DAOInterface<Presentation, Integer> {
 
     @Override
     public void persist(Presentation entity) {
-        getCurrentSession().save(entity);
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.save(entity);
+            tx.commit();
+        }
+        catch (Exception e) {
+            if (tx!=null) tx.rollback();
+            throw e;
+        }
+        finally {
+            session.close();
+        }
     }
 
     @Override
     public void update(Presentation entity) {
-        getCurrentSession().update(entity);
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.update(entity);
+            tx.commit();
+        }
+        catch (Exception e) {
+            if (tx!=null) tx.rollback();
+            throw e;
+        }
+        finally {
+            session.close();
+        }
+//        getCurrentSession().update(entity);
     }
 
     @Override
@@ -85,13 +115,31 @@ public class PresentationDAO implements DAOInterface<Presentation, Integer> {
 
     @Override
     public void delete(Presentation entity) {
-        getCurrentSession().delete(entity);
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.delete(entity);
+            tx.commit();
+        }
+        catch (Exception e) {
+            if (tx!=null) tx.rollback();
+            throw e;
+        }
+        finally {
+            session.close();
+        }
+//        getCurrentSession().delete(entity);
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public List<Presentation> findAll() {
-        List<Presentation> presentations = (List<Presentation>) getCurrentSession().createQuery("from presentation").list();
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        CriteriaQuery<Presentation> criteria = session.getCriteriaBuilder().createQuery(Presentation.class);
+//        List<Presentation> presentations = (List<Presentation>) getCurrentSession().createQuery("from presentation").list();
+        criteria.select(criteria.from(Presentation.class));
+        List<Presentation> presentations = (List<Presentation>) session.createQuery(criteria).list();
         return presentations;
     }
 

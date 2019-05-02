@@ -6,6 +6,7 @@
 package com.projectwork.coordinationgame.dao;
 
 import com.projectwork.coordinationgame.model.Selection;
+import com.projectwork.coordinationgame.service.HibernateUtil;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -25,76 +26,121 @@ public class SelectionDAO implements DAOInterface<Selection, Integer> {
     public SelectionDAO() {
     }
 
-    public Session openCurrentSession() {
-        currentSession = getSessionFactory().openSession();
-        currentTransaction = currentSession.beginTransaction();
-        return currentSession;
-    }
-    
-    public Session openCurrentSessionWithTransaction() {
-        currentSession = getSessionFactory().openSession();
-        currentTransaction = currentSession.beginTransaction();
-        return currentSession;
-    }
-
-    public void closeCurrentSession() {
-        currentSession.close();
-    }
-
-    public void closeCurrentSessionWithTransaction() {
-        currentTransaction.commit();
-        currentSession.close();
-    }
-
-    private static SessionFactory getSessionFactory() {
-        Configuration configuration = new Configuration().configure();
-        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
-                .applySettings(configuration.getProperties());
-        SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
-        return sessionFactory;
-    }
-
-    public Session getCurrentSession() {
-        return currentSession;
-    }
-
-    public void setCurrentSession(Session currentSession) {
-        this.currentSession = currentSession;
-    }
-
-    public Transaction getCurrentTransaction() {
-        return currentTransaction;
-    }
-
-    public void setCurrentTransaction(Transaction currentTransaction) {
-        this.currentTransaction = currentTransaction;
-    }
+//    public Session openCurrentSession() {
+//        currentSession = getSessionFactory().openSession();
+//        currentTransaction = currentSession.beginTransaction();
+//        return currentSession;
+//    }
+//    
+//    public Session openCurrentSessionWithTransaction() {
+//        currentSession = getSessionFactory().openSession();
+//        currentTransaction = currentSession.beginTransaction();
+//        return currentSession;
+//    }
+//
+//    public void closeCurrentSession() {
+//        currentSession.close();
+//    }
+//
+//    public void closeCurrentSessionWithTransaction() {
+//        currentTransaction.commit();
+//        currentSession.close();
+//    }
+//
+//    private static SessionFactory getSessionFactory() {
+//        Configuration configuration = new Configuration().configure();
+//        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
+//                .applySettings(configuration.getProperties());
+//        SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
+//        return sessionFactory;
+//    }
+//
+//    public Session getCurrentSession() {
+//        return currentSession;
+//    }
+//
+//    public void setCurrentSession(Session currentSession) {
+//        this.currentSession = currentSession;
+//    }
+//
+//    public Transaction getCurrentTransaction() {
+//        return currentTransaction;
+//    }
+//
+//    public void setCurrentTransaction(Transaction currentTransaction) {
+//        this.currentTransaction = currentTransaction;
+//    }
 
     @Override
     public void persist(Selection entity) {
-        getCurrentSession().save(entity);
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.saveOrUpdate(entity);
+            tx.commit();
+        }
+        catch (Exception e) {
+            if (tx!=null) tx.rollback();
+            throw e;
+        }
+        finally {
+            session.close();
+        }
+        //getCurrentSession().save(entity);
     }
 
     @Override
     public void update(Selection entity) {
-        getCurrentSession().update(entity);
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.update(entity);
+            tx.commit();
+        }
+        catch (Exception e) {
+            if (tx!=null) tx.rollback();
+            throw e;
+        }
+        finally {
+            session.close();
+        }
+        
+        //getCurrentSession().update(entity);
     }
 
     @Override
     public Selection findById(Integer id) {
-        Selection selection = (Selection) getCurrentSession().get(Selection.class, id);
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Selection selection = (Selection) session.get(Selection.class, id);
         return selection;
     }
 
     @Override
     public void delete(Selection entity) {
-        getCurrentSession().delete(entity);
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.delete(entity);
+            tx.commit();
+        }
+        catch (Exception e) {
+            if (tx!=null) tx.rollback();
+            throw e;
+        }
+        finally {
+            session.close();
+        }
+        //getCurrentSession().delete(entity);
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public List<Selection> findAll() {
-        List<Selection> selections = (List<Selection>) getCurrentSession().createQuery("from selection").list();
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List<Selection> selections = (List<Selection>) session.createQuery("from selection").list();
         return selections;
     }
 

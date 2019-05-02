@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Game, Edge, GameComponent, Node } from "../game";
 import * as shape from 'd3-shape';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
+import { NgxGraphParserService } from '../ngx-graph-parser.service';
 import { Subject } from 'rxjs';
 import { CoordinationRestService } from '../coordination-rest.service';
 
@@ -10,7 +11,7 @@ import { CoordinationRestService } from '../coordination-rest.service';
   selector: 'graph-editor',
   templateUrl: './graph-editor.component.html',
   styleUrls: ['./graph-editor.component.css'],
-  providers: [ CoordinationRestService ]
+  providers: [ CoordinationRestService, NgxGraphParserService ]
 })
 export class GraphEditorComponent implements OnInit {
 	title = 'coordgames';
@@ -35,7 +36,7 @@ export class GraphEditorComponent implements OnInit {
 	
 	update$: Subject<any> = new Subject();
 
-	constructor(private http: CoordinationRestService) {}
+	constructor(private http: CoordinationRestService, private ngxParser: NgxGraphParserService) {}
 
 	ngOnInit() { 
 		this.currentComponent = this.component;
@@ -45,6 +46,14 @@ export class GraphEditorComponent implements OnInit {
 	}
 	
 	save() {
+		
+		/*let json = this.ngxParser.serializeGraphJSON(this.hierarchialGraph);
+		console.log(json);
+		this.http.addOrEditGame(json).subscribe(data => {
+			console.log(data);
+		});
+		*/
+		
 		this.http.addOrEditGame({'gameDataObject' : JSON.stringify(this.hierarchialGraph)}).subscribe(data => {
 			console.log(data);
 		});
@@ -57,7 +66,8 @@ export class GraphEditorComponent implements OnInit {
 	}
 	
 	addNode(){
-		this.gamenodes.push(new Node(this.currentNode.toString(), this.currentNode.toString(), "x" + this.currentNode.toString()));
+		//this.gamenodes.push(new Node(this.currentNode.toString(), this.currentNode.toString(), "x" + this.currentNode.toString()));
+                this.gamenodes.push(new Node(this.currentNode.toString(), "", "x" + this.currentNode.toString()));
 		this.edges.push([]);
 		this.currentNode = this.currentNode + 1;
 		this.hierarchialGraph.nodes = this.gamenodes;
