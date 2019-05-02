@@ -7,6 +7,7 @@ package com.projectwork.coordinationgame.service;
 
 import com.projectwork.coordinationgame.dao.GameSessionSelectionDAO;
 import com.projectwork.coordinationgame.model.GameSessionSelection;
+import java.util.Collections;
 import java.util.List;
 
 /**

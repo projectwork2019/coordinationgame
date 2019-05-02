@@ -22,7 +22,7 @@ public class Category implements Serializable {
     
     private String name;
 
-    public Integer getCategory_id() {
+    public Integer getCategoryID() {
         return category_id;
     }
 

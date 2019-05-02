@@ -41,7 +41,7 @@ public class Game {
     }
 
     // getters and setters auto-generated
-    public Integer getId() {
+    public Integer getGameID() {
         return id;
     }
 

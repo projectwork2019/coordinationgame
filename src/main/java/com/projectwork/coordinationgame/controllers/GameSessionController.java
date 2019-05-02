@@ -42,7 +42,7 @@ public class GameSessionController {
     public List<Integer> getGameSessions() {
         // Get list of 10 random games
         List<Integer> gameIdList = new ArrayList<>();
-        gameRepository.findAll().forEach((gameItem) -> gameIdList.add(gameItem.getId()));
+        gameRepository.findAll().forEach((gameItem) -> gameIdList.add(gameItem.getGameID()));
         Collections.shuffle(gameIdList);
         if (gameIdList.size() > 10) {
             return gameIdList.subList(0, 10);

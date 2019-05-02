@@ -42,7 +42,7 @@ public class CategoryController {
             Category c = new Category();
             c.setCategory_id(id);
             c.setName(name);
-            categoryRepository.put(c.getCategory_id(), c);
+            categoryRepository.put(c.getCategoryID(), c);
             id++;           
         }
     }
