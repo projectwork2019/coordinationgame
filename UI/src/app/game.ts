@@ -58,11 +58,11 @@ export class Node {
  }
  
  export class Selection {
-	nodeId : number;
+	selectedNode : number;
 	confidence : number;
 	presentationId : number;
-	constructor(nodeId : number, confidence : number, presentationId : number) {
-		this.nodeId = nodeId;
+	constructor(selectedNode : number, confidence : number, presentationId : number) {
+		this.selectedNode = selectedNode; 
 		this.confidence = confidence;
 		this.presentationId = presentationId;
 	}

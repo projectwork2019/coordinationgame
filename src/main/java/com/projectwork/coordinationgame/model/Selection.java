@@ -17,9 +17,22 @@ import org.hibernate.annotations.Type;
 @Entity 
 @Table(name = "selection")
 public class Selection implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Integer selection_id;
+
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+//    private Integer selection_id;
+    public Selection(SelectionIdentity selection_id) {
+        this.selection_id = selection_id;
+    }
+
+    public Selection() {
+        this.selection_id = new SelectionIdentity();
+    }
+    
+    
+    
+    @EmbeddedId
+    private SelectionIdentity selection_id;
     
     /*
     export class Selection {
@@ -28,53 +41,55 @@ public class Selection implements Serializable {
 	presentationId : number;
     }
     */
-    @Column(name = "confidence")
-    private Integer confidence;
-        
-    @Column(name = "selected_node")
-    private Integer nodeId;
     
-    @Column(name = "presentation_id")
-    private Integer presentationId;
+//    SelectionIdentity
+//    @Column(name = "confidence")
+//    private Integer confidence;
+//        
+//    @Column(name = "selected_node")
+//    private Integer nodeId;
+//    
+//    @Column(name = "presentation_id")
+//    private Integer presentationId;
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "presentation_id", insertable = false, updatable = false)
     private Presentation presentation;
     
-    public Integer getSelection_id() {
+    public SelectionIdentity getSelection_id() {
         return selection_id;
     }    
 
-    public void setSelection_id(Integer selection_id) {
+    public void setSelection_id(SelectionIdentity selection_id) {
         this.selection_id = selection_id;
     }
 
-    public Integer getConfidence() {
-        return confidence;
-    }
-
+//    public Integer getConfidence() {
+//        return confidence;
+//    }
+//
     public void setConfidence(int confidence) {
-        this.confidence = confidence;
+        this.selection_id.setConfidence(confidence);
     }
-
-    public Integer getNodeId() {
-        return nodeId;
+//
+//    public Integer getNodeId() {
+//        return nodeId;
+//    }
+//
+    public void setSelectedNode(int selectedNode) {
+        this.selection_id.setSelectedNode(selectedNode);
     }
-
-    public void setNodeId(int nodeId) {
-        this.nodeId = nodeId;
-    }
-
-    public Integer getPresentationId() {
-        return presentationId;
-    }
-
+//
+//    public Integer getPresentationId() {
+//        return presentationId;
+//    }
+//
     public void setPresentationId(Integer presentationId) {
-        this.presentationId = presentationId;
+        this.selection_id.setPresentationId(presentationId);
     }
     
     @Override
     public String toString() {
-        return "Selection - selected node: " + getNodeId() + " confidence: " + getConfidence() + " presentation ID: " + getPresentationId();
+        return "Selection - selected node: " + getSelection_id().getSelectedNode()+ " confidence: " + getSelection_id().getConfidence() + " presentation ID: " + getSelection_id().getPresentationId();
     }   
 }

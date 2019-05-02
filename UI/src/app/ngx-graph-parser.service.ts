@@ -37,6 +37,6 @@ export class NgxGraphParserService {
 			edges.push({edgeId: "", leftNode: value.source, rightNode: value.target});
 		});
 		
-		return JSON.stringify({nodes: nodes, edges: edges});
+		return {'gameDataObject' : JSON.stringify({nodes: nodes, edges: edges})};
 	}
 }

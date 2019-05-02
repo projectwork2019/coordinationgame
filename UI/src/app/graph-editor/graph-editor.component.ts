@@ -46,16 +46,17 @@ export class GraphEditorComponent implements OnInit {
 	}
 	
 	save() {
-		let json = this.ngxParser.serializeGraphJSON(this.hierarchialGraph);
+		
+		/*let json = this.ngxParser.serializeGraphJSON(this.hierarchialGraph);
 		console.log(json);
 		this.http.addOrEditGame(json).subscribe(data => {
 			console.log(data);
 		});
+		*/
 		
-		/*
 		this.http.addOrEditGame({'gameDataObject' : JSON.stringify(this.hierarchialGraph)}).subscribe(data => {
 			console.log(data);
-		});*/
+		});
 	}
 	
 	addLink(n : Node) {

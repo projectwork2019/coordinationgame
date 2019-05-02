@@ -1,0 +1,2 @@
+GameController:
+	- Need to generate and create (in database) the presentations, currently we lose gameID data when submitting game session back to backend

@@ -37,20 +37,23 @@ FOREIGN KEY (game_id) REFERENCES game);
 
 
 CREATE TABLE project_work.selection (
-selection_id SERIAL,
+/*selection_id SERIAL,*/
 confidence INT NOT NULL,
 selected_node INT NOT NULL,
-presentation_id SERIAL,
-PRIMARY KEY(selection_id, confidence, presentation_id, selected_node),
-FOREIGN KEY (presentation_id) REFERENCES presentation,
-UNIQUE (selection_id));
+presentation_id INT NOT NULL,
+PRIMARY KEY(confidence, presentation_id, selected_node),
+FOREIGN KEY (presentation_id) REFERENCES presentation
+/*UNIQUE (selection_id)*/);
 
 
 CREATE TABLE project_work.game_session_selection (
-selection_id SERIAL,
+/*selection_id SERIAL,*/
+confidence INT NOT NULL,
+selected_node INT NOT NULL,
+presentation_id INT NOT NULL,
 game_session_id SERIAL,
-PRIMARY KEY (selection_id, game_session_id),
-FOREIGN KEY (selection_id) REFERENCES selection(selection_id),
+PRIMARY KEY (confidence, selected_node, presentation_id, game_session_id),
+FOREIGN KEY (confidence, selected_node, presentation_id) REFERENCES selection(confidence, selected_node, presentation_id),
 FOREIGN KEY (game_session_id) REFERENCES game_session);
 
 
