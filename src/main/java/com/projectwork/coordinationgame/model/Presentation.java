@@ -34,12 +34,16 @@ public class Presentation {
     @Column(name = "mirror")
     private boolean mirror;
     
-    @Column(name = "game_id")
-    private Integer gameId;
+//    @Column(name = "game_id")
+//    private Integer gameId;
     
-    @OneToMany(mappedBy = "presentation", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "selection_id.presentationId", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Selection> selections;
+ 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="game_id", nullable=false)
+    private Game games;
     
     public Presentation() {
         this.selections = new HashSet<>();
@@ -47,7 +51,7 @@ public class Presentation {
 
     @Override
     public String toString() {
-        return "ID: " + presentationId + " componentOrder: " + componentOrder + " mirror: " + mirror + " gameId: " + gameId;
+        return "ID: " + presentationId + " componentOrder: " + componentOrder + " mirror: " + mirror + " gameId: " + getGames().getId();
     }
     
     public void addSelection(Selection selection) {
@@ -60,6 +64,14 @@ public class Presentation {
 
     public void setPresentationId(Integer presentationId) {
         this.presentationId = presentationId;
+    }
+    
+    public Game getGames() {
+        return games;
+    }
+
+    public void setGames(Game games) {
+        this.games = games;
     }
     
     public String getComponentOrder() {
@@ -78,13 +90,13 @@ public class Presentation {
         this.mirror = mirror;
     }
 
-    public int getGameId() {
-        return gameId;
-    }
-
-    public void setGameId(int gameId) {
-        this.gameId = gameId;
-    }
+//    public int getGameId() {
+//        return gameId;
+//    }
+//
+//    public void setGameId(int gameId) {
+//        this.gameId = gameId;
+//    }
 
     @Override
     public int hashCode() {
@@ -92,7 +104,7 @@ public class Presentation {
         hash = 89 * hash + this.presentationId;
         hash = 89 * hash + Objects.hashCode(this.componentOrder);
         hash = 89 * hash + (this.mirror ? 1 : 0);
-        hash = 89 * hash + this.gameId;
+        hash = 89 * hash + this.getGames().getId();
         hash = 89 * hash + Objects.hashCode(this.selections);
         return hash;
     }
@@ -115,7 +127,7 @@ public class Presentation {
         if (this.mirror != other.mirror) {
             return false;
         }
-        if (this.gameId != other.gameId) {
+        if (this.getGames().getId() != other.getGames().getId()) {
             return false;
         }
 

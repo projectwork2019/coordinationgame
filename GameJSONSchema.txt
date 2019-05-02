@@ -1,0 +1,12 @@
+Component:
+
+{
+	"id" : 1,
+	"nodes" : 5,
+	"edges" : [
+		{ "source" : 1, "target": 2 },
+		{ "source" : 1, "target": 3 },
+		{ "source" : 4, "target": 3 },
+		{ "source" : 4, "target": 5 }
+	]
+}

@@ -16,13 +16,13 @@ import java.util.List;
  */
 public class GameSessionWrapper {
     private GameSession gameSession;
-    private List<Selection> selections;
+    private List<SelectionIdentity> selections;
     
     public GameSession getGameSession() {
         return this.gameSession;
     }
     
-    public List<Selection> getSelections() {
+    public List<SelectionIdentity> getSelections() {
         return this.selections;
     }
 }

@@ -5,12 +5,16 @@
  */
 package com.projectwork.coordinationgame.controllers;
 
+import com.projectwork.coordinationgame.dao.GameSessionDAO;
+import com.projectwork.coordinationgame.dao.PresentationDAO;
+import com.projectwork.coordinationgame.dao.SelectionDAO;
 import com.projectwork.coordinationgame.model.Game;
 import org.springframework.web.bind.annotation.*;
 import com.projectwork.coordinationgame.model.GameSession;
 import com.projectwork.coordinationgame.model.GameSessionWrapper;
 import com.projectwork.coordinationgame.model.Presentation;
 import com.projectwork.coordinationgame.model.Selection;
+import com.projectwork.coordinationgame.model.SelectionIdentity;
 
 import com.projectwork.coordinationgame.repository.GameRepository;
 import com.projectwork.coordinationgame.repository.GameSessionRepository;
@@ -38,41 +42,69 @@ public class GameSessionController {
     @Autowired
     private PresentationRepository presentationRepository;
     
+    private PresentationDAO presentationDao = new PresentationDAO();
+    private SelectionDAO selectionDao = new SelectionDAO();
+    private GameSessionDAO gameSessionDao = new GameSessionDAO();
+    
      @GetMapping("/api/gamesessions")
-    public List<Integer> getGameSessions() {
+    public List<Presentation> getGameSessions() {
         // Get list of 10 random games
-        List<Integer> gameIdList = new ArrayList<>();
-        gameRepository.findAll().forEach((gameItem) -> gameIdList.add(gameItem.getId()));
-        Collections.shuffle(gameIdList);
-        if (gameIdList.size() > 10) {
-            return gameIdList.subList(0, 10);
+//        List<Integer> gameIdList = new ArrayList<>();
+//       
+//        gameRepository.findAll().forEach((gameItem) -> gameIdList.add(gameItem.getId()));
+        
+        List<Presentation> presentationList = new ArrayList<>();
+       
+        presentationDao.findAll().forEach((gameItem) -> presentationList.add(gameItem));
+        
+        Collections.shuffle(presentationList);
+        
+        if (presentationList.size() > 10) {
+            return presentationList.subList(0, 10);
         } else {
-            return gameIdList;
+            return presentationList;
         }
     }
 
     @PostMapping("/api/gamesessions")
-    public List<String> createGameSession(@RequestBody GameSessionWrapper gameSessionWrapper) {        
-        GameSession gameSession = gameSessionWrapper.getGameSession();
-        List<Selection> selections = gameSessionWrapper.getSelections();
+    public List<String> createGameSession(@RequestBody GameSession requestData) {        
+        GameSession gameSession = requestData;
+//        GameSession gs = requestData.getGameSession();
+//        List<SelectionIdentity> selections = requestData.getSelections();
         ArrayList<String> response = new ArrayList<>();
-
-        response.add(gameSession.toString());
-        selections.forEach((s) -> {
-            if (s != null) {
-                Integer presentationId = s.getPresentationId();
-                Optional<Presentation> optionalEntity = presentationRepository.findById(presentationId);
-                Presentation presentation = optionalEntity.get();
-                presentation.addSelection(s);
-                presentationRepository.save(presentation);
-                gameSession.addSelection(s);
-                response.add("Added selection: " + s.toString());
-            } else {
-                response.add("Null");
-            }
-
+//
+//        response.add(gameSession.toString());
+//        
+        gameSession.getSelections().forEach((s) -> {
+           selectionDao.persist(s);
         });
-        gameSessionRepository.save(gameSession);
+//            Selection selection = new Selection(s);
+//            selectionDao.persist(selection);
+//            gs.addSelection(selection);
+            
+//            if (s != null) {
+//                Integer presentationId = s.getSelection_id().getPresentationId();
+//                Optional<Presentation> optionalEntity = presentationRepository.findById(presentationId);
+//                Presentation presentation;
+//                if(optionalEntity != null) {
+//                    presentation = new Presentation();
+//                } else {
+//                    presentation = optionalEntity.get();
+//                }
+//                presentation.addSelection(s);
+//                //TODO: NOT NEEDED AFTER PROPERLY GENERATING PRESENTATIONS IN GAMECONTROLLER
+//                presentation.setComponentOrder("DEFAULT");    
+////                presentation.setGameId(s.getSelection_id().getPresentationId());
+//                presentationRepository.save(presentation);
+//                //gameSession.addSelection(s);
+//                response.add("Added selection: " + s.toString());
+//            } else {
+//                response.add("Null");
+//            }
+
+//        });
+        gameSessionDao.persist(gameSession);
+        //gameSessionRepository.save(gameSession.getGameSession());
         
         return response;
     }   

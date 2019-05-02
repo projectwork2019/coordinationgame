@@ -20,7 +20,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "game_session")
 public class GameSession {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "game_session_id")
     private Integer id;
     
@@ -32,12 +32,12 @@ public class GameSession {
     
     @Column(name = "start_timestamp")
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    //@JsonFormat(pattern = "yyyy-MM-dd, HH:mm:ss")
     private LocalDateTime startTimestamp;
     
     @Column(name = "end_timestamp")
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime endTimestamp;
     
     /*
@@ -53,28 +53,47 @@ public class GameSession {
     */
     
     // Definition for many-to-many join table between GameSession and Selection
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(cascade = { CascadeType.MERGE })
     @JoinTable(
             name="game_session_selection",
             joinColumns = @JoinColumn(name = "game_session_id"),
-            inverseJoinColumns = @JoinColumn(name = "selection_id")
+            inverseJoinColumns = 
+                    {
+                        @JoinColumn(name = "confidence"),
+                        @JoinColumn(name = "presentation_id"),
+                        @JoinColumn(name = "selected_node")
+                    }
+            
     )
-    private final List<Selection> selections;
+    private List<Selection> selections;
     
     public GameSession() {
-        this.selections = new ArrayList<>();
+        this.selections = new ArrayList<Selection>();
     }
     
     @Override
     public String toString() {
-        return "GameSession - first time: " + this.firstTime + " start: " + startTimestamp.toString() + " end: " + endTimestamp.toString();
+        String endtime;
+        if(endTimestamp == null){
+            endtime = "ONGOING";
+        } else {
+            endtime = endTimestamp.toString();
+        }
+        return "GameSession - first time: " + this.firstTime + " start: " + startTimestamp.toString() + " end: " + endtime;
     }
     
     public List<Selection> getSelections() {
         return this.selections;
     }
+
+    public void setSelections(List<Selection> selections) {
+        this.selections = selections;
+    }
     
     public void addSelection(Selection selection) {
+        if(this.selections == null) {
+            this.selections = new ArrayList<Selection>();
+        }
         this.selections.add(selection);
     }
     
