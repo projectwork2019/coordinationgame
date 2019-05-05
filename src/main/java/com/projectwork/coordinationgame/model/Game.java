@@ -20,6 +20,7 @@ public class Game {
     @Type(type = "text")
     private String gameDataObject;
     
+    private boolean enabled;
     // Database relation mappings - Game belongs to multiple categories
     /*@ManyToMany
     @JoinTable(name = "game_category",
@@ -30,15 +31,21 @@ public class Game {
             inverseJoinColumns = {@JoinColumn(name = "fk_category")}
     )
     private Set<Category> categories;*/
-    
-    // Database relation mappings - Game has multiple presentations
-    /* @OneToMany(mappedBy = "game")   // Refers to "game" field in Presentation class mapping
-    private List<Presentation> presentations; */
-
-    // Constructor used only for initializing Set of categories and List of presentations
-    public Game() {
+    public boolean isEnabled() {    
+        return enabled;
         /*this.categories = new HashSet<Category>();
         this.presentations = new ArrayList<Presentation>();*/
+    }
+
+    // Database relation mappings - Game has multiple presentations
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    /* @OneToMany(mappedBy = "game")   // Refers to "game" field in Presentation class mapping
+    private List<Presentation> presentations; */
+    // Constructor used only for initializing Set of categories and List of presentations
+    public Game() {
     }
 
     // getters and setters auto-generated

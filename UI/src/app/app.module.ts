@@ -4,6 +4,7 @@ import { FormsModule }    from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from  '@angular/material';
 import { MatPaginatorModule } from '@angular/material';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { Ng5SliderModule } from 'ng5-slider';
 
@@ -54,7 +55,8 @@ import { CoordGamesExtendedMainPagesComponent } from './coord-games-extended-mai
    NgxChartsModule,
    HttpClientModule,
    MatTableModule,
-   MatPaginatorModule
+   MatPaginatorModule,
+   MatSlideToggleModule
  ],
   declarations: [
     AppComponent,

@@ -23,10 +23,18 @@ export class CoordGamesAdminGamesPageComponent implements OnInit {
 
   ngOnInit() {
 	  this.http.getGames().subscribe((result) => {
+		console.log(result);
 		this.dataSource = new MatTableDataSource(result);
 		this.dataSource.paginator = this.paginator;
 		console.log(this.dataSource);
 	  })
+  }
+  
+  toggleEnabled(id:number){
+	  console.log(id);
+	  this.http.toggleEnabled(id).subscribe((result) => {
+		console.log(result);
+	  });
   }
   
   removeGame(id:number){

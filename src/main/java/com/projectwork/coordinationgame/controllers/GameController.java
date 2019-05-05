@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 /**
  *
@@ -47,6 +50,7 @@ public class GameController {
     public Game createGame(@RequestBody Game game) {
         System.out.println("POST: Received game data object: " + game.getGameDataObject());
         //return gameRepository.save(game);
+        game.setEnabled(false);
         gameDao.persist(game);
         Presentation presentation = new Presentation();
         presentation.setComponentOrder("DEFAULT");
@@ -59,5 +63,17 @@ public class GameController {
         presentation.setGames(game);
         presentationDao.persist(presentation);
         return game;
+    }
+    
+    @GetMapping("/api/games/enable")
+    // @CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<Game> toggleGameEnabled(@RequestParam Integer id) {
+        Game game = gameDao.findById(id);
+        if(game != null){
+            game.setEnabled(!game.isEnabled());
+            gameDao.persist(game);
+            return new ResponseEntity<Game>(game, HttpStatus.OK);
+        }
+        return new ResponseEntity<Game>(HttpStatus.BAD_REQUEST);
     }
 }

@@ -28,11 +28,11 @@
 	<table mat-table [dataSource]="dataSource">
 		<ng-container matColumnDef="gameId">
 			<th mat-header-cell *matHeaderCellDef> ID </th>
-			<td mat-cell *matCellDef="let game"> <a href='graph-editor/{{game.id}}'>GAME ID: {{game.id}}</a> </td>
+			<td mat-cell *matCellDef="let game"> <a href='graph-editor/{{game.gameID}}'>GAME ID: {{game.gameID}}</a> </td>
 		</ng-container>
 		<ng-container matColumnDef="removeGame">
 			<th mat-header-cell *matHeaderCellDef></th>
-			<td mat-cell *matCellDef="let game"> <button mat-raised-button color="primary" (click)=removeGame(game.id)> REMOVE </button> </td>
+			<td mat-cell *matCellDef="let game"> <button mat-raised-button color="primary" (click)=removeGame(game.gameID)> REMOVE </button> <mat-slide-toggle (change)=toggleEnabled(game.gameID) color="primary" id="{{game.gameID}}" checked="{{game.enabled}}"></mat-slide-toggle></td>
 		</ng-container>	
 		<tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
 		<tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
