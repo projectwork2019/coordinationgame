@@ -1,3 +1,4 @@
+<html class ="mat-app-background">
 <h2>LOGIN/LOGOUT</h2>
 <p>{{message}}</p>
 
@@ -29,10 +30,14 @@
 </div>
 <!-- </fieldset> -->
 
-<p>
-  <button (click)="login(username, password_field)"  *ngIf="!authService.isLoggedIn">Login</button>
-  <button (click)="logout()" *ngIf="authService.isLoggedIn">Logout</button>
-</p>
+
+<div *ngIf="!authService.isLoggedIn">
+    <button mat-raised-button color="primary" (click)="login(username, password_field)">Login</button>
+</div>
+<div *ngIf="authService.isLoggedIn">
+    <button mat-raised-button color="primary" (click)="logout()" >Logout</button>
+</div>
+</html>
 
 <!-- 
 Copyright Google LLC. All Rights Reserved.

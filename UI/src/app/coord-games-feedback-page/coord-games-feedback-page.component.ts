@@ -50,7 +50,7 @@ export class CoordGamesFeedbackPageComponent implements OnInit {
       console.log(now);
       this.http.postAnswers(now);
       
-      let redirect = '/coord-games-feedback-received-page';
+      let redirect = '/coord-games-final-page';
 
       // Set our navigation extras object
       // that passes on our global query params and fragment

@@ -2,6 +2,7 @@ import { Component }        from '@angular/core';
 import { Router,
          NavigationExtras } from '@angular/router';
 import { AuthService }      from '../auth.service';
+//import { MaterialModule } from '.../material.module';
 
 //import { NgModule } from '@angular/core';
 
