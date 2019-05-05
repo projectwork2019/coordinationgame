@@ -1,10 +1,11 @@
+@import '@angular/material/prebuilt-themes/pink-bluegrey.css';
 /* Master Styles */
-h1 {
+/*h1 {
   color: #369;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 250%;
-}
-h2, h3 {
+}*/
+/*h2, h3 {
   color: #444;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: lighter;
@@ -38,7 +39,7 @@ button:disabled {
   cursor: auto;
 }
 
-/* Navigation link styles */
+ Navigation link styles 
 nav a {
   padding: 5px 10px;
   text-decoration: none;
@@ -59,9 +60,9 @@ nav a.active {
   color: #039be5;
 }
 
-/* everywhere else */
-* {
-  font-family: Arial, Helvetica, sans-serif;
+ everywhere else 
+*/* {
+   font-size: 20px;
 }
 
 

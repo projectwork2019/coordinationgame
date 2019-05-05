@@ -7,6 +7,8 @@ import { MatPaginatorModule } from '@angular/material';
 
 import { Ng5SliderModule } from 'ng5-slider';
 
+import { MaterialModule } from './material.module';
+
 import { HttpClientModule } from '@angular/common/http';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -42,6 +44,7 @@ import { CoordGamesExtendedMainPagesComponent } from './coord-games-extended-mai
    //NgModule,
    BrowserModule,
    Ng5SliderModule,
+   MaterialModule,
    BrowserAnimationsModule,
    FormsModule,
    HeroesModule,
