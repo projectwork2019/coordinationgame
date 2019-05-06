@@ -57,14 +57,14 @@ PRIMARY KEY (confidence, selected_node, presentation_id, game_session_id),
 FOREIGN KEY (confidence, selected_node, presentation_id) REFERENCES selection(confidence, selected_node, presentation_id),
 FOREIGN KEY (game_session_id) REFERENCES game_session);
 
-
+             
 CREATE TABLE project_work.category (
 category_id SERIAL,
 name VARCHAR(100) NOT NULL,
 PRIMARY KEY (category_id),
 UNIQUE (name));
 
-
+        
 CREATE TABLE project_work.game_category (
 category_id SERIAL,
 game_id SERIAL,
@@ -84,4 +84,4 @@ game_id SERIAL,
 quantity INT NOT NULL,
 PRIMARY KEY (component_id, game_id),
 FOREIGN KEY (game_id) REFERENCES game,
-FOREIGN KEY (comment_id) REFERENCES game_component);
+FOREIGN KEY (component_id) REFERENCES game_component);
