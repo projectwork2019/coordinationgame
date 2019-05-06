@@ -71,3 +71,17 @@ game_id SERIAL,
 PRIMARY KEY (category_id, game_id),
 FOREIGN KEY (game_id) REFERENCES game,
 FOREIGN KEY (category_id) REFERENCES category);
+        
+        
+CREATE TABLE project_work.Component(
+component_id SERIAL,
+component_data VARCHAR(3000),
+PRIMARY KEY (component_id));
+
+CREATE TABLE project_work.game_component (
+component_id SERIAL,
+game_id SERIAL,
+quantity INT NOT NULL,
+PRIMARY KEY (component_id, game_id),
+FOREIGN KEY (game_id) REFERENCES game,
+FOREIGN KEY (comment_id) REFERENCES game_component);
