@@ -47,6 +47,11 @@ export class CoordinationRestService {
 		return this.http.get(endpoint + "/games/" + id).pipe(
 		map(this.extractData));
 	}
+
+	deleteGame(id:number) : Observable<any> {
+		return this.http.get(endpoint + "/games/delete?id=" + id).pipe(
+		map(this.extractData));
+	}
 	
 	toggleEnabled(id:number) : Observable<any> {
 		return this.http.get(endpoint + "/games/enable?id=" + id).pipe(

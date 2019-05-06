@@ -1,6 +1,8 @@
 package com.projectwork.coordinationgame.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.*;
 import org.hibernate.annotations.Type;
 
@@ -20,15 +22,29 @@ public class Game {
     @Type(type = "text")
     private String gameDataObject;
     
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "games", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private Set<Presentation> presentations;
+    
     private boolean enabled;
+
+    public Set<Presentation> getPresentations() {    
+        return presentations;
+
+    }
+
     // Database relation mappings - Game belongs to multiple categories
+    public void setPresentations(Set<Presentation> presentations) {
+        this.presentations = presentations;
+    }
+
     /*@ManyToMany
     @JoinTable(name = "game_category",
-            // Junction table key names to be updated to match the created database
-            // Foreign key referencing game-table primary key
-            joinColumns = {@JoinColumn(name = "fk_game")},
-            // Foreign key referecing category-table primary key
-            inverseJoinColumns = {@JoinColumn(name = "fk_category")}
+    // Junction table key names to be updated to match the created database
+    // Foreign key referencing game-table primary key
+    joinColumns = {@JoinColumn(name = "fk_game")},
+    // Foreign key referecing category-table primary key
+    inverseJoinColumns = {@JoinColumn(name = "fk_category")}
     )
     private Set<Category> categories;*/
     public boolean isEnabled() {    

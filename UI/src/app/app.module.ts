@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from  '@angular/material';
 import { MatPaginatorModule } from '@angular/material';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { Ng5SliderModule } from 'ng5-slider';
 
@@ -56,7 +57,8 @@ import { CoordGamesExtendedMainPagesComponent } from './coord-games-extended-mai
    HttpClientModule,
    MatTableModule,
    MatPaginatorModule,
-   MatSlideToggleModule
+   MatSlideToggleModule,
+   MatSnackBarModule
  ],
   declarations: [
     AppComponent,

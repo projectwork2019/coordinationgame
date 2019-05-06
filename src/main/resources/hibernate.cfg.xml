@@ -14,7 +14,7 @@
         <!--<property name="hibernate.connection.password">fd806d7a84a662ce1df5b66f95a02730e833fc652c85bd20059bd0ecb4713bb3</property>-->
         <!--<property name="hibernate.connection.url">jdbc:postgresql://ec2-46-137-121-216.eu-west-1.compute.amazonaws.com:5432/d5ahsdgoi3llak</property>-->
         <!--<property name="hibernate.connection.username">bzsnsbxpmvwsrz</property>-->
-        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <!--<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>-->
         <property name="hibernate.default_schema">project_work</property>
         <property name="show_sql">true</property>
         

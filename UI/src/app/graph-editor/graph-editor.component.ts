@@ -5,7 +5,7 @@ import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { NgxGraphParserService } from '../ngx-graph-parser.service';
 import { Subject } from 'rxjs';
 import { CoordinationRestService } from '../coordination-rest.service';
-
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'graph-editor',
@@ -21,6 +21,8 @@ export class GraphEditorComponent implements OnInit {
 	gamenodes = [];
 	edges = [];
 	hierarchialGraph = {nodes: this.gamenodes, links: this.edges}
+
+	durationInSeconds = 5;
 	
 	selectedNode;
 	
@@ -36,7 +38,7 @@ export class GraphEditorComponent implements OnInit {
 	
 	update$: Subject<any> = new Subject();
 
-	constructor(private http: CoordinationRestService, private ngxParser: NgxGraphParserService) {}
+	constructor(private http: CoordinationRestService, private ngxParser: NgxGraphParserService, private snackBar: MatSnackBar) {}
 
 	ngOnInit() { 
 		this.currentComponent = this.component;
@@ -46,17 +48,21 @@ export class GraphEditorComponent implements OnInit {
 	}
 	
 	save() {
-		
-		/*let json = this.ngxParser.serializeGraphJSON(this.hierarchialGraph);
-		console.log(json);
-		this.http.addOrEditGame(json).subscribe(data => {
-			console.log(data);
-		});
-		*/
-		
 		this.http.addOrEditGame({'gameDataObject' : JSON.stringify(this.hierarchialGraph)}).subscribe(data => {
 			console.log(data);
+			this.snackBar.open("Game saved", null, {
+				duration: this.durationInSeconds * 1000,
+			  });
+			this.clearGraph();
 		});
+	}
+
+	clearGraph() {
+		this.edges = [];
+		this.gamenodes = [];
+		this.hierarchialGraph.nodes = this.gamenodes;
+		this.hierarchialGraph.links = this.edges;
+		this.updateChart();
 	}
 	
 	addLink(n : Node) {

@@ -136,10 +136,10 @@ public class PresentationDAO implements DAOInterface<Presentation, Integer> {
     @Override
     public List<Presentation> findAll() {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        CriteriaQuery<Presentation> criteria = session.getCriteriaBuilder().createQuery(Presentation.class);
+//        CriteriaQuery<Presentation> criteria = session.getCriteriaBuilder().createQuery(Presentation.class);
 //        List<Presentation> presentations = (List<Presentation>) getCurrentSession().createQuery("from presentation").list();
-        criteria.select(criteria.from(Presentation.class));
-        List<Presentation> presentations = (List<Presentation>) session.createQuery(criteria).list();
+//        criteria.select(criteria.from(Presentation.class));
+        List<Presentation> presentations = (List<Presentation>) session.createCriteria(Presentation.class).list(); //session.createQuery(criteria).getResultList();
         return presentations;
     }
 

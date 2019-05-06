@@ -9,6 +9,7 @@ import com.projectwork.coordinationgame.repository.GameRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -76,4 +77,22 @@ public class GameController {
         }
         return new ResponseEntity<Game>(HttpStatus.BAD_REQUEST);
     }
+    
+    @GetMapping("/api/games/delete")
+    // @CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<Game> deleteGame(@RequestParam Integer id) {
+        Game game = gameDao.findById(id);
+        if(game != null){
+//            System.out.println("PRESENTATION: " + game.getPresentations().size());
+//            for(Presentation p : game.getPresentations()) {
+//                System.out.println("PRESENTATION: " + p.getPresentationId());
+////                presentationDao.delete(p);
+//            }
+            gameDao.delete(game);
+            return new ResponseEntity<Game>(game, HttpStatus.OK);
+        }
+        return new ResponseEntity<Game>(HttpStatus.BAD_REQUEST);
+    }
+    
+    
 }

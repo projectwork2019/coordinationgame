@@ -22,12 +22,16 @@ export class CoordGamesAdminGamesPageComponent implements OnInit {
   constructor(private http: CoordinationRestService) { }
 
   ngOnInit() {
-	  this.http.getGames().subscribe((result) => {
-		console.log(result);
-		this.dataSource = new MatTableDataSource(result);
-		this.dataSource.paginator = this.paginator;
-		console.log(this.dataSource);
-	  })
+	  this.loadGamesList();
+  }
+
+  loadGamesList() {
+    this.http.getGames().subscribe((result) => {
+      console.log(result);
+      this.dataSource = new MatTableDataSource(result);
+      this.dataSource.paginator = this.paginator;
+      console.log(this.dataSource);
+      })
   }
   
   toggleEnabled(id:number){
@@ -38,7 +42,11 @@ export class CoordGamesAdminGamesPageComponent implements OnInit {
   }
   
   removeGame(id:number){
-	  console.log(id);
+    console.log(id);
+    this.http.deleteGame(id).subscribe((result) => {
+      console.log(result);
+      this.loadGamesList();
+      });
   }
 
 }
