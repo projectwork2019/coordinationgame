@@ -85,3 +85,44 @@ quantity INT NOT NULL,
 PRIMARY KEY (component_id, game_id),
 FOREIGN KEY (game_id) REFERENCES game,
 FOREIGN KEY (component_id) REFERENCES component);
+
+             
+CREATE OR REPLACE FUNCTION get_report_presentation(p_id INT)
+	RETURNS TABLE(
+		confidence INT,
+		selected_node INT,
+		presentation_id INT,
+		frequency BIGINT
+	)
+	AS $$
+	BEGIN
+		RETURN QUERY
+		SELECT game_session_selection.confidence, game_session_selection.selected_node, game_session_selection.presentation_id, COUNT(game_session_selection.confidence) AS frequency
+		FROM game_session_selection
+		WHERE game_session_selection.presentation_id = p_id
+		GROUP BY game_session_selection.confidence, game_session_selection.selected_node, game_session_selection.presentation_id;
+	END; $$
+	
+LANGUAGE 'plpgsql';
+
+
+
+CREATE OR REPLACE FUNCTION get_report_game(g_id INT)
+	RETURNS TABLE(
+		confidence INT,
+		selected_node INT,
+		presentation_id INT,
+		frequency BIGINT,
+		game_id INT
+	)
+	AS $$
+	BEGIN
+		RETURN QUERY
+		SELECT game_session_selection.confidence, game_session_selection.selected_node, game_session_selection.presentation_id, COUNT(game_session_selection.confidence) AS frequency, presentation.game_id
+		FROM game_session_selection, presentation
+		WHERE presentation.game_id = g_id
+			AND game_session_selection.presentation_id = presentation.presentation_id
+		GROUP BY game_session_selection.confidence, game_session_selection.selected_node, game_session_selection.presentation_id, presentation.game_id;
+	END; $$
+	
+LANGUAGE 'plpgsql';
