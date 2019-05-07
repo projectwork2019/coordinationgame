@@ -17,7 +17,7 @@ import javax.persistence.*;
 @Table(name = "category")
 public class Category implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer category_id;
     
     private String name;

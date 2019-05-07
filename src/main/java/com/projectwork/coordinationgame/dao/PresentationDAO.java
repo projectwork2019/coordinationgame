@@ -5,11 +5,13 @@ import com.projectwork.coordinationgame.service.HibernateUtil;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *This class is based on the convention of DAO classes with Hibernate used in many such projects.
@@ -139,7 +141,10 @@ public class PresentationDAO implements DAOInterface<Presentation, Integer> {
 //        CriteriaQuery<Presentation> criteria = session.getCriteriaBuilder().createQuery(Presentation.class);
 //        List<Presentation> presentations = (List<Presentation>) getCurrentSession().createQuery("from presentation").list();
 //        criteria.select(criteria.from(Presentation.class));
-        List<Presentation> presentations = (List<Presentation>) session.createCriteria(Presentation.class).list(); //session.createQuery(criteria).getResultList();
+        Criteria criteria = session.createCriteria(Presentation.class);
+        criteria.createAlias("games", "g");
+        criteria.add(Restrictions.eq("g.enabled", true));
+        List<Presentation> presentations = (List<Presentation>) criteria.list(); //session.createQuery(criteria).getResultList();
         return presentations;
     }
 

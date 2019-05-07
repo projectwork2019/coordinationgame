@@ -5,6 +5,7 @@
  */
 package com.projectwork.coordinationgame.controllers;
 
+import com.projectwork.coordinationgame.dao.CategoryDAO;
 import com.projectwork.coordinationgame.model.Category;
 import com.projectwork.coordinationgame.model.Game;
 import java.util.ArrayList;
@@ -28,6 +29,8 @@ public class CategoryController {
     private static Map<Integer, Category> categoryRepository = new HashMap<>();
     private static int id;
     
+    private CategoryDAO categoryDao = new CategoryDAO();
+    
     static {
         id = 40001;
         String[] names = {
@@ -49,9 +52,9 @@ public class CategoryController {
     
     @GetMapping("/api/categories")
     public List<Category> getCategories() {
-        List<Category> categories = new ArrayList<>();
-        categoryRepository.values().forEach(categories::add);
-        return categories;
+//        List<Category> categories = new ArrayList<>();
+//        categoryRepository.values().forEach(categories::add);
+        return categoryDao.findAll();
     }
     
     @GetMapping("/api/categories/{categoryId}")
@@ -62,8 +65,9 @@ public class CategoryController {
     @PostMapping("/api/categories")
     public Category createCategory(@RequestBody Category newCategory) {
         // Create new Category
-        newCategory.setCategory_id(id);
-        categoryRepository.put(id, newCategory);
-        return newCategory;
+//        newCategory.setCategory_id(id);
+//        categoryRepository.put(id, newCategory);
+       categoryDao.persist(newCategory);
+       return newCategory;
     }
 }

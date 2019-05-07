@@ -6,6 +6,8 @@
 package com.projectwork.coordinationgame.dao;
 
 import com.projectwork.coordinationgame.model.Category;
+import com.projectwork.coordinationgame.model.Presentation;
+import com.projectwork.coordinationgame.service.HibernateUtil;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -24,78 +26,77 @@ public class CategoryDAO implements DAOInterface<Category, Integer> {
     //Default constructor used to instanciate an empty GameDAO object
     public CategoryDAO() {
     }
-
-    public Session openCurrentSession() {
-        currentSession = getSessionFactory().openSession();
-        currentTransaction = currentSession.beginTransaction();
-        return currentSession;
-    }
     
-    public Session openCurrentSessionWithTransaction() {
-        currentSession = getSessionFactory().openSession();
-        currentTransaction = currentSession.beginTransaction();
-        return currentSession;
-    }
-
-    public void closeCurrentSession() {
-        currentSession.close();
-    }
-
-    public void closeCurrentSessionWithTransaction() {
-        currentTransaction.commit();
-        currentSession.close();
-    }
-
-    private static SessionFactory getSessionFactory() {
-        Configuration configuration = new Configuration().configure();
-        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
-                .applySettings(configuration.getProperties());
-        SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
-        return sessionFactory;
-    }
-
-    public Session getCurrentSession() {
-        return currentSession;
-    }
-
-    public void setCurrentSession(Session currentSession) {
-        this.currentSession = currentSession;
-    }
-
-    public Transaction getCurrentTransaction() {
-        return currentTransaction;
-    }
-
-    public void setCurrentTransaction(Transaction currentTransaction) {
-        this.currentTransaction = currentTransaction;
-    }
-
     @Override
     public void persist(Category entity) {
-        getCurrentSession().save(entity);
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.saveOrUpdate(entity);
+            tx.commit();
+        }
+        catch (Exception e) {
+            if (tx!=null) tx.rollback();
+            throw e;
+        }
+        finally {
+            session.close();
+        }
     }
 
     @Override
     public void update(Category entity) {
-        getCurrentSession().update(entity);
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.update(entity);
+            tx.commit();
+        }
+        catch (Exception e) {
+            if (tx!=null) tx.rollback();
+            throw e;
+        }
+        finally {
+            session.close();
+        }
     }
 
     @Override
     public Category findById(Integer id) {
-        Category category = (Category) getCurrentSession().get(Category.class, id);
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Category category = (Category) session.get(Category.class, id);
+        session.close();
         return category;
     }
 
     @Override
     public void delete(Category entity) {
-        getCurrentSession().delete(entity);
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.delete(entity);
+            tx.commit();
+        }
+        catch (Exception e) {
+            if (tx!=null) tx.rollback();
+            throw e;
+        }
+        finally {
+            session.close();
+        }
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public List<Category> findAll() {
-        List<Category> categorys = (List<Category>) getCurrentSession().createQuery("from category").list();
-        return categorys;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+//        List<Category> categorys = (List<Category>) session.createQuery("from category").list();
+        List<Category> categories = (List<Category>) session.createCriteria(Category.class).list();
+        session.close();
+        return categories;
     }
 
     @Override

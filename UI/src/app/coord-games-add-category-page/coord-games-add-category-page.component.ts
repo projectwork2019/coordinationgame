@@ -22,36 +22,27 @@ export class CoordGamesAddCategoryPageComponent implements OnInit {
   constructor(private http: CoordinationRestService, private changeDetectorRefs: ChangeDetectorRef) { }
 
   ngOnInit() {
-	  this.http.getCategories().subscribe((result) => {
-		this.dataSource = new MatTableDataSource(result);
-		this.dataSource.paginator = this.paginator;
-                //let num = this.dataSource.data.length - 1;
-                //this.lastId = this.dataSource.data.num.category_id
-		console.log(this.dataSource);
-                this.refresh();
-	  })
+	  this.refresh();
   }
   
   addCategory(name:string){
 	  console.log(name);
-          //console.log(id);
-          this.lastId = this.dataSource.data.length + 4000 + 1;
           console.log(this.lastId);
-          
           let category = new Category(name, this.lastId);
           console.log(category);
-          this.http.addCategory(category);
+          this.http.addCategory(category).subscribe(data => {
+              console.log("Category saved");
+          });
           console.log(this.dataSource);
           this.refresh();
   }
   
    refresh() {
-//    this.authService.getAuthenticatedUser().subscribe((res) => {
-//      this.user = res;
-//      this.teachDS = new LanguageDataSource(this.user.profile.languages.teach);
-      this.changeDetectorRefs.detectChanges();
-    //});
+    this.http.getCategories().subscribe((result) => {
+    this.dataSource = new MatTableDataSource(result);
+    this.dataSource.paginator = this.paginator;
+    console.log(this.dataSource);
+      this.refresh();
+    })
   }
-//}
-
 }
