@@ -77,7 +77,7 @@ public class GameSessionDAO implements DAOInterface<GameSession, Integer> {
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            session.save(entity);
+            session.saveOrUpdate(session.merge(entity));
             tx.commit();
         }
         catch (Exception e) {

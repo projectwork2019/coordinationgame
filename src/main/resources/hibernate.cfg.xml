@@ -23,5 +23,6 @@
         <mapping class="com.projectwork.coordinationgame.model.GameSession"></mapping>
         <mapping class="com.projectwork.coordinationgame.model.Presentation"></mapping>
         <mapping class="com.projectwork.coordinationgame.model.Selection"></mapping>
+        <mapping class="com.projectwork.coordinationgame.model.PresentationReport"></mapping>
     </session-factory>
 </hibernate-configuration>

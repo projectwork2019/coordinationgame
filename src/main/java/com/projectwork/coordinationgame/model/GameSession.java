@@ -8,7 +8,9 @@ package com.projectwork.coordinationgame.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.*;
 import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -53,7 +55,7 @@ public class GameSession {
     */
     
     // Definition for many-to-many join table between GameSession and Selection
-    @ManyToMany(cascade = { CascadeType.MERGE })
+    @ManyToMany(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH })
     @JoinTable(
             name="game_session_selection",
             joinColumns = @JoinColumn(name = "game_session_id"),
@@ -65,10 +67,10 @@ public class GameSession {
                     }
             
     )
-    private List<Selection> selections;
+    private Set<Selection> selections;
     
     public GameSession() {
-        this.selections = new ArrayList<Selection>();
+        this.selections = new HashSet<Selection>();
     }
     
     @Override
@@ -82,17 +84,17 @@ public class GameSession {
         return "GameSession - first time: " + this.firstTime + " start: " + startTimestamp.toString() + " end: " + endtime;
     }
     
-    public List<Selection> getSelections() {
+    public Set<Selection> getSelections() {
         return this.selections;
     }
 
-    public void setSelections(List<Selection> selections) {
+    public void setSelections(Set<Selection> selections) {
         this.selections = selections;
     }
     
     public void addSelection(Selection selection) {
         if(this.selections == null) {
-            this.selections = new ArrayList<Selection>();
+            this.selections = new HashSet<Selection>();
         }
         this.selections.add(selection);
     }
