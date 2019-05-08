@@ -1,5 +1,6 @@
 .inline {
     display:inline-block;
+    font-size: 16px;
 }
 
 .inline_textfield {
@@ -7,6 +8,7 @@
     float: right;
     margin-right: 85%;
     margin-top: 0.75%;
+    font-size: 16px;
 }
 
 /*

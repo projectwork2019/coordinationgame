@@ -6,6 +6,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CoordinationRestService } from '../coordination-rest.service';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
 import { GameDisplay } from '../game'
+import { Router,
+         NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-coord-games-admin-games-page',
@@ -15,11 +17,11 @@ import { GameDisplay } from '../game'
 export class CoordGamesAdminGamesPageComponent implements OnInit { 
   
   dataSource = new MatTableDataSource<GameDisplay>();
-  columnsToDisplay = ['gameId', 'removeGame'];
+  columnsToDisplay = ['gameId','showReport','removeGame'];
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private http: CoordinationRestService) { }
+  constructor(private http: CoordinationRestService, public router: Router) { }
 
   ngOnInit() {
 	  this.loadGamesList();
@@ -47,6 +49,21 @@ export class CoordGamesAdminGamesPageComponent implements OnInit {
       console.log(result);
       this.loadGamesList();
       });
+  }
+  
+  showReport(gameId:number){
+    //this.router.navigate(['/coord-games-admin-report-page/' + id]);
+    let redirect = '/coord-games-admin-report-page';
+
+    let navigationExtras: NavigationExtras = {
+          queryParamsHandling: 'merge',
+//          preserveFragment: true
+            queryParams: { id: gameId }
+            
+    };
+
+
+    this.router.navigate([redirect], navigationExtras);
   }
 
 }

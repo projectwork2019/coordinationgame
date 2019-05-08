@@ -12,37 +12,30 @@
 
 </style>
 
-<h1 class="title">Welcome!</h1>
+<h1 class="title">Report of game {{id}}</h1>
 <!--<button routerLink="/coord-games-admin-add-game-page">Add game...</button> -->
-<button mat-raised-button color="primary" routerLink="/graph-editor">Add game...</button>
+<!--<button mat-raised-button color="primary" routerLink="/graph-editor">Add game...</button>-->
 
-<!--<form class="inline_field">
-         <select name = "dropdown">
-            <option value = "Options for selected..." selected>Options for selected...</option>
-            <!-- <option value = "Edit">Edit</option> ///
-            <option value = "Remove">Remove</option>
-         </select>
-</form> -->
 
 <div class="gameTableContainer mat-elevation-z8">
 	<table mat-table [dataSource]="dataSource">
-		<ng-container matColumnDef="gameId">
+		<ng-container matColumnDef="nodeId">
 			<th mat-header-cell *matHeaderCellDef> ID </th>
-			<td mat-cell *matCellDef="let game"> <a href='graph-editor/{{game.gameID}}'>GAME ID: {{game.gameID}}</a> </td>
+			<!--<td mat-cell *matCellDef="let game"> <a href='graph-editor/{{game.gameID}}'>GAME ID: {{game.gameID}}</a> </td>-->
+                        <td mat-cell *matCellDef="let node"> NODE ID: {{node.nodeID}} </td>
 		</ng-container>
-                <ng-container matColumnDef="showReport">
-			<th mat-header-cell *matHeaderCellDef></th>
-			<td mat-cell *matCellDef="let game"> <button mat-raised-button color="primary" (click)=showReport(game.gameID)> SHOW REPORT </button>  </td>
-		</ng-container>
-		<ng-container matColumnDef="removeGame">
-			<th mat-header-cell *matHeaderCellDef></th>
-			<td mat-cell *matCellDef="let game"> <button mat-raised-button color="primary" (click)=removeGame(game.gameID)> REMOVE </button> <mat-slide-toggle (change)=toggleEnabled(game.gameID) color="primary" id="{{game.gameID}}" checked="{{game.enabled}}"></mat-slide-toggle></td>
+		<ng-container matColumnDef="percentageChosen">
+			<th mat-header-cell *matHeaderCellDef> % OF CHOICES </th>
+			<td mat-cell *matCellDef="let node"> {{node.percent}} </td>
 		</ng-container>	
 		<tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
 		<tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
 	</table>
 	<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
+
+<p><b>Average confidence: {{confidence}}</b></p>
+
 <!--
 <form class="game_list" method="post" action="/Tests/Post/">      
 

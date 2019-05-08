@@ -40,6 +40,7 @@ import { CoordGamesAccessDeniedPageComponent } from './coord-games-access-denied
 import { CoordGamesAdminChooseFromListPageComponent } from './coord-games-admin-choose-from-list-page/coord-games-admin-choose-from-list-page.component';
 import { CoordGamesAddCategoryPageComponent } from './coord-games-add-category-page/coord-games-add-category-page.component';
 import { CoordGamesExtendedMainPagesComponent } from './coord-games-extended-main-pages/coord-games-extended-main-pages.component';
+import { CoordGamesAdminReportPageComponent } from './coord-games-admin-report-page/coord-games-admin-report-page.component';
 
 @NgModule({
  imports: [
@@ -79,7 +80,8 @@ import { CoordGamesExtendedMainPagesComponent } from './coord-games-extended-mai
     CoordGamesAccessDeniedPageComponent,
     CoordGamesAdminChooseFromListPageComponent,
     CoordGamesAddCategoryPageComponent,
-    CoordGamesExtendedMainPagesComponent
+    CoordGamesExtendedMainPagesComponent,
+    CoordGamesAdminReportPageComponent
   ],
   bootstrap: [ AppComponent ]
 })

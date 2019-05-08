@@ -1,18 +1,18 @@
 <h1 class="title">Add Game</h1>
-<button routerLink="">Save Game</button>
-<button class="inline_field" routerLink="/coord-games-admin-games-page">Back</button>
+<button mat-raised-button color="primary" routerLink="">Save Game</button>
+<button mat-raised-button color="primary" class="inline_field" routerLink="/coord-games-admin-games-page">Back</button>
 
 
 <form class="game_list" method="post" action="/Tests/Post/">      
     <fieldset>      
         <legend>List of components currently added to this game:</legend>      
-        <p>Component 1 <button class="inline_block" routerLink="">Remove</button></p>
+        <p>Component 1 <button mat-raised-button color="primary" class="inline_block" routerLink="">Remove</button></p>
         <p><img src="../../assets/Untitled.png" alt="Thumbnail" width="150" height="150"/></p>
-        <p>Component 2 <button class="inline_block" routerLink="">Remove</button></p>
+        <p>Component 2 <button mat-raised-button color="primary" class="inline_block" routerLink="">Remove</button></p>
         <p><img src="../../assets/Untitled.png" alt="Thumbnail" width="150" height="150"/></p>
-        <p>Component 3 <button class="inline_block" routerLink="">Remove</button></p>
+        <p>Component 3 <button mat-raised-button color="primary" class="inline_block" routerLink="">Remove</button></p>
         <p><img src="../../assets/Untitled.png" alt="Thumbnail" width="150" height="150"/></p>
-        <p><button routerLink="/graph-editor">+</button></p>
+        <p><button mat-raised-button color="primary" routerLink="/graph-editor">+</button></p>
         <!--<p><button routerLink="">Choose a component from the list...</button></p>  --> 
         <a routerLink="/coord-games-admin-choose-from-list-page">Choose a component from the list...</a>
         <!-- <br> -->       
