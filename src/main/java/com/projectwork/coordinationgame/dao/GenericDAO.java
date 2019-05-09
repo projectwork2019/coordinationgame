@@ -5,7 +5,7 @@
  */
 package com.projectwork.coordinationgame.dao;
 
-import com.projectwork.coordinationgame.model.GameCategory;
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,12 +17,13 @@ import org.hibernate.cfg.Configuration;
  *
  * @author mohamadhassan
  */
-public class GameCategoryDAO implements DAOInterface<GameCategory, Integer> {
+public class GenericDAO<T> implements DAOInterface<T, Integer> {
     private Session currentSession;
     private Transaction currentTransaction;
+    private T obj;
 
     //Default constructor used to instanciate an empty GameSelectioDAO object
-    public GameCategoryDAO() {
+    public GenericDAO() {
     }
 
     public Session openCurrentSession() {
@@ -71,37 +72,38 @@ public class GameCategoryDAO implements DAOInterface<GameCategory, Integer> {
     }
 
     @Override
-    public void persist(GameCategory entity) {
+    public void persist(T entity) {
         getCurrentSession().save(entity);
     }
 
     @Override
-    public void update(GameCategory entity) {
+    public void update(T entity) {
         getCurrentSession().update(entity);
     }
 
     @Override
-    public GameCategory findById(Integer id) {
-        GameCategory gameCategory = (GameCategory) getCurrentSession().get(GameCategory.class, id);
+    public T findById(Integer id) {
+        T gameCategory = (T) getCurrentSession().get(((Class<T>) ((ParameterizedType) getClass()
+        .getGenericSuperclass()).getActualTypeArguments()[0]) , id);
         return gameCategory;
     }
 
     @Override
-    public void delete(GameCategory entity) {
+    public void delete(T entity) {
         getCurrentSession().delete(entity);
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<GameCategory> findAll() {
-        List<GameCategory> gameCategorys = (List<GameCategory>) getCurrentSession().createQuery("from game_category").list();
+    public List<T> findAll() {
+        List<T> gameCategorys = (List<T>) getCurrentSession().createQuery("from game_category").list(); //TODO change text
         return gameCategorys;
     }
 
     @Override
     public void deleteAll() {
-        List<GameCategory> entityList = findAll();
-        for (GameCategory entity : entityList) {
+        List<T> entityList = findAll();
+        for (T entity : entityList) {
             delete(entity);
         }
     }

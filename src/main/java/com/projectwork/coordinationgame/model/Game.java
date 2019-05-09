@@ -1,6 +1,7 @@
 package com.projectwork.coordinationgame.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.*;
@@ -20,7 +21,7 @@ public class Game {
 
     @Column(name = "gamedata")
     @Type(type = "text")
-    private String gameDataObject;
+    private List<Component> gameData;
     
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "games", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
@@ -73,12 +74,12 @@ public class Game {
         this.id = id;
     }
 
-    public String getGameDataObject() {
-        return gameDataObject;
+    public List<Component> getGameData() {
+        return gameData;
     }
 
-    public void setGameDataObject(String gameDataObject) {
-        this.gameDataObject = gameDataObject;
+    public void setGameDataObject(List<Component> gameData) {
+        this.gameData = gameData;
     }
 
     // equals and hashCode auto-generated
@@ -86,7 +87,7 @@ public class Game {
     public int hashCode() {
         int hash = 3;
         hash = 11 * hash + Objects.hashCode(this.id);
-        hash = 11 * hash + Objects.hashCode(this.gameDataObject);
+        hash = 11 * hash + Objects.hashCode(this.gameData);
         return hash;
     }
 
@@ -105,7 +106,7 @@ public class Game {
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
-        if (!Objects.equals(this.gameDataObject, other.gameDataObject)) {
+        if (!Objects.equals(this.gameData, other.gameData)) {
             return false;
         }
         return true;
