@@ -21,7 +21,8 @@ public class Game {
 
     @Column(name = "gamedata")
     @Type(type = "text")
-    private List<Component> gameData;
+//    private List<Component> gameData;
+    private String gameDataObject;
     
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "games", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
@@ -73,21 +74,29 @@ public class Game {
     public void setId(Integer id) {
         this.id = id;
     }
-
-    public List<Component> getGameData() {
-        return gameData;
+    
+//    public List<Component> getGameData() {
+//        return gameData;
+//    }
+    
+    public String getGameDataObject() {
+        return gameDataObject;
+    }
+    public void setGameDataObject(String gameDataObject) {
+        this.gameDataObject = gameDataObject;
     }
 
-    public void setGameDataObject(List<Component> gameData) {
-        this.gameData = gameData;
-    }
+//    public void setGameDataObject(List<Component> gameData) {
+//        this.gameData = gameData;
+//    }
 
     // equals and hashCode auto-generated
     @Override
     public int hashCode() {
         int hash = 3;
         hash = 11 * hash + Objects.hashCode(this.id);
-        hash = 11 * hash + Objects.hashCode(this.gameData);
+//        hash = 11 * hash + Objects.hashCode(this.gameData);
+        hash = 11 * hash + Objects.hashCode(this.gameDataObject);
         return hash;
     }
 
@@ -106,7 +115,8 @@ public class Game {
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
-        if (!Objects.equals(this.gameData, other.gameData)) {
+        if (!Objects.equals(this.gameDataObject, other.gameDataObject)) {
+//        if (!Objects.equals(this.gameData, other.gameData)) {
             return false;
         }
         return true;
