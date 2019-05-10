@@ -1,3 +1,6 @@
+/*
+ * The gameplay page. 
+ */
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { CoordinationRestService } from '../coordination-rest.service';
 import { ShowGraphComponent } from '../show-graph/show-graph.component';
@@ -99,7 +102,7 @@ export class CoordGamesGameplayPageComponent implements OnInit {
 		}
 	}
         
-	
+	//slider options
         options: Options = {
              floor: 1,
              ceil: 5,

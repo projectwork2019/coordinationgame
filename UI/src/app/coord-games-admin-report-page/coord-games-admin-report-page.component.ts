@@ -1,3 +1,6 @@
+/*
+ * The page for displaying a report of the game with the specified id. 
+ */
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CoordinationRestService } from '../coordination-rest.service';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
@@ -26,6 +29,7 @@ export class CoordGamesAdminReportPageComponent implements OnInit {
 
   constructor(private http: CoordinationRestService, private route: ActivatedRoute) { }
 
+  //gets the game id
   ngOnInit() {
      this.route.queryParams
       .subscribe(params => {
@@ -43,6 +47,7 @@ export class CoordGamesAdminReportPageComponent implements OnInit {
 //     console.log(this.id);
   }
 
+  //loads the report
   loadGameReport(gameId:number) {
 //    this.http.getGames().subscribe((result) => {
       //this.id = gameId;

@@ -1,3 +1,6 @@
+/*
+ * The page for asking background info from players. 
+ */
 import { Component, OnInit } from '@angular/core';
 import { Router,
          NavigationExtras } from '@angular/router';

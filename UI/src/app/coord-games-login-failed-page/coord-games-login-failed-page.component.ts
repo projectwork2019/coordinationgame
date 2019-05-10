@@ -1,3 +1,6 @@
+/*
+ * The page displayed when the login attempt fails. 
+ */
 import { Component, OnInit } from '@angular/core';
 
 @Component({

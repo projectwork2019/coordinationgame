@@ -1,3 +1,6 @@
+/*
+ * The page for adding a category to a game and displaying the categories currently in the database. 
+ */
 import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { CoordinationRestService } from '../coordination-rest.service';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
@@ -25,6 +28,7 @@ export class CoordGamesAddCategoryPageComponent implements OnInit {
 	  this.refresh();
   }
   
+  //adds a new category to the list
   addCategory(name:string){
 	  console.log(name);
           console.log(this.lastId);
@@ -37,6 +41,7 @@ export class CoordGamesAddCategoryPageComponent implements OnInit {
           this.refresh();
   }
   
+  //refreshes the category page after a new category has been added
    refresh() {
     this.http.getCategories().subscribe((result) => {
     this.dataSource = new MatTableDataSource(result);

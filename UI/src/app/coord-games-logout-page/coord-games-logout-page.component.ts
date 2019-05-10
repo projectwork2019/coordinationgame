@@ -1,3 +1,6 @@
+/*
+ * The page displayed after the admin has logged out. 
+ */
 import { Component, OnInit } from '@angular/core';
 
 @Component({

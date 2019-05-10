@@ -1,3 +1,6 @@
+/*
+ * Main page.
+ */
 import { Component, OnInit } from '@angular/core';
 
 @Component({

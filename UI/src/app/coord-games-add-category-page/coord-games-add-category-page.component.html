@@ -1,12 +1,12 @@
-<h1 class="title">Choose Category</h1>
-<button mat-raised-button color="primary" routerLink="/coord-games-admin-games-page">Add Category</button>
+<h1 style="text-align: center; font-size: 200%">Choose Category</h1>
+<button mat-raised-button color="primary" routerLink="/coord-games-admin-add-game-page">Save</button>
 <button mat-raised-button color="primary" class="inline_field" routerLink="/coord-games-admin-games-page">Back</button>
 
 
 <form class="game_list" method="post" action="/Tests/Post/">      
     <fieldset>      
         <legend>List of saved categories:</legend>      
-        <!-- <p>Component 1 <button class="inline_block" routerLink="">Remove</button></p> //
+        <!-- <!--<p>Component 1 <button class="inline_block" routerLink="">Remove</button></p> //
         <p><input type="checkbox" name="chosen_cat" value="1">Category 1</p> 
         <p><input type="checkbox" name="chosen_cat" value="2">Category 2</p> 
         <p><input type="checkbox" name="chosen_cat" value="3">Category 3</p>  -->
@@ -15,7 +15,7 @@
 	<table mat-table [dataSource]="dataSource">
 		<ng-container matColumnDef="categoryId">
 			<th mat-header-cell *matHeaderCellDef> ID </th>
-			<td mat-cell *matCellDef="let category"> <input type="checkbox" name="chosen_cat" value="{{category.category_id}}"> <a href='/api/categories/{{category.category_id}}'>CATEGORY ID: {{category.category_id}}</a> </td> <!-- category_id -->
+			<td mat-cell *matCellDef="let category"> <input type="checkbox" name="chosen_cat" value="{{category.categoryID}}"> <a href='/api/categories/{{category.categoryID}}'>CATEGORY ID: {{category.categoryID}}</a> </td> <!-- category_id -->
                         
 		</ng-container>
 		<ng-container matColumnDef="name">

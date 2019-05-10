@@ -1,3 +1,6 @@
+/*
+ * Methods for logging in and logging out
+ */
 import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';

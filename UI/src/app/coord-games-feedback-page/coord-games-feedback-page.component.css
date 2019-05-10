@@ -17,7 +17,8 @@
 }
 
 .headline {
-    font-size: 28px;
+/*    font-size: 28px;*/
+    font-size: 200%;
     text-align: center;
 }
 

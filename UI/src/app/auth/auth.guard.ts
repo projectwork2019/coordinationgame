@@ -1,3 +1,6 @@
+/*
+ * Checks if the user can access the page/is logged in
+ */
 import { Injectable }       from '@angular/core';
 import {
   CanActivate, Router,

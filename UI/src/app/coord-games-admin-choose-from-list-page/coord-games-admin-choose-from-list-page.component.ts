@@ -1,3 +1,6 @@
+/*
+ * The page for choosing a component from the saved components list. 
+ */
 import { Component, OnInit } from '@angular/core';
 
 @Component({

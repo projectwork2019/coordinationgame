@@ -1,3 +1,6 @@
+/*
+ * The page for adding a new game. 
+ */
 import { Component, OnInit } from '@angular/core';
 
 @Component({

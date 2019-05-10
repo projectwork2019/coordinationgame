@@ -1,3 +1,6 @@
+/*
+ * The page displayed when the user isn't authorized to access the page they're requesting. 
+ */
 import { Component, OnInit } from '@angular/core';
 
 @Component({

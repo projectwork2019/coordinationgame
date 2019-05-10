@@ -1,3 +1,6 @@
+/*
+ * The page for displaying the player ID and collecting feedback. 
+ */
 import { Component, OnInit } from '@angular/core';
 
 @Component({

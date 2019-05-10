@@ -27,6 +27,7 @@ export class CoordGamesAdminGamesPageComponent implements OnInit {
 	  this.loadGamesList();
   }
 
+  //loads the current list of games
   loadGamesList() {
     this.http.getGames().subscribe((result) => {
       console.log(result);
@@ -36,6 +37,7 @@ export class CoordGamesAdminGamesPageComponent implements OnInit {
       })
   }
   
+  //toggle for enabling/disabling a game
   toggleEnabled(id:number){
 	  console.log(id);
 	  this.http.toggleEnabled(id).subscribe((result) => {
@@ -43,6 +45,7 @@ export class CoordGamesAdminGamesPageComponent implements OnInit {
 	  });
   }
   
+  //removes the game with the specified id
   removeGame(id:number){
     console.log(id);
     this.http.deleteGame(id).subscribe((result) => {
@@ -51,6 +54,7 @@ export class CoordGamesAdminGamesPageComponent implements OnInit {
       });
   }
   
+  //redirects the user to the report page for the game of the specified id
   showReport(gameId:number){
     //this.router.navigate(['/coord-games-admin-report-page/' + id]);
     let redirect = '/coord-games-admin-report-page';
