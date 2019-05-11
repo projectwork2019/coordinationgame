@@ -18,6 +18,7 @@ import { CoordGamesAdminChooseFromListPageComponent } from './coord-games-admin-
 import { CoordGamesAddCategoryPageComponent } from './coord-games-add-category-page/coord-games-add-category-page.component';
 import { CoordGamesExtendedMainPagesComponent } from './coord-games-extended-main-pages/coord-games-extended-main-pages.component';
 import { CoordGamesAdminReportPageComponent } from './coord-games-admin-report-page/coord-games-admin-report-page.component';
+import { ShowGamePageComponent } from './show-game-page/show-game-page.component';
 
 import { AuthGuard }                          from './auth/auth.guard';
 import { SelectivePreloadingStrategyService } from './selective-preloading-strategy.service';
@@ -89,6 +90,10 @@ const appRoutes: Routes = [
   {
     path: 'coord-games-final-page',
     component: CoordGamesFinalPageComponent
+  },
+  {
+    path: 'show-game-page',
+    component: ShowGamePageComponent
   },
   {
     path: 'admin',

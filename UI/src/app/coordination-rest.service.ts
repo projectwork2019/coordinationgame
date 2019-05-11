@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
-import { Selection, Category, GameSession } from './game';
+import { Selection, Category, GameSession, Game } from './game';
 
-const endpoint = "https://projectwork-coordinationgame.herokuapp.com/api";
-//const endpoint = "http://localhost:8080/api";
+//const endpoint = "https://projectwork-coordinationgame.herokuapp.com/api";
+const endpoint = "http://localhost:8080/api";
 const httpOptions = {
 	headers: new HttpHeaders({
 		'Content-Type':  'application/json'
@@ -72,6 +72,16 @@ export class CoordinationRestService {
 		return this.http.post(endpoint + "/gameSession/additionalInfo", data);
 	}*/
 	
+	getGameReport(id : number) : Observable<any>{
+		return this.http.get(endpoint + "/games/" + id + "/report").pipe(
+		map(this.extractData));
+	}
+
+	getPresentationReport(id : number) : Observable<any>{
+		return this.http.get(endpoint + "/presentations/" + id + "/report").pipe(
+		map(this.extractData));
+	}
+
 	postComment(data) : Observable<any> {
 		return this.http.post(endpoint + "/comments", data);
 	}
@@ -89,6 +99,11 @@ export class CoordinationRestService {
 		return this.http.get(endpoint + "/categories").pipe(
 		map(this.extractData));
 	}
+
+	updateGameCategories(data : Game) : Observable<any> {
+		return this.http.post(endpoint + "/games/categories", data);
+	}
+
         
         postAnswers(data) : Observable<any> {
 		return this.http.post(endpoint + "/gamesessions", data);

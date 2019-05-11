@@ -18,16 +18,17 @@ import javax.persistence.*;
 public class Category implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer category_id;
+    @Column(name = "category_id")
+    private Integer categoryID;
     
     private String name;
 
     public Integer getCategoryID() {
-        return category_id;
+        return categoryID;
     }
 
-    public void setCategory_id(Integer category_id) {
-        this.category_id = category_id;
+    public void setCategoryID(Integer categoryID) {
+        this.categoryID = categoryID;
     }
 
     public String getName() {
@@ -41,7 +42,7 @@ public class Category implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 17 * hash + Objects.hashCode(this.category_id);
+        hash = 17 * hash + Objects.hashCode(this.categoryID);
         hash = 17 * hash + Objects.hashCode(this.name);
         return hash;
     }
@@ -61,7 +62,7 @@ public class Category implements Serializable {
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
-        if (!Objects.equals(this.category_id, other.category_id)) {
+        if (!Objects.equals(this.categoryID, other.categoryID)) {
             return false;
         }
         return true;

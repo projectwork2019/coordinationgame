@@ -1,13 +1,14 @@
 /*
  * The page for asking background info from players. 
  */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router,
-         NavigationExtras } from '@angular/router';
+         NavigationExtras, ActivatedRoute } from '@angular/router';
 import { CoordinationRestService } from '../coordination-rest.service';
 //import { GameSession } from '...../src/main/java/com/projectwork/coordinationgame/model/GameSession.java'
 import { FeedbackPageAnswers } from '../game';
 import { NgForm } from '@angular/forms';
+import { Selection, GameSession } from '../game';
 
 @Component({
   selector: 'app-coord-games-feedback-page',
@@ -16,8 +17,13 @@ import { NgForm } from '@angular/forms';
 })
 export class CoordGamesFeedbackPageComponent implements OnInit {
 
-  constructor(private http: CoordinationRestService, private router: Router) { }
-  
+
+  constructor(private http: CoordinationRestService, private router: Router, private route: ActivatedRoute) { 
+  }
+
+  @Input()
+  gameSession : GameSession;
+
   form: NgForm;
   data: FeedbackPageAnswers;
   firstTime: string;
@@ -27,23 +33,34 @@ export class CoordGamesFeedbackPageComponent implements OnInit {
   
 
   ngOnInit() {
+    console.log(this.gameSession);
   }
   
   submitAnswersButtonClicked() {
-      
+
       if (this.firstTime == "true") {
           this.booleanFirst = true;
+          this.gameSession.firstTime = true;
       }
       else {
           this.booleanFirst = false;
+          this.gameSession.firstTime = false;
       }
       
       if (this.readResearch == "true") {
           this.booleanResearch = true;
+          this.gameSession.prevKnowledge = true;
       }
       else {
           this.booleanResearch = false;
+          this.gameSession.prevKnowledge = false;
       }
+
+      this.http.postSession(this.gameSession).subscribe(data => {
+				console.log(data);
+			});
+
+
       let data = new FeedbackPageAnswers(this.booleanFirst, this.booleanResearch);
       console.log(data);
       this.http.postAnswers(data);

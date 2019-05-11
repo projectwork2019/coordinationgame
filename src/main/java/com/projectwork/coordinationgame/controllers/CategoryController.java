@@ -43,7 +43,7 @@ public class CategoryController {
         
         for (String name : names) {
             Category c = new Category();
-            c.setCategory_id(id);
+            c.setCategoryID(id);
             c.setName(name);
             categoryRepository.put(c.getCategoryID(), c);
             id++;           

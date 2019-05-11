@@ -67,7 +67,7 @@ public class GameSessionController {
     }
 
     @PostMapping("/api/gamesessions")
-    public List<String> createGameSession(@RequestBody GameSession requestData) {        
+    public List<String> createGameSession(@RequestBody GameSession requestData) { 
         GameSession gameSession = requestData;
 //        GameSession gs = requestData.getGameSession();
 //        List<SelectionIdentity> selections = requestData.getSelections();

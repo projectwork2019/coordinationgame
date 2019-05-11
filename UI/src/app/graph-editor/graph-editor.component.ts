@@ -31,10 +31,7 @@ export class GraphEditorComponent implements OnInit {
 	component : GameComponent = {
 		edges : []
 	}
-	game : Game = {
-		name : "Testi",
-		components : []
-	}
+	game : Game;
 	
 	update$: Subject<any> = new Subject();
 
@@ -43,8 +40,8 @@ export class GraphEditorComponent implements OnInit {
 	ngOnInit() { 
 		this.currentComponent = this.component;
 		this.game.name = "";
-		this.game.components.push(this.component);
-		console.log(this.game.components);	
+		//this.game.components.push(this.component);
+		//console.log(this.game.components);	
 	}
 	
 	save() {

@@ -4,7 +4,8 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { CoordinationRestService } from '../coordination-rest.service';
 import { ShowGraphComponent } from '../show-graph/show-graph.component';
-import { Routes, RouterModule, Router} from '@angular/router'
+import { CoordGamesFeedbackPageComponent } from '../coord-games-feedback-page/coord-games-feedback-page.component';
+import { Routes, RouterModule, Router, NavigationExtras} from '@angular/router'
 import { Selection, GameSession } from '../game';
 //import { DateFormat } from '@angular/dateformat'
 
@@ -20,10 +21,17 @@ export class CoordGamesGameplayPageComponent implements OnInit {
 	@ViewChild(ShowGraphComponent) graphComponent:ShowGraphComponent;
 	graph : any = {};
 	@Input() childMessage : any = this.graph;
-	
+
+
+	@ViewChild(CoordGamesFeedbackPageComponent) feedbackComponennt:CoordGamesFeedbackPageComponent;
+	@Input() 
 	gameSession : GameSession = new GameSession();
+	
+	
 	games : any[];
 	
+	feedback:boolean = false;
+	showGameplay = true;
 	isDataAvailable:boolean = false;
 	selections : any[] = [];
 	gameNo : number = 1;
@@ -88,13 +96,17 @@ export class CoordGamesGameplayPageComponent implements OnInit {
 		if(this.gameNo == this.numberOfGames ){
 			
 			this.gameSession.endTimestamp = new Date().toISOString();
-			this.rest.postSession(this.gameSession).subscribe(data => {
+			/*this.rest.postSession(this.gameSession).subscribe(data => {
 				console.log(data);
-			});
+			});*/
 			/*
             this.rest.postSession(this.selections);
-            console.log(this.selections);*/
-			this.router.navigate(['/coord-games-feedback-page']);
+			console.log(this.selections);*/
+			//let navigationExtras : NavigationExtras = { queryParams : { "json" : JSON.stringify(this.gameSession) } };
+			//this.router.navigate(['/coord-games-feedback-page'], navigationExtras);
+			console.log("FEEDBACK TRUE");
+			this.feedback = true;
+			this.showGameplay = false;
 		}
 		else {
 			this.gameNo = this.gameNo + 1;

@@ -17,7 +17,7 @@ public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="game_id")
-    private Integer id;
+    private Integer gameID;
 
     @Column(name = "gamedata")
     @Type(type = "text")
@@ -27,6 +27,26 @@ public class Game {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "games", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private Set<Presentation> presentations;
+    
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name="game_category",
+            joinColumns = @JoinColumn(name = "game_id"),
+            inverseJoinColumns = 
+                    {
+                        @JoinColumn(name = "category_id"),
+                    }
+            
+    )
+    private Set<Category> categories;
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
+    }
     
     private boolean enabled;
 
@@ -68,11 +88,11 @@ public class Game {
 
     // getters and setters auto-generated
     public Integer getGameID() {
-        return id;
+        return gameID;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.gameID = id;
     }
     
 //    public List<Component> getGameData() {
@@ -94,7 +114,7 @@ public class Game {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 11 * hash + Objects.hashCode(this.id);
+        hash = 11 * hash + Objects.hashCode(this.gameID);
 //        hash = 11 * hash + Objects.hashCode(this.gameData);
         hash = 11 * hash + Objects.hashCode(this.gameDataObject);
         return hash;
@@ -112,7 +132,7 @@ public class Game {
             return false;
         }
         final Game other = (Game) obj;
-        if (!Objects.equals(this.id, other.id)) {
+        if (!Objects.equals(this.gameID, other.gameID)) {
             return false;
         }
         if (!Objects.equals(this.gameDataObject, other.gameDataObject)) {

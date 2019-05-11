@@ -3,11 +3,13 @@ package com.projectwork.coordinationgame.dao;
 import com.projectwork.coordinationgame.model.Game;
 import com.projectwork.coordinationgame.service.HibernateUtil;
 import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *This class is based on the convention of DAO classes with Hibernate used in many such projects.
@@ -112,7 +114,9 @@ public class GameDAO implements DAOInterface<Game, Integer> {
     @Override
     public Game findById(Integer id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Game game = (Game) session.get(Game.class, id);
+        Criteria criteria = session.createCriteria(Game.class);
+        criteria.add(Restrictions.eq("id", id));
+        Game game = (Game) criteria.uniqueResult();//(Game) session.get(Game.class, id);
         session.close();
         //Game game = (Game) getCurrentSession().get(Game.class, id);
         return game;

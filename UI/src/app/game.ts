@@ -20,7 +20,9 @@ export class CategoryDisplay {
 
 export class Game {
 	name : string;
-	components : Array<GameComponent>;
+	gameDataObject : string;
+	categories: Array<Category>;
+	//components : Array<GameComponent>;
 }
 
 export class GameComponent {

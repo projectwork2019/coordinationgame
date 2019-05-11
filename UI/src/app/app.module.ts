@@ -41,6 +41,7 @@ import { CoordGamesAdminChooseFromListPageComponent } from './coord-games-admin-
 import { CoordGamesAddCategoryPageComponent } from './coord-games-add-category-page/coord-games-add-category-page.component';
 import { CoordGamesExtendedMainPagesComponent } from './coord-games-extended-main-pages/coord-games-extended-main-pages.component';
 import { CoordGamesAdminReportPageComponent } from './coord-games-admin-report-page/coord-games-admin-report-page.component';
+import { ShowGamePageComponent } from './show-game-page/show-game-page.component';
 
 @NgModule({
  imports: [
@@ -81,7 +82,8 @@ import { CoordGamesAdminReportPageComponent } from './coord-games-admin-report-p
     CoordGamesAdminChooseFromListPageComponent,
     CoordGamesAddCategoryPageComponent,
     CoordGamesExtendedMainPagesComponent,
-    CoordGamesAdminReportPageComponent
+    CoordGamesAdminReportPageComponent,
+    ShowGamePageComponent
   ],
   bootstrap: [ AppComponent ]
 })

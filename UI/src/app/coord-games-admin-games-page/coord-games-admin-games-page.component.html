@@ -28,7 +28,7 @@
 	<table mat-table [dataSource]="dataSource">
 		<ng-container matColumnDef="gameId">
 			<th mat-header-cell *matHeaderCellDef> ID </th>
-			<td mat-cell *matCellDef="let game"> <a href='graph-editor/{{game.gameID}}'>GAME ID: {{game.gameID}}</a> </td>
+			<td mat-cell *matCellDef="let game"> <a href='show-game-page?id={{game.gameID}}'>GAME ID: {{game.gameID}}</a> </td>
 		</ng-container>
                 <ng-container matColumnDef="showReport">
 			<th mat-header-cell *matHeaderCellDef></th>

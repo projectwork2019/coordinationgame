@@ -94,5 +94,16 @@ public class GameController {
         return new ResponseEntity<Game>(HttpStatus.BAD_REQUEST);
     }
     
+    @PostMapping("/api/games/categories")
+    // @CrossOrigin(origins = "http://localhost:4200")
+    public Game addCategories(@RequestBody Game request) {
+//        System.out.println("POST: Received game data object: " + game.getGameDataObject().toString());
+        //return gameRepository.save(game);
+        Game game = gameDao.findById(request.getGameID());
+        System.out.print("IDDDDDDDDDDDDDDDDDD: "+ request.getGameID());
+        game.setCategories(request.getCategories());
+        gameDao.persist(game);
+        return game;
+    }
     
 }
