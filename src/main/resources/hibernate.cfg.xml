@@ -5,6 +5,7 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <property name="connection.pool_size">100</property>
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
         
         <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/coordination_games</property>
@@ -25,5 +26,6 @@
         <mapping class="com.projectwork.coordinationgame.model.Selection"></mapping>
         <mapping class="com.projectwork.coordinationgame.model.PresentationReport"></mapping>
         <mapping class="com.projectwork.coordinationgame.model.GameReport"></mapping>
+        <mapping class="com.projectwork.coordinationgame.model.GameSessionSettings"></mapping>      
     </session-factory>
 </hibernate-configuration>

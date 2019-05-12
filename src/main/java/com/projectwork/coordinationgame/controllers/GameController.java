@@ -100,7 +100,6 @@ public class GameController {
 //        System.out.println("POST: Received game data object: " + game.getGameDataObject().toString());
         //return gameRepository.save(game);
         Game game = gameDao.findById(request.getGameID());
-        System.out.print("IDDDDDDDDDDDDDDDDDD: "+ request.getGameID());
         game.setCategories(request.getCategories());
         gameDao.persist(game);
         return game;

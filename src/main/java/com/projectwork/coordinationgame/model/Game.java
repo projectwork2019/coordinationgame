@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Type;
 
 /**
@@ -26,9 +28,10 @@ public class Game {
     
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "games", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
-    private Set<Presentation> presentations;
+    private List<Presentation> presentations;
     
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
+//    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(
             name="game_category",
             joinColumns = @JoinColumn(name = "game_id"),
@@ -50,13 +53,13 @@ public class Game {
     
     private boolean enabled;
 
-    public Set<Presentation> getPresentations() {    
+    public List<Presentation> getPresentations() {    
         return presentations;
 
     }
 
     // Database relation mappings - Game belongs to multiple categories
-    public void setPresentations(Set<Presentation> presentations) {
+    public void setPresentations(List<Presentation> presentations) {
         this.presentations = presentations;
     }
 

@@ -86,6 +86,21 @@ PRIMARY KEY (component_id, game_id),
 FOREIGN KEY (game_id) REFERENCES game,
 FOREIGN KEY (component_id) REFERENCES component);
 
+CREATE TABLE project_work.game_session_settings (
+game_session_settings_id SERIAL,
+name VARCHAR(100) NOT NULL,
+PRIMARY KEY (game_session_settings_id));
+
+INSERT INTO project_work.game_session_settings (name)
+VALUES ('DEFAULT');
+
+CREATE TABLE project_work.game_session_settings_categories (
+game_session_settings_id SERIAL,
+category_id SERIAL,
+list_index INT NOT NULL,
+PRIMARY KEY (game_session_settings_id, category_id, list_index),
+FOREIGN KEY (game_session_settings_id) REFERENCES game_session_settings,
+FOREIGN KEY (category_id) REFERENCES category);
              
 CREATE OR REPLACE FUNCTION get_report_presentation(p_id INT)
 	RETURNS TABLE(

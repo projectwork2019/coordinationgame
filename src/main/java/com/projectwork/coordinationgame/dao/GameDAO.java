@@ -146,7 +146,8 @@ public class GameDAO implements DAOInterface<Game, Integer> {
     public List<Game> findAll() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         //List<Game> games = (List<Game>) getCurrentSession().createQuery("from game").list();
-        List<Game> games = (List<Game>) session.createQuery("from game").list();
+        Criteria criteria = session.createCriteria(Game.class);
+        List<Game> games = criteria.list();// (List<Game>) session.createQuery("from game").list();
         session.close();
         return games;
     }

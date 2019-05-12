@@ -6,6 +6,7 @@ import { MatTableModule } from  '@angular/material';
 import { MatPaginatorModule } from '@angular/material';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatSelectModule} from '@angular/material/select';
 
 import { Ng5SliderModule } from 'ng5-slider';
 
@@ -43,6 +44,7 @@ import { CoordGamesExtendedMainPagesComponent } from './coord-games-extended-mai
 import { CoordGamesAdminReportPageComponent } from './coord-games-admin-report-page/coord-games-admin-report-page.component';
 import { ShowGamePageComponent } from './show-game-page/show-game-page.component';
 import { GameSessionSettingsComponent } from './game-session-settings/game-session-settings.component';
+import { CoordGamesAdminPresentationReportPageComponent } from './coord-games-admin-presentation-report-page/coord-games-admin-presentation-report-page.component';
 
 @NgModule({
  imports: [
@@ -61,7 +63,8 @@ import { GameSessionSettingsComponent } from './game-session-settings/game-sessi
    MatTableModule,
    MatPaginatorModule,
    MatSlideToggleModule,
-   MatSnackBarModule
+   MatSnackBarModule,
+   MatSelectModule
  ],
   declarations: [
     AppComponent,
@@ -86,6 +89,7 @@ import { GameSessionSettingsComponent } from './game-session-settings/game-sessi
     CoordGamesAdminReportPageComponent,
     ShowGamePageComponent,
     GameSessionSettingsComponent
+    CoordGamesAdminPresentationReportPageComponent
   ],
   bootstrap: [ AppComponent ]
 })
