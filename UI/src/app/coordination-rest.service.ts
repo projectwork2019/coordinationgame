@@ -93,4 +93,14 @@ export class CoordinationRestService {
         postAnswers(data) : Observable<any> {
 		return this.http.post(endpoint + "/gamesessions", data);
 	}
+        
+        getGameReport(id : number) : Observable<any>{
+                return this.http.get(endpoint + "/games/" + id + "/report").pipe(
+                map(this.extractData));
+        }
+
+        getPresentationReport(id : number) : Observable<any>{
+                return this.http.get(endpoint + "/presentations/" + id + "/report").pipe(
+                map(this.extractData));
+        }
 }

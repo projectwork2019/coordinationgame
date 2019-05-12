@@ -12,29 +12,9 @@
 
 </style>
 
-<h1 style="text-align: center; font-size: 200%">Report of game {{id}}</h1>
+<h1 style="text-align: center; font-size: 200%">Report of game {{gameId}}</h1>
 <!--<button routerLink="/coord-games-admin-add-game-page">Add game...</button> -->
 <!--<button mat-raised-button color="primary" routerLink="/graph-editor">Add game...</button>-->
-<!--<div style="float: right; margin-right: 10%">
-         <select name = "dropdown">
-            <option value = "Choose presentation..." selected>Choose presentation...</option>
-            <option value = "Test" (click)=showPresentationReport({{id}}, 1}}>Presentation {{id}}</option>///
-         </select>
-</div>-->
-
-<div style="float: right; margin-right: 10%">
-    <mat-form-field>
-        <mat-label>Choose presentation...</mat-label>
-        <mat-select [(value)]="presentationId" (selectionChange)=showPresentationReport(presentationId)>
-            <mat-option>None</mat-option>
-            <mat-option value=1>Presentation 1</mat-option>
-            <mat-option value=2>Presentation 2</mat-option>
-            <mat-option value=3>Presentation 3</mat-option>
-            <!--<option *ngFor="let presentation of presentationList" [value]="presentation.id" >{{presentation.id}}</option>-->
-        </mat-select>
-    </mat-form-field>
-</div>
-
 <div class="gameTableContainer mat-elevation-z8">
 	<table mat-table [dataSource]="dataSource">
 		<ng-container matColumnDef="nodeId">

@@ -6,6 +6,7 @@ import { MatTableModule } from  '@angular/material';
 import { MatPaginatorModule } from '@angular/material';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatSelectModule} from '@angular/material/select';
 
 import { Ng5SliderModule } from 'ng5-slider';
 
@@ -41,6 +42,7 @@ import { CoordGamesAdminChooseFromListPageComponent } from './coord-games-admin-
 import { CoordGamesAddCategoryPageComponent } from './coord-games-add-category-page/coord-games-add-category-page.component';
 import { CoordGamesExtendedMainPagesComponent } from './coord-games-extended-main-pages/coord-games-extended-main-pages.component';
 import { CoordGamesAdminReportPageComponent } from './coord-games-admin-report-page/coord-games-admin-report-page.component';
+import { CoordGamesAdminPresentationReportPageComponent } from './coord-games-admin-presentation-report-page/coord-games-admin-presentation-report-page.component';
 
 @NgModule({
  imports: [
@@ -59,7 +61,8 @@ import { CoordGamesAdminReportPageComponent } from './coord-games-admin-report-p
    MatTableModule,
    MatPaginatorModule,
    MatSlideToggleModule,
-   MatSnackBarModule
+   MatSnackBarModule,
+   MatSelectModule
  ],
   declarations: [
     AppComponent,
@@ -81,7 +84,8 @@ import { CoordGamesAdminReportPageComponent } from './coord-games-admin-report-p
     CoordGamesAdminChooseFromListPageComponent,
     CoordGamesAddCategoryPageComponent,
     CoordGamesExtendedMainPagesComponent,
-    CoordGamesAdminReportPageComponent
+    CoordGamesAdminReportPageComponent,
+    CoordGamesAdminPresentationReportPageComponent
   ],
   bootstrap: [ AppComponent ]
 })

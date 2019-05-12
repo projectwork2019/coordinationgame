@@ -18,6 +18,7 @@ import { CoordGamesAdminChooseFromListPageComponent } from './coord-games-admin-
 import { CoordGamesAddCategoryPageComponent } from './coord-games-add-category-page/coord-games-add-category-page.component';
 import { CoordGamesExtendedMainPagesComponent } from './coord-games-extended-main-pages/coord-games-extended-main-pages.component';
 import { CoordGamesAdminReportPageComponent } from './coord-games-admin-report-page/coord-games-admin-report-page.component';
+import { CoordGamesAdminPresentationReportPageComponent } from './coord-games-admin-presentation-report-page/coord-games-admin-presentation-report-page.component';
 
 import { AuthGuard }                          from './auth/auth.guard';
 import { SelectivePreloadingStrategyService } from './selective-preloading-strategy.service';
@@ -28,6 +29,11 @@ const appRoutes: Routes = [
 //    component: ComposeMessageComponent,
 //    outlet: 'popup'
 //  },
+  {
+    path: 'coord-games-admin-presentation-report-page',
+    component: CoordGamesAdminPresentationReportPageComponent,
+    canActivate: [AuthGuard]
+  },
   {
     path: 'coord-games-admin-report-page',
     component: CoordGamesAdminReportPageComponent,
