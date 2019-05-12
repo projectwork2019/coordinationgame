@@ -25,6 +25,8 @@ export class ShowGamePageComponent implements OnInit {
   dataSource = new MatTableDataSource<Category>();
   columnsToDisplay = ['categoryName','enabled'];
 
+  initializedCategories : Array<Category> = [];
+  selectedCategories : Array<Category> = [];
   isDataAvailable : boolean = false;
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -34,18 +36,41 @@ export class ShowGamePageComponent implements OnInit {
           this.graph = this.game;
           console.log(this.game);
           this.isDataAvailable = true;
+          this.rest.getCategories().subscribe((result) => {
+            this.dataSource = new MatTableDataSource(result);
+            this.dataSource.paginator = this.paginator;
+            result.forEach(element => {
+              console.log(this.game.categories);
+              console.log(element);
+              console.log(this.game.categories.some(item => item.categoryID == element.categoryID));
+            });
+          });
       });
     });
     
-    this.rest.getCategories().subscribe((result) => {
-      this.dataSource = new MatTableDataSource(result);
-      this.dataSource.paginator = this.paginator;
-    });
+    
   
   }
 
-  toggleEnabled(category){
-    this.game.categories.push(category);
+  isInGame(category){
+   let found =  this.game.categories.some(item => item.categoryID == category.categoryID);
+   if(!this.initializedCategories.includes(category)){
+    this.initializedCategories.push(category);
+   if(found){
+    this.selectedCategories.push(category);
+   } 
+  }
+   return found;
+  }
+
+  toggleEnabled(category, event){
+    if(event.checked == true){
+      this.selectedCategories.push(category);
+    } else {
+      console.log(this.selectedCategories.indexOf(category));
+      this.selectedCategories.splice(this.selectedCategories.indexOf(category), 1);
+    }
+    this.game.categories = this.selectedCategories;
     this.rest.updateGameCategories(this.game).subscribe(data => {
 			console.log(data);
 		});

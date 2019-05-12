@@ -1,11 +1,17 @@
 export class Category {
 	name : string;
-	id : number;
+	categoryID : number;
         
         constructor(name : string, id : number) {
             this.name = name;
-            this.id = id;
+            this.categoryID = id;
 	}
+}
+
+export class GameSessionSettings {
+	name : string;
+	id : string;
+	categories : Array<Category>;
 }
 
 export class GameDisplay {

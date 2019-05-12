@@ -1,0 +1,30 @@
+<div class="categoriesContainer mat-elevation-z8">
+	<table mat-table [dataSource]="dataSource">
+		<ng-container matColumnDef="categoryName">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let category">{{category.name}}</td>
+		</ng-container>             
+		<ng-container matColumnDef="add">
+			<th mat-header-cell *matHeaderCellDef></th>
+			<td mat-cell *matCellDef="let category"> <button (click)="addCategory(category)">ADD</button></td>
+		</ng-container>
+		<tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+		<tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+	</table>
+	<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
+
+<div class="selectedCategoriesContainer mat-elevation-z8">
+<table mat-table [dataSource]="categoriesDatasource">
+  <ng-container matColumnDef="categoryName">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let category">{{category.name}}</td>
+  </ng-container>           
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef></th>
+		<td mat-cell *matCellDef="let category; let i = index"> <button (click)="deleteCategory(i)">DELETE {{i}}</button></td>
+  </ng-container>   	
+  <tr mat-header-row *matHeaderRowDef="selectedCategoriesColumns"></tr>
+  <tr mat-row *matRowDef="let myRowData; columns: selectedCategoriesColumns"></tr>
+</table>
+</div>

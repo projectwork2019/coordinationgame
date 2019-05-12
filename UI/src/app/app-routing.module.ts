@@ -19,9 +19,11 @@ import { CoordGamesAddCategoryPageComponent } from './coord-games-add-category-p
 import { CoordGamesExtendedMainPagesComponent } from './coord-games-extended-main-pages/coord-games-extended-main-pages.component';
 import { CoordGamesAdminReportPageComponent } from './coord-games-admin-report-page/coord-games-admin-report-page.component';
 import { ShowGamePageComponent } from './show-game-page/show-game-page.component';
+import { GameSessionSettingsComponent } from './game-session-settings/game-session-settings.component';
 
 import { AuthGuard }                          from './auth/auth.guard';
 import { SelectivePreloadingStrategyService } from './selective-preloading-strategy.service';
+
 
 const appRoutes: Routes = [
 //  {
@@ -94,6 +96,10 @@ const appRoutes: Routes = [
   {
     path: 'show-game-page',
     component: ShowGamePageComponent
+  },
+  {
+    path: 'game-session-settings',
+    component: GameSessionSettingsComponent
   },
   {
     path: 'admin',

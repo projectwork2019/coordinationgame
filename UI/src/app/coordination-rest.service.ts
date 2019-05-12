@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
-import { Selection, Category, GameSession, Game } from './game';
+import { Selection, Category, GameSession, Game, GameSessionSettings } from './game';
 
 //const endpoint = "https://projectwork-coordinationgame.herokuapp.com/api";
 const endpoint = "http://localhost:8080/api";
@@ -104,8 +104,21 @@ export class CoordinationRestService {
 		return this.http.post(endpoint + "/games/categories", data);
 	}
 
+	addOrUpdateGameSessionSettings(data : GameSessionSettings) : Observable<any> {
+		return this.http.post(endpoint + "/gamesessions/settings", data);
+	}
+
+	getGameSessionDefaultSettings() : Observable<any> {
+		return this.http.get(endpoint + "/gamesessions/settings").pipe(
+		map(this.extractData));
+	}
+
+	getGameSessionSettings(id : number) : Observable<any> {
+		return this.http.get(endpoint + "/gamesessions/settings/id").pipe(
+		map(this.extractData));
+	}
         
-        postAnswers(data) : Observable<any> {
+  postAnswers(data) : Observable<any> {
 		return this.http.post(endpoint + "/gamesessions", data);
 	}
 }

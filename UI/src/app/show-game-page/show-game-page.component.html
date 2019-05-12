@@ -10,10 +10,19 @@
 		</ng-container>             
 		<ng-container matColumnDef="enabled">
 			<th mat-header-cell *matHeaderCellDef></th>
-			<td mat-cell *matCellDef="let category"> <mat-slide-toggle (change)=toggleEnabled(category) color="primary" id="{{category.category_id}}"></mat-slide-toggle></td>
+			<td mat-cell *matCellDef="let category"> <mat-slide-toggle (change)="toggleEnabled(category, $event)" color="primary" checked="{{ isInGame(category) }}" id="{{category.category_id}}"></mat-slide-toggle></td>
 		</ng-container>	
 		<tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
 		<tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
 	</table>
 	<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+	<table mat-table [dataSource]="categoriesDatasource">
+		<ng-container matColumnDef="categoryName">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let category">{{category.name}}</td>
+		</ng-container>             	
+		<tr mat-header-row *matHeaderRowDef="selectedCategoriesColumns"></tr>
+		<tr mat-row *matRowDef="let myRowData; columns: selectedCategoriesColumns"></tr>
+	</table>
 </div>
