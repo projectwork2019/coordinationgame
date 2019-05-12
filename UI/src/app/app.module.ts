@@ -88,7 +88,7 @@ import { CoordGamesAdminPresentationReportPageComponent } from './coord-games-ad
     CoordGamesExtendedMainPagesComponent,
     CoordGamesAdminReportPageComponent,
     ShowGamePageComponent,
-    GameSessionSettingsComponent
+    GameSessionSettingsComponent,
     CoordGamesAdminPresentationReportPageComponent
   ],
   bootstrap: [ AppComponent ]
