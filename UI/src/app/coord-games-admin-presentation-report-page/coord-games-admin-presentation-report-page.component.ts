@@ -4,7 +4,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CoordinationRestService } from '../coordination-rest.service';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
-import { GameDisplay } from '../game'
+import { NodeReport, PresentationDisplay } from '../game'
 
 import { ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -19,8 +19,8 @@ export class CoordGamesAdminPresentationReportPageComponent implements OnInit {
  gameId:number;
  presentationId:number;
 
- dataSource = new MatTableDataSource<GameDisplay>();
-  columnsToDisplay = ['nodeId', 'percentageChosen'];
+ dataSource = new MatTableDataSource<NodeReport>();
+ columnsToDisplay = ['nodeId', 'percentageChosen', 'avgConfidence'];
   
   
   
@@ -54,7 +54,7 @@ export class CoordGamesAdminPresentationReportPageComponent implements OnInit {
 
   //loads the report
   loadPresentationReport(gameId:number, presentationId:number) {
-    this.http.getGameReport(gameId).subscribe((result) => {
+    this.http.getPresentationReport(presentationId).subscribe((result) => {
       console.log(result);
       this.dataSource = new MatTableDataSource(result);
       this.dataSource.paginator = this.paginator;
@@ -62,7 +62,3 @@ export class CoordGamesAdminPresentationReportPageComponent implements OnInit {
       })
   }
   }
-  
-    
-
-}

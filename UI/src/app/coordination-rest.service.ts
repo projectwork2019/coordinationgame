@@ -4,8 +4,8 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { map, catchError, tap } from 'rxjs/operators';
 import { Selection, Category, GameSession, Game, GameSessionSettings } from './game';
 
-//const endpoint = "https://projectwork-coordinationgame.herokuapp.com/api";
-const endpoint = "http://localhost:8080/api";
+const endpoint = "https://projectwork-coordinationgame.herokuapp.com/api";
+//const endpoint = "http://localhost:8080/api";
 const httpOptions = {
 	headers: new HttpHeaders({
 		'Content-Type':  'application/json'
@@ -121,5 +121,19 @@ export class CoordinationRestService {
         postAnswers(data) : Observable<any> {
 		return this.http.post(endpoint + "/gamesessions", data);
 	}
+        
+//        getGameReport(id : number) : Observable<any>{
+//                return this.http.get(endpoint + "/games/" + id + "/report").pipe(
+//                map(this.extractData));
+//        }
 
+//        getPresentationReport(id : number) : Observable<any>{
+//                return this.http.get(endpoint + "/presentations/" + id + "/report").pipe(
+//                map(this.extractData));
+//        }
+        
+        getPresentationsByGameId(id : number) : Observable<any>{
+                return this.http.get(endpoint + "/games/ " + id + "/presentations").pipe(
+                map(this.extractData));
+        }
 }
