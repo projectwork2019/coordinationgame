@@ -2,6 +2,7 @@ package com.projectwork.coordinationgame.dao;
 
 import com.projectwork.coordinationgame.model.Game;
 import com.projectwork.coordinationgame.service.HibernateUtil;
+import java.util.Collections;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -150,6 +151,13 @@ public class GameDAO implements DAOInterface<Game, Integer> {
         List<Game> games = criteria.list();// (List<Game>) session.createQuery("from game").list();
         session.close();
         return games;
+    }
+    
+         @Override
+    public List<Game> findAllShuffeled() {
+        List<Game> list = this.findAll();
+        Collections.shuffle(list);
+        return list;
     }
 
     @Override

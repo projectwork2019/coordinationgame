@@ -7,6 +7,7 @@ package com.projectwork.coordinationgame.dao;
 
 import com.projectwork.coordinationgame.model.GameSessionSettings;
 import com.projectwork.coordinationgame.service.HibernateUtil;
+import java.util.Collections;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -105,6 +106,13 @@ public class GameSessionSettingsDAO implements DAOInterface<GameSessionSettings,
         Session session = HibernateUtil.getSessionFactory().openSession();
         List<GameSessionSettings> settings = (List<GameSessionSettings>) session.createQuery("from selection").list();
         return settings;
+    }
+    
+    @Override
+    public List<GameSessionSettings> findAllShuffeled() {
+        List<GameSessionSettings> list = this.findAll();
+        Collections.shuffle(list);
+        return list;
     }
 
     @Override

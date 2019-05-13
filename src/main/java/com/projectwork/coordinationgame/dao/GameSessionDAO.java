@@ -7,6 +7,7 @@ package com.projectwork.coordinationgame.dao;
 
 import com.projectwork.coordinationgame.model.GameSession;
 import com.projectwork.coordinationgame.service.HibernateUtil;
+import java.util.Collections;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -141,6 +142,13 @@ public class GameSessionDAO implements DAOInterface<GameSession, Integer> {
         Session session = HibernateUtil.getSessionFactory().openSession();
         List<GameSession> gameSessions = (List<GameSession>) session.createQuery("from game_session").list();
         return gameSessions;
+    }
+    
+    @Override
+    public List<GameSession> findAllShuffeled() {
+        List<GameSession> list = this.findAll();
+        Collections.shuffle(list);
+        return list;
     }
 
     @Override

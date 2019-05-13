@@ -8,6 +8,7 @@ package com.projectwork.coordinationgame.dao;
 import com.projectwork.coordinationgame.model.Category;
 import com.projectwork.coordinationgame.model.Presentation;
 import com.projectwork.coordinationgame.service.HibernateUtil;
+import java.util.Collections;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -97,6 +98,13 @@ public class CategoryDAO implements DAOInterface<Category, Integer> {
         List<Category> categories = (List<Category>) session.createCriteria(Category.class).list();
         session.close();
         return categories;
+    }
+    
+    @Override
+    public List<Category> findAllShuffeled() {
+        List<Category> list = this.findAll();
+        Collections.shuffle(list);
+        return list;
     }
 
     @Override

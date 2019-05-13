@@ -6,6 +6,7 @@
 package com.projectwork.coordinationgame.dao;
 
 import java.lang.reflect.ParameterizedType;
+import java.util.Collections;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -25,7 +26,7 @@ public class GenericDAO<T> implements DAOInterface<T, Integer> {
     private Session currentSession;
     private Transaction currentTransaction;
 
-    //Default constructor used to instanciate an empty GameSelectioDAO object
+    //Default constructor used to instanciate an empty GenericDAO object
     public GenericDAO() {
     }
 
@@ -86,9 +87,9 @@ public class GenericDAO<T> implements DAOInterface<T, Integer> {
 
     @Override
     public T findById(Integer id) {
-        T gameCategory = (T) getCurrentSession().get(((Class<T>) ((ParameterizedType) getClass()
+        T t = (T) getCurrentSession().get(((Class<T>) ((ParameterizedType) getClass()
         .getGenericSuperclass()).getActualTypeArguments()[0]) , id);
-        return gameCategory;
+        return t;
     }
 
     @Override
@@ -96,7 +97,6 @@ public class GenericDAO<T> implements DAOInterface<T, Integer> {
         getCurrentSession().delete(entity);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public List<T> findAll() {
         CriteriaBuilder builder = currentSession.getCriteriaBuilder();
@@ -106,8 +106,15 @@ public class GenericDAO<T> implements DAOInterface<T, Integer> {
                             .getGenericSuperclass()).getActualTypeArguments()[0]);
         criteria.select(genericRoot);
         
-        List<T> gameCategorys = (List<T>) currentSession.createQuery(criteria).getResultList();
-        return gameCategorys;
+        List<T> tList = (List<T>) currentSession.createQuery(criteria).getResultList();
+        return tList;
+    }
+    
+    @Override
+    public List<T> findAllShuffeled() {
+        List<T> list = this.findAll();
+        Collections.shuffle(list);
+        return list;
     }
 
     @Override

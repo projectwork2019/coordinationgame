@@ -21,6 +21,8 @@ public interface DAOInterface<T, Id extends Serializable> {
     public void delete(T entity);
 
     public List<T> findAll();
+    
+    public List<T> findAllShuffeled();
 
     public void deleteAll();
 }

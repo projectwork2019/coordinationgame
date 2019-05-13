@@ -2,6 +2,7 @@ package com.projectwork.coordinationgame.dao;
 
 import com.projectwork.coordinationgame.model.Presentation;
 import com.projectwork.coordinationgame.service.HibernateUtil;
+import java.util.Collections;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -146,6 +147,13 @@ public class PresentationDAO implements DAOInterface<Presentation, Integer> {
         criteria.add(Restrictions.eq("g.enabled", true));
         List<Presentation> presentations = (List<Presentation>) criteria.list(); //session.createQuery(criteria).getResultList();
         return presentations;
+    }
+    
+    @Override
+    public List<Presentation> findAllShuffeled() {
+        List<Presentation> list = this.findAll();
+        Collections.shuffle(list);
+        return list;
     }
 
     @Override
