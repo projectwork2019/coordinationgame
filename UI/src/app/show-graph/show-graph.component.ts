@@ -1,3 +1,6 @@
+/*
+ * Component for displaying the graph
+ */
 import { Component, Input, OnInit, ViewEncapsulation, OnChanges } from '@angular/core';
 import { Game, Edge, GameComponent, Node } from "../game";
 import * as shape from 'd3-shape';

@@ -1,3 +1,6 @@
+/*
+ * Custom classes.
+ */
 export class Category {
 	name : string;
 	categoryID : number;

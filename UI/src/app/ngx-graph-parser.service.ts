@@ -1,3 +1,6 @@
+/*
+ * Graph parser.
+ */
 import { Injectable } from '@angular/core';
 import { Game, Edge, GameComponent, Node } from "./game";
 

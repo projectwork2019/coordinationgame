@@ -5,8 +5,13 @@
  */
 package com.projectwork.coordinationgame.dao;
 
+import com.projectwork.coordinationgame.service.HibernateUtil;
 import java.lang.reflect.ParameterizedType;
+import java.util.Collections;
 import java.util.List;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -16,24 +21,24 @@ import org.hibernate.cfg.Configuration;
 /**
  *
  * @author mohamadhassan
+ * @param <T>
  */
 public class GenericDAO<T> implements DAOInterface<T, Integer> {
     private Session currentSession;
     private Transaction currentTransaction;
-    private T obj;
 
-    //Default constructor used to instanciate an empty GameSelectioDAO object
+    //Default constructor used to instanciate an empty GenericDAO object
     public GenericDAO() {
     }
 
     public Session openCurrentSession() {
-        currentSession = getSessionFactory().openSession();
+        currentSession = HibernateUtil.getSessionFactory().openSession();
         currentTransaction = currentSession.beginTransaction();
         return currentSession;
     }
     
     public Session openCurrentSessionWithTransaction() {
-        currentSession = getSessionFactory().openSession();
+        currentSession = HibernateUtil.getSessionFactory().openSession();
         currentTransaction = currentSession.beginTransaction();
         return currentSession;
     }
@@ -47,13 +52,13 @@ public class GenericDAO<T> implements DAOInterface<T, Integer> {
         currentSession.close();
     }
 
-    private static SessionFactory getSessionFactory() {
-        Configuration configuration = new Configuration().configure();
-        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
-                .applySettings(configuration.getProperties());
-        SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
-        return sessionFactory;
-    }
+//    private static SessionFactory getSessionFactory() {
+//        Configuration configuration = new Configuration().configure();
+//        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
+//                .applySettings(configuration.getProperties());
+//        SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
+//        return sessionFactory;
+//    }
 
     public Session getCurrentSession() {
         return currentSession;
@@ -73,39 +78,58 @@ public class GenericDAO<T> implements DAOInterface<T, Integer> {
 
     @Override
     public void persist(T entity) {
-        getCurrentSession().save(entity);
+        openCurrentSessionWithTransaction().saveOrUpdate(entity);
+        getCurrentTransaction().commit();
+        closeCurrentSession();
     }
 
     @Override
     public void update(T entity) {
-        getCurrentSession().update(entity);
+        openCurrentSession().update(entity);
+        closeCurrentSession();
     }
 
     @Override
     public T findById(Integer id) {
-        T gameCategory = (T) getCurrentSession().get(((Class<T>) ((ParameterizedType) getClass()
+        T t = (T) openCurrentSession().get(((Class<T>) ((ParameterizedType) getClass()
         .getGenericSuperclass()).getActualTypeArguments()[0]) , id);
-        return gameCategory;
+        closeCurrentSession();
+        return t;
     }
 
     @Override
     public void delete(T entity) {
-        getCurrentSession().delete(entity);
+        openCurrentSession().delete(entity);
+        closeCurrentSession();
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public List<T> findAll() {
-        List<T> gameCategorys = (List<T>) getCurrentSession().createQuery("from game_category").list(); //TODO change text
-        return gameCategorys;
+        CriteriaBuilder builder = openCurrentSession().getCriteriaBuilder();
+        CriteriaQuery<T> criteria = builder.createQuery((Class<T>) ((ParameterizedType) getClass()
+                            .getGenericSuperclass()).getActualTypeArguments()[0]);
+        Root<T> genericRoot=criteria.from((Class<T>) ((ParameterizedType) getClass()
+                            .getGenericSuperclass()).getActualTypeArguments()[0]);
+        criteria.select(genericRoot);
+        
+        List<T> tList = (List<T>) currentSession.createQuery(criteria).getResultList();
+        closeCurrentSession();
+        return tList;
+    }
+    
+    @Override
+    public List<T> findAllShuffeled() {
+        List<T> list = this.findAll();
+        Collections.shuffle(list);
+        return list;
     }
 
     @Override
     public void deleteAll() {
         List<T> entityList = findAll();
-        for (T entity : entityList) {
+        entityList.forEach((entity) -> {
             delete(entity);
-        }
+        });
     }
     
 }

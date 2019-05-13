@@ -79,7 +79,7 @@ public class GameSessionController {
                         presentationList.add(p.get(random.nextInt(p.size())));
                     }
                     i++;
-                } while (!found);
+                } while (!found && i < games.size());
             }
         } while (!(presentationList.size() == settings.getCategories().size()));
         

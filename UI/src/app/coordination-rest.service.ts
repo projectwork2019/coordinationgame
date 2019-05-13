@@ -118,7 +118,7 @@ export class CoordinationRestService {
 		map(this.extractData));
 	}
         
-  postAnswers(data) : Observable<any> {
+        postAnswers(data) : Observable<any> {
 		return this.http.post(endpoint + "/gamesessions", data);
 	}
 

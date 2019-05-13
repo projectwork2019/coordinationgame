@@ -2,6 +2,7 @@ package com.projectwork.coordinationgame.dao;
 
 import com.projectwork.coordinationgame.model.Game;
 import com.projectwork.coordinationgame.service.HibernateUtil;
+import java.util.Collections;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -16,15 +17,14 @@ import org.hibernate.criterion.Restrictions;
  * 
  * @author mohamadhassan
  */
-public class GameDAO implements DAOInterface<Game, Integer> {
+public class GameDAO extends GenericDAO<Game>{
 
-    private Session currentSession;
-    private Transaction currentTransaction;
-
-    //Default constructor used to instanciate an empty GameDAO object
-    public GameDAO() {
-        
-    }
+//    private Session currentSession;
+//    private Transaction currentTransaction;
+//
+//    //Default constructor used to instanciate an empty GameDAO object
+//    public GameDAO() {
+//    }
 
 //    public Session openCurrentSession() {
 //        currentSession = getSessionFactory().openSession();
@@ -62,102 +62,109 @@ public class GameDAO implements DAOInterface<Game, Integer> {
 //    public void setCurrentSession(Session currentSession) {
 //        this.currentSession = currentSession;
 //    }
-
-    public Transaction getCurrentTransaction() {
-        return currentTransaction;
-    }
-
-    public void setCurrentTransaction(Transaction currentTransaction) {
-        this.currentTransaction = currentTransaction;
-    }
-
-    @Override
-    public void persist(Game entity) {
-        //getCurrentSession().save(entity);
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = null;
-        try {
-            tx = session.beginTransaction();
-            session.saveOrUpdate(entity);
-            tx.commit();
-        }
-        catch (Exception e) {
-            if (tx!=null) tx.rollback();
-            throw e;
-        }
-        finally {
-            session.close();
-        }
-        
-    }
-
-    @Override
-    public void update(Game entity) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = null;
-        try {
-            tx = session.beginTransaction();
-            session.update(entity);
-            tx.commit();
-        }
-        catch (Exception e) {
-            if (tx!=null) tx.rollback();
-            throw e;
-        }
-        finally {
-            session.close();
-        }
-
-        //getCurrentSession().update(entity);
-    }
-
-    @Override
-    public Game findById(Integer id) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(Game.class);
-        criteria.add(Restrictions.eq("id", id));
-        Game game = (Game) criteria.uniqueResult();//(Game) session.get(Game.class, id);
-        session.close();
-        //Game game = (Game) getCurrentSession().get(Game.class, id);
-        return game;
-    }
-
-    @Override
-    public void delete(Game entity) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = null;
-        try {
-            tx = session.beginTransaction();
-            session.delete(entity);
-            tx.commit();
-        }
-        catch (Exception e) {
-            if (tx!=null) tx.rollback();
-            throw e;
-        }
-        finally {
-            session.close();
-        }
-        //getCurrentSession().delete(entity);
-    }
-
-    @SuppressWarnings("unchecked")
-    @Override
-    public List<Game> findAll() {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        //List<Game> games = (List<Game>) getCurrentSession().createQuery("from game").list();
-        Criteria criteria = session.createCriteria(Game.class);
-        List<Game> games = criteria.list();// (List<Game>) session.createQuery("from game").list();
-        session.close();
-        return games;
-    }
-
-    @Override
-    public void deleteAll() {
-        List<Game> entityList = findAll();
-        for (Game entity : entityList) {
-            delete(entity);
-        }
-    }
+//
+//    public Transaction getCurrentTransaction() {
+//        return currentTransaction;
+//    }
+//
+//    public void setCurrentTransaction(Transaction currentTransaction) {
+//        this.currentTransaction = currentTransaction;
+//    }
+//
+//    @Override
+//    public void persist(Game entity) {
+//        //getCurrentSession().save(entity);
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//        Transaction tx = null;
+//        try {
+//            tx = session.beginTransaction();
+//            session.saveOrUpdate(entity);
+//            tx.commit();
+//        }
+//        catch (Exception e) {
+//            if (tx!=null) tx.rollback();
+//            throw e;
+//        }
+//        finally {
+//            session.close();
+//        }
+//        
+//    }
+//
+//    @Override
+//    public void update(Game entity) {
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//        Transaction tx = null;
+//        try {
+//            tx = session.beginTransaction();
+//            session.update(entity);
+//            tx.commit();
+//        }
+//        catch (Exception e) {
+//            if (tx!=null) tx.rollback();
+//            throw e;
+//        }
+//        finally {
+//            session.close();
+//        }
+//
+//        //getCurrentSession().update(entity);
+//    }
+//
+//    @Override
+//    public Game findById(Integer id) {
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//        Criteria criteria = session.createCriteria(Game.class);
+//        criteria.add(Restrictions.eq("id", id));
+//        Game game = (Game) criteria.uniqueResult();//(Game) session.get(Game.class, id);
+//        session.close();
+//        //Game game = (Game) getCurrentSession().get(Game.class, id);
+//        return game;
+//    }
+//
+//    @Override
+//    public void delete(Game entity) {
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//        Transaction tx = null;
+//        try {
+//            tx = session.beginTransaction();
+//            session.delete(entity);
+//            tx.commit();
+//        }
+//        catch (Exception e) {
+//            if (tx!=null) tx.rollback();
+//            throw e;
+//        }
+//        finally {
+//            session.close();
+//        }
+//        //getCurrentSession().delete(entity);
+//    }
+//
+//    @SuppressWarnings("unchecked")
+//    @Override
+//    public List<Game> findAll() {
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//        //List<Game> games = (List<Game>) getCurrentSession().createQuery("from game").list();
+//        Criteria criteria = session.createCriteria(Game.class);
+//        List<Game> games = criteria.list();// (List<Game>) session.createQuery("from game").list();
+//        session.close();
+//        return games;
+//    }
+//    
+//         @Override
+//    public List<Game> findAllShuffeled() {
+//        List<Game> list = this.findAll();
+//        Collections.shuffle(list);
+//        return list;
+//    }
+//
+//    @Override
+//    public void deleteAll() {
+//        List<Game> entityList = findAll();
+//        for (Game entity : entityList) {
+//            delete(entity);
+//        }
+//    }
 
 }

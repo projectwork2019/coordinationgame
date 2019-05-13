@@ -1,3 +1,6 @@
+/*
+ * Component for creating game components.
+ */
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Game, Edge, GameComponent, Node } from "../game";
 import * as shape from 'd3-shape';

@@ -1,3 +1,6 @@
+/*
+ * Page for selecting game session settings
+ */
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { GameSessionSettings, Category } from '../game';
 import { CoordinationRestService } from '../coordination-rest.service';

@@ -47,7 +47,7 @@ export class CoordGamesAddCategoryPageComponent implements OnInit {
     this.dataSource = new MatTableDataSource(result);
     this.dataSource.paginator = this.paginator;
     console.log(this.dataSource);
-      this.refresh();
+      //this.refresh();
     })
   }
 }
