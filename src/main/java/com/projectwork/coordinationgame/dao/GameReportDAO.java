@@ -25,7 +25,7 @@ public class GameReportDAO {
     public List<GameReport> findByGameId(Integer id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Query query = session.createSQLQuery(
-	"SELECT * FROM get_report_game(:id)")
+	"SELECT * FROM project_work.get_report_game(:id)")
 	.addEntity(GameReport.class)
 	.setParameter("id", id);			
         return query.list();

@@ -59,6 +59,7 @@ export class CoordGamesGameplayPageComponent implements OnInit {
 				this.graph = this.games[this.gameNo-1].games;
 				console.log(this.graph);
 				this.isDataAvailable = true;
+				this.numberOfGames = this.games.length;
 				this.graphComponent.updateChart(this.games[this.gameNo-1].mirror);
 			});
 		} else {

@@ -27,7 +27,7 @@ export class ShowGraphComponent implements OnInit {
 	//"RL" = Right to left (mirrored)
 	orientation = "LR";
 	mirrored = false;
-	
+	first = true;
 	graph;
 	selectedNode;
 	

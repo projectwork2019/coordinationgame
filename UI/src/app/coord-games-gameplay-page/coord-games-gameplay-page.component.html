@@ -1,5 +1,5 @@
 <div *ngIf="showGameplay" style="height: 60vh">
-<h2 class="title">Game {{gameNo}}/10</h2>
+<h2 class="title">Game {{gameNo}}/{{numberOfGames}}</h2>
 <div *ngIf="isDataAvailable">
 	<app-show-graph [childMessage]="graph"></app-show-graph>
 </div>
