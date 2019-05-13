@@ -47,10 +47,10 @@ public class PresentationController {
         return presentation;
     }
     
-    @GetMapping("/api/game/{id}/presentations")
-    public List<Presentation> getPresentationsByGameId (@PathVariable Integer gameId) {
+    @GetMapping("/api/games/{id}/presentations")
+    public List<Presentation> getPresentationsByGameId (@PathVariable Integer id) {
         // Fetch the game from repository
-        return presentationDao.findByGameId(gameId);
+        return presentationDao.findByGameId(id);
     }
 
     @PostMapping("/api/presentations")

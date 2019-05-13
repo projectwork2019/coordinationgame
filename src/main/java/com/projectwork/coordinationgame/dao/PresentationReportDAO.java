@@ -32,7 +32,7 @@ public class PresentationReportDAO {
     public List<PresentationReport> findByPresentationId(Integer id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Query query = session.createSQLQuery(
-	"SELECT * FROM get_report_presentation(:id)")
+	"SELECT * FROM project_work.get_report_presentation(:id)")
 	.addEntity(PresentationReport.class)
 	.setParameter("id", id);			
         return query.list();

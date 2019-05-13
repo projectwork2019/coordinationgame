@@ -1,10 +1,10 @@
 /*
  * The page for displaying a report of the game with the specified id. 
  */
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { CoordinationRestService } from '../coordination-rest.service';
 import {MatPaginator, MatTableDataSource, MatSelectModule} from '@angular/material';
-
+import { ShowGraphComponent } from '../show-graph/show-graph.component';
 import { NodeReport, PresentationDisplay } from '../game'
 
 import { ActivatedRoute } from '@angular/router';
@@ -26,10 +26,16 @@ export class CoordGamesAdminReportPageComponent implements OnInit {
 
   dataSource = new MatTableDataSource<NodeReport>();
   dataSourcePresentations = new MatTableDataSource<PresentationDisplay>();
-  columnsToDisplay = ['nodeId', 'percentageChosen', 'avgConfidence'];
+  columnsToDisplay = ['nodeId', 'frequency' ,'percentageChosen', 'avgConfidence'];
   columnsToDisplayPresentations = ['presentationId', 'showReport'];
+  isDataAvailable : boolean = false;
   
-  
+  @ViewChild(ShowGraphComponent) graphComponent:ShowGraphComponent;
+  graph : any = {};
+  @Input() childMessage : any = this.graph;
+
+  reportList : Array<NodeReport> = [];
+  @Input() nodeReport : Array<NodeReport> = this.reportList;
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
   //@ViewChild(MatPaginator) paginatorPresentations: MatPaginator;
@@ -63,9 +69,10 @@ export class CoordGamesAdminReportPageComponent implements OnInit {
 
   //loads the report
   loadGameReport(gameId:number) {
+
     this.http.getGameReport(gameId).subscribe((result) => {
-      console.log(result);
-      this.dataSource = new MatTableDataSource(result);
+      this.graph = result[0].presentation.games;
+      this.dataSource = new MatTableDataSource(this.parseReportList(result));
       this.dataSource.paginator = this.paginator;
       console.log(this.dataSource);
       })
@@ -93,6 +100,41 @@ export class CoordGamesAdminReportPageComponent implements OnInit {
 
 
     this.router.navigate([redirect], navigationExtras);
+  }
+
+  parseReportList(result){
+    
+      let totalFrequency : number = 0;
+      let firstLoop : boolean = true;
+
+      while(result.length > 0){
+        let nodeReport : NodeReport = new NodeReport();
+        let length = result.length;
+        for(let i : number = length - 1; i >= 0 ; i--){
+          if(firstLoop){
+            totalFrequency = totalFrequency + result[i].frequency;
+          }
+          if(i== length - 1){
+            nodeReport.nodeId = result[i].selection_id.selectedNode;
+            nodeReport.frequency = nodeReport.frequency + result[i].frequency;
+            nodeReport.avgConfidence = nodeReport.avgConfidence + result[i].selection_id.confidence * result[i].frequency;
+            result.splice(i, 1);
+          } 
+          else if(result[i].selection_id.selectedNode == nodeReport.nodeId) {
+            nodeReport.frequency = nodeReport.frequency + result[i].frequency;
+            nodeReport.avgConfidence = nodeReport.avgConfidence + result[i].selection_id.confidence * result[i].frequency;
+            result.splice(i, 1);
+          }
+        }
+        firstLoop = false;
+        nodeReport.avgConfidence = nodeReport.avgConfidence / nodeReport.frequency;
+        nodeReport.percentChosen = (nodeReport.frequency / totalFrequency) * 100;
+        console.log(nodeReport);
+        this.reportList.push(nodeReport);
+      }
+      this.nodeReport = this.reportList;
+      this.isDataAvailable = true;
+      return this.reportList;
   }
 
 }

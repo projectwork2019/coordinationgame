@@ -2,7 +2,7 @@
  * Component for displaying the graph
  */
 import { Component, Input, OnInit, ViewEncapsulation, OnChanges } from '@angular/core';
-import { Game, Edge, GameComponent, Node } from "../game";
+import { Game, Edge, GameComponent, Node, NodeReport } from "../game";
 import * as shape from 'd3-shape';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { Subject } from 'rxjs';
@@ -18,6 +18,7 @@ import { NgxGraphParserService } from '../ngx-graph-parser.service';
 export class ShowGraphComponent implements OnInit {
 	
 	@Input() childMessage: string;
+	@Input() reportData: Array<NodeReport>;
 
 	curve = shape.curveBundle.beta(0);
 	hierarchialGraph;
@@ -36,6 +37,7 @@ export class ShowGraphComponent implements OnInit {
 	constructor(private http: CoordinationRestService, private ngxParser: NgxGraphParserService) {}
 
 	ngOnInit() {
+		console.log(this.reportData);
 		if(this.mirrored) {
 			this.orientation = "RL";
 		} else {
@@ -44,11 +46,12 @@ export class ShowGraphComponent implements OnInit {
 		this.graph = this.childMessage;
 		this.hierarchialGraph = JSON.parse(this.graph.gameDataObject);
 		//this.hierarchialGraph = this.ngxParser.parseGraphJSON(this.graph.gameDataObject);
+		
 		this.updateChart(this.mirrored);
+		
 	}
 	
 	ngOnChanges() {
-		console.log("ONKO MIRRORED: " + this.mirrored);
 		if(this.mirrored) {
 			this.orientation = "RL";
 		} else {
@@ -78,6 +81,27 @@ export class ShowGraphComponent implements OnInit {
 			this.selectedNode = node;
 			node.selected = true;
 		}
+	}
+
+	getTooltip(node){
+		if(this.reportData){
+			let tooltip : string;
+			this.reportData.forEach(element => {
+				if(element.nodeId == node.id){
+					tooltip = "Frequency: " + element.frequency + ", " + element.percentChosen + "%";
+				}
+				
+			});
+			return tooltip;
+		}
+		return "";
+	}
+
+	isReport(){
+		if(this.reportData) {
+			return true;
+		}
+		return false;
 	}
 	
 	

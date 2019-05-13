@@ -4,7 +4,13 @@
 export class NodeReport {
     nodeId : number;
     percentChosen: number;
-    avgConfidence: number;
+	avgConfidence: number;
+	frequency : number;
+	constructor() {
+		this.percentChosen = 0;
+		this.avgConfidence = 0;
+		this.frequency = 0;
+	}
 } 
 
 export class PresentationDisplay {

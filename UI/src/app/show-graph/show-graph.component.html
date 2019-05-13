@@ -26,16 +26,17 @@
     [tooltipPlacement]="'top'"
     [tooltipType]="'tooltip'"
     
-    > <!--[tooltipTitle]="node.position"  -->
+    [tooltipTitle]="getTooltip(node)">
 
     
 
       <!--<svg:circle [attr.r]="node.width/2" [attr.fill]="node.options.color" /> ////////--> 
     
 	   <svg:rect style="cursor:pointer" [attr.width]="node.height" [attr.height]="node.height" [attr.fill]="none" stroke="#fbfcd1" [attr.stroke-width]="5" [attr.stroke-opacity]="node.selected ? 1 : 0"/>
-      <svg:rect style="cursor:pointer" [attr.width]="node.height" [attr.height]="node.height" [attr.fill]="node.options.color" /> 
-	  
-      <!--<svg:text alignment-baseline="central" [attr.x]="10" [attr.y]="node.height / 2">{{node.label}}</svg:text>///////////-->
+     <svg:rect style="cursor:pointer" [attr.width]="node.height" [attr.height]="node.height" [attr.fill]="node.options.color" /> 
+    
+     <svg:text *ngIf="isReport()" class="reportData" alignment-baseline="central" [attr.x]="10" [attr.y]="node.height / 2">{{node.id}}</svg:text>
+      <!--///////////-->
     </svg:g>
   </ng-template> 
 

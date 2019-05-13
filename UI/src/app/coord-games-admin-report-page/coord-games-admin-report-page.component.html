@@ -13,6 +13,10 @@
 </style>
 
 <h1 style="text-align: center; font-size: 200%">Report of game {{id}}</h1>
+
+<div *ngIf="isDataAvailable">
+    <app-show-graph [childMessage]="graph" [reportData]="nodeReport"></app-show-graph>
+</div>
 <!--<button routerLink="/coord-games-admin-add-game-page">Add game...</button> -->
 <!--<button mat-raised-button color="primary" routerLink="/graph-editor">Add game...</button>-->
 <!--<div style="float: right; margin-right: 10%">
@@ -35,13 +39,17 @@
     </mat-form-field>
 </div> -->
 
-<div class="gameTableContainer mat-elevation-z8">
+<div style="margin:auto" class="gameTableContainer mat-elevation-z8">
 	<table mat-table [dataSource]="dataSource">
 		<ng-container matColumnDef="nodeId">
 			<th mat-header-cell *matHeaderCellDef> ID </th>
 			<!--<td mat-cell *matCellDef="let game"> <a href='graph-editor/{{game.gameID}}'>GAME ID: {{game.gameID}}</a> </td>-->
                         <td mat-cell *matCellDef="let node"> NODE ID: {{node.nodeId}} </td>
-		</ng-container>
+        </ng-container>
+        <ng-container matColumnDef="frequency">
+                <th mat-header-cell *matHeaderCellDef> FREQUENCY </th>
+                <td mat-cell *matCellDef="let node"> {{node.frequency}} </td>
+            </ng-container>	
 		<ng-container matColumnDef="percentageChosen">
 			<th mat-header-cell *matHeaderCellDef> % OF CHOICES </th>
 			<td mat-cell *matCellDef="let node"> {{node.percentChosen}} </td>
@@ -53,17 +61,17 @@
 		<tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
 		<tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
 	</table>
-	<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
 
 <!--<p style="font-size: 20px"><b>Average confidence: {{confidence}}</b></p>-->
 
+<!--
 <div class="gameTableContainer mat-elevation-z8">
 	<table mat-table [dataSource]="dataSourcePresentations">
 		<ng-container matColumnDef="presentationId">
 			<th mat-header-cell *matHeaderCellDef> ID </th>
 			<!--<td mat-cell *matCellDef="let game"> <a href='graph-editor/{{game.gameID}}'>GAME ID: {{game.gameID}}</a> </td>-->
-                        <td mat-cell *matCellDef="let presentation"> ID: {{presentation.id}} </td>
+                       <!-- <td mat-cell *matCellDef="let presentation"> ID: {{presentation.id}} </td>
 		</ng-container>
 		<ng-container matColumnDef="showReport">
 			<th mat-header-cell *matHeaderCellDef> SHOW REPORT </th>
@@ -74,7 +82,7 @@
 	</table>
 	<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
-
+-->
 <!--
 <form class="game_list" method="post" action="/Tests/Post/">      
 
