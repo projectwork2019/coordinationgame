@@ -19,13 +19,13 @@ import org.hibernate.cfg.Configuration;
  *
  * @author mohamadhassan
  */
-public class SelectionDAO implements DAOInterface<Selection, Integer> {
-    private Session currentSession;
-    private Transaction currentTransaction;
-
-    //Default constructor used to instanciate an empty GameDAO object
-    public SelectionDAO() {
-    }
+public class SelectionDAO extends GenericDAO<Selection> {
+//    private Session currentSession;
+//    private Transaction currentTransaction;
+//
+//    //Default constructor used to instanciate an empty GameDAO object
+//    public SelectionDAO() {
+//    }
 
 //    public Session openCurrentSession() {
 //        currentSession = getSessionFactory().openSession();
@@ -71,93 +71,93 @@ public class SelectionDAO implements DAOInterface<Selection, Integer> {
 //    public void setCurrentTransaction(Transaction currentTransaction) {
 //        this.currentTransaction = currentTransaction;
 //    }
-
-    @Override
-    public void persist(Selection entity) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = null;
-        try {
-            tx = session.beginTransaction();
-            session.saveOrUpdate(entity);
-            tx.commit();
-        }
-        catch (Exception e) {
-            if (tx!=null) tx.rollback();
-            throw e;
-        }
-        finally {
-            session.close();
-        }
-        //getCurrentSession().save(entity);
-    }
-
-    @Override
-    public void update(Selection entity) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = null;
-        try {
-            tx = session.beginTransaction();
-            session.update(entity);
-            tx.commit();
-        }
-        catch (Exception e) {
-            if (tx!=null) tx.rollback();
-            throw e;
-        }
-        finally {
-            session.close();
-        }
-        
-        //getCurrentSession().update(entity);
-    }
-
-    @Override
-    public Selection findById(Integer id) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Selection selection = (Selection) session.get(Selection.class, id);
-        return selection;
-    }
-
-    @Override
-    public void delete(Selection entity) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = null;
-        try {
-            tx = session.beginTransaction();
-            session.delete(entity);
-            tx.commit();
-        }
-        catch (Exception e) {
-            if (tx!=null) tx.rollback();
-            throw e;
-        }
-        finally {
-            session.close();
-        }
-        //getCurrentSession().delete(entity);
-    }
-
-    @SuppressWarnings("unchecked")
-    @Override
-    public List<Selection> findAll() {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        List<Selection> selections = (List<Selection>) session.createQuery("from selection").list();
-        return selections;
-    }
-    
-    @Override
-    public List<Selection> findAllShuffeled() {
-        List<Selection> list = this.findAll();
-        Collections.shuffle(list);
-        return list;
-    }
-
-    @Override
-    public void deleteAll() {
-        List<Selection> entityList = findAll();
-        for (Selection entity : entityList) {
-            delete(entity);
-        }
-    }
+//
+//    @Override
+//    public void persist(Selection entity) {
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//        Transaction tx = null;
+//        try {
+//            tx = session.beginTransaction();
+//            session.saveOrUpdate(entity);
+//            tx.commit();
+//        }
+//        catch (Exception e) {
+//            if (tx!=null) tx.rollback();
+//            throw e;
+//        }
+//        finally {
+//            session.close();
+//        }
+//        //getCurrentSession().save(entity);
+//    }
+//
+//    @Override
+//    public void update(Selection entity) {
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//        Transaction tx = null;
+//        try {
+//            tx = session.beginTransaction();
+//            session.update(entity);
+//            tx.commit();
+//        }
+//        catch (Exception e) {
+//            if (tx!=null) tx.rollback();
+//            throw e;
+//        }
+//        finally {
+//            session.close();
+//        }
+//        
+//        //getCurrentSession().update(entity);
+//    }
+//
+//    @Override
+//    public Selection findById(Integer id) {
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//        Selection selection = (Selection) session.get(Selection.class, id);
+//        return selection;
+//    }
+//
+//    @Override
+//    public void delete(Selection entity) {
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//        Transaction tx = null;
+//        try {
+//            tx = session.beginTransaction();
+//            session.delete(entity);
+//            tx.commit();
+//        }
+//        catch (Exception e) {
+//            if (tx!=null) tx.rollback();
+//            throw e;
+//        }
+//        finally {
+//            session.close();
+//        }
+//        //getCurrentSession().delete(entity);
+//    }
+//
+//    @SuppressWarnings("unchecked")
+//    @Override
+//    public List<Selection> findAll() {
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//        List<Selection> selections = (List<Selection>) session.createQuery("from selection").list();
+//        return selections;
+//    }
+//    
+//    @Override
+//    public List<Selection> findAllShuffeled() {
+//        List<Selection> list = this.findAll();
+//        Collections.shuffle(list);
+//        return list;
+//    }
+//
+//    @Override
+//    public void deleteAll() {
+//        List<Selection> entityList = findAll();
+//        for (Selection entity : entityList) {
+//            delete(entity);
+//        }
+//    }
     
 }
