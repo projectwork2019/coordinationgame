@@ -7,6 +7,9 @@ package com.projectwork.coordinationgame.dao;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -16,11 +19,11 @@ import org.hibernate.cfg.Configuration;
 /**
  *
  * @author mohamadhassan
+ * @param <T>
  */
 public class GenericDAO<T> implements DAOInterface<T, Integer> {
     private Session currentSession;
     private Transaction currentTransaction;
-    private T obj;
 
     //Default constructor used to instanciate an empty GameSelectioDAO object
     public GenericDAO() {
@@ -96,16 +99,23 @@ public class GenericDAO<T> implements DAOInterface<T, Integer> {
     @SuppressWarnings("unchecked")
     @Override
     public List<T> findAll() {
-        List<T> gameCategorys = (List<T>) getCurrentSession().createQuery("from game_category").list(); //TODO change text
+        CriteriaBuilder builder = currentSession.getCriteriaBuilder();
+        CriteriaQuery<T> criteria = builder.createQuery((Class<T>) ((ParameterizedType) getClass()
+                            .getGenericSuperclass()).getActualTypeArguments()[0]);
+        Root<T> genericRoot=criteria.from((Class<T>) ((ParameterizedType) getClass()
+                            .getGenericSuperclass()).getActualTypeArguments()[0]);
+        criteria.select(genericRoot);
+        
+        List<T> gameCategorys = (List<T>) currentSession.createQuery(criteria).getResultList();
         return gameCategorys;
     }
 
     @Override
     public void deleteAll() {
         List<T> entityList = findAll();
-        for (T entity : entityList) {
+        entityList.forEach((entity) -> {
             delete(entity);
-        }
+        });
     }
     
 }
