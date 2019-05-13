@@ -1,6 +1,17 @@
 /*
  * Custom classes.
  */
+export class NodeReport {
+    nodeId : number;
+    percentChosen: number;
+    avgConfidence: number;
+} 
+
+export class PresentationDisplay {
+    id : number;
+    presentationObjectData : string;
+}
+
 export class Category {
 	name : string;
 	categoryID : number;

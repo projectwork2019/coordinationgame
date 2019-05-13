@@ -5,7 +5,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CoordinationRestService } from '../coordination-rest.service';
 import {MatPaginator, MatTableDataSource, MatSelectModule} from '@angular/material';
 
-import { GameDisplay } from '../game'
+import { NodeReport, PresentationDisplay } from '../game'
 
 import { ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -24,12 +24,15 @@ export class CoordGamesAdminReportPageComponent implements OnInit {
 
  id:number;
 
- dataSource = new MatTableDataSource<GameDisplay>();
-  columnsToDisplay = ['nodeId', 'percentageChosen'];
+  dataSource = new MatTableDataSource<NodeReport>();
+  dataSourcePresentations = new MatTableDataSource<PresentationDisplay>();
+  columnsToDisplay = ['nodeId', 'percentageChosen', 'avgConfidence'];
+  columnsToDisplayPresentations = ['presentationId', 'showReport'];
   
   
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  //@ViewChild(MatPaginator) paginatorPresentations: MatPaginator;
 
   constructor(private http: CoordinationRestService, private route: ActivatedRoute, public router: Router) { }
 
@@ -44,9 +47,12 @@ export class CoordGamesAdminReportPageComponent implements OnInit {
         console.log(this.id); // popular
         
         this.loadGameReport(this.id);
+        this.loadPresentationList(this.id);
       }
       
       );
+      
+
       
 //      this.route.events.pipe(
 //   filter(params => params.id)
@@ -66,6 +72,14 @@ export class CoordGamesAdminReportPageComponent implements OnInit {
   }
   //}
   
+  loadPresentationList(gameId:number) {
+      this.http.getPresentationsByGameId(gameId).subscribe((result) => {
+      console.log(result);
+      this.dataSourcePresentations = new MatTableDataSource(result);
+      //this.dataSourcePresentations.paginatorPresentations = this.paginatorPresentations;
+      console.log(this.dataSourcePresentations);
+      })
+  }
   showPresentationReport(presentationId:number){
     //this.router.navigate(['/coord-games-admin-report-page/' + id]);
     let redirect = '/coord-games-admin-presentation-report-page';
