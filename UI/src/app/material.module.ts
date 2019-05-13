@@ -1,3 +1,6 @@
+/*
+ * Angular Material module for website layout.
+ */
 import { NgModule } from '@angular/core';
 
 import {

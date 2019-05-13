@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+/*
+ * 'Page not found' page.
+ */import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-page-not-found',
