@@ -5,6 +5,7 @@
  */
 package com.projectwork.coordinationgame.controllers;
 
+import com.projectwork.coordinationgame.dao.PresentationDAO;
 import com.projectwork.coordinationgame.model.Presentation;
 import com.projectwork.coordinationgame.repository.PresentationRepository;
 import java.util.ArrayList;
@@ -26,6 +27,8 @@ public class PresentationController {
     @Autowired
     private PresentationRepository presentationRepository;
     
+    private PresentationDAO presentationDao = new PresentationDAO();
+    
     @GetMapping("/api/presentations")
     public List<Presentation> getPresentations() {
         // create list for games to be returned
@@ -42,6 +45,12 @@ public class PresentationController {
         // Convert the Optional to Game object
         Presentation presentation = optionalEntity.get();
         return presentation;
+    }
+    
+    @GetMapping("/api/game/{id}/presentations")
+    public List<Presentation> getPresentationsByGameId (@PathVariable Integer gameId) {
+        // Fetch the game from repository
+        return presentationDao.findByGameId(gameId);
     }
 
     @PostMapping("/api/presentations")

@@ -27,35 +27,6 @@ public class PresentationDAO implements DAOInterface<Presentation, Integer> {
     public PresentationDAO() {
     }
 
-//    public Session openCurrentSession() {
-//        currentSession = getSessionFactory().openSession();
-//        currentTransaction = currentSession.beginTransaction();
-//        return currentSession;
-//    }
-//    
-//    public Session openCurrentSessionWithTransaction() {
-//        currentSession = getSessionFactory().openSession();
-//        currentTransaction = currentSession.beginTransaction();
-//        return currentSession;
-//    }
-//
-//    public void closeCurrentSession() {
-//        currentSession.close();
-//    }
-//
-//    public void closeCurrentSessionWithTransaction() {
-//        currentTransaction.commit();
-//        currentSession.close();
-//    }
-//
-//    private static SessionFactory getSessionFactory() {
-//        Configuration configuration = new Configuration().configure();
-//        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
-//                .applySettings(configuration.getProperties());
-//        SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
-//        return sessionFactory;
-//    }
-
     public Session getCurrentSession() {
         return currentSession;
     }
@@ -154,6 +125,15 @@ public class PresentationDAO implements DAOInterface<Presentation, Integer> {
         for (Presentation entity : entityList) {
             delete(entity);
         }
+    }
+    
+    public List<Presentation> findByGameId(Integer id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(Presentation.class);
+        criteria.createAlias("games", "g");
+        criteria.add(Restrictions.eq("g.gameID", id));
+        List<Presentation> presentations = (List<Presentation>) criteria.list(); //session.createQuery(criteria).getResultList();
+        return presentations;
     }
 
 }
