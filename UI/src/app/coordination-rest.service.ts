@@ -5,8 +5,9 @@ import { map, catchError, tap } from 'rxjs/operators';
 import { Selection, Category, GameSession, Game, GameSessionSettings } from './game';
 
 //const endpoint = "https://projectwork-coordinationgame.herokuapp.com/api";
-const endpoint = "http://"+window.location.hostname+":8080/api";
+//const endpoint = "http://"+window.location.hostname+":8080/api";
 //const endpoing = "http://195.148.31.1:8080/api";
+const endpoint = "http://195.148.31.1:8080/api";
 const httpOptions = {
 	headers: new HttpHeaders({
 		'Content-Type':  'application/json'
@@ -98,6 +99,11 @@ export class CoordinationRestService {
 	
 	getCategories() : Observable<any> {
 		return this.http.get(endpoint + "/categories").pipe(
+		map(this.extractData));
+	}
+        
+        getCategory(id:number) : Observable<any> {
+		return this.http.get(endpoint + "/categories/"+ id).pipe(
 		map(this.extractData));
 	}
 

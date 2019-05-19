@@ -17,7 +17,7 @@ import { Router,
 export class CoordGamesAdminGamesPageComponent implements OnInit { 
   
   dataSource = new MatTableDataSource<GameDisplay>();
-  columnsToDisplay = ['gameId','showReport','removeGame'];
+  columnsToDisplay = ['gameId','showReport','addCategoryToAGame','removeGame'];
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -70,4 +70,19 @@ export class CoordGamesAdminGamesPageComponent implements OnInit {
     this.router.navigate([redirect], navigationExtras);
   }
 
+//}
+
+  addCategoryToAGame(gameId:number) {
+    let redirect = '/coord-games-add-category-page';
+
+    let navigationExtras: NavigationExtras = {
+          queryParamsHandling: 'merge',
+//          preserveFragment: true
+            queryParams: { id: gameId }
+            
+    };
+
+
+    this.router.navigate([redirect], navigationExtras);
+  }
 }

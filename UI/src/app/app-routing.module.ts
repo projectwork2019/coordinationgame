@@ -103,7 +103,8 @@ const appRoutes: Routes = [
   },
   {
     path: 'game-session-settings',
-    component: GameSessionSettingsComponent
+    component: GameSessionSettingsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'admin',
