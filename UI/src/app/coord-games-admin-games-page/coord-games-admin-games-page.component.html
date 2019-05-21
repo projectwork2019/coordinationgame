@@ -1,20 +1,9 @@
-<style>
-	table {
-		width: 100%;
-	}
-	.gameTableContainer {
-		width: 75%;
-	}
-	.mat-column-removeGame {
-		justify-content: flex-end;
-	}
 
-
-</style>
 
 <h1 style="text-align: center; font-size: 200%">Welcome!</h1>
 <!--<button routerLink="/coord-games-admin-add-game-page">Add game...</button> -->
 <button mat-raised-button color="primary" routerLink="/graph-editor">Add game...</button>
+<br />
 
 <!--<form class="inline_field">
          <select name = "dropdown">
@@ -23,7 +12,7 @@
             <option value = "Remove">Remove</option>
          </select>
 </form> -->
-
+<br />
 <div class="gameTableContainer mat-elevation-z8">
 	<table mat-table [dataSource]="dataSource">
 		<ng-container matColumnDef="gameId">
@@ -47,7 +36,7 @@
 	</table>
 	<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
-            
+<br />
 <button mat-raised-button color="primary" routerLink="/game-session-settings">Game session settings</button>
 <!--
 <form class="game_list" method="post" action="/Tests/Post/">      

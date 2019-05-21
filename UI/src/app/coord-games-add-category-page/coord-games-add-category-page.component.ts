@@ -42,7 +42,7 @@ export class CoordGamesAddCategoryPageComponent implements OnInit {
         console.log(this.gameId); // popular
         
         //this.loadPresentationReport(this.gameId, this.presentationId);
-      }
+      });
     
      console.log(this.gameId); // popular
      
@@ -93,7 +93,7 @@ export class CoordGamesAddCategoryPageComponent implements OnInit {
       
       
       this.http.addOrEditGame({'gameDataObject' : this.game}).subscribe(data => {
-                        this.game.categories.add(this.category);
+            this.game.categories.push(this.category);
 			console.log(data);
                         console.log("Saved");
 //			this.snackBar.open("Game saved", null, {

@@ -43,3 +43,8 @@
 /*    font-size: 24px;*/
     font-size: 200%;
 }
+
+.start {
+	margin:auto;
+	display:block;
+}
