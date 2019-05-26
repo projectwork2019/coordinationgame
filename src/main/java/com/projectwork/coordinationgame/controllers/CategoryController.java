@@ -24,8 +24,13 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Antti Manninen <antti.e.manninen@tuni.fi>
  */
 
+
+/**
+*Controller class for Categories 
+*/
 @RestController
 public class CategoryController {
+    
     private static Map<Integer, Category> categoryRepository = new HashMap<>();
     private static int id;
     
@@ -50,18 +55,30 @@ public class CategoryController {
         }
     }
     
+    /**
+     * Rest endpoint (GET): /api/categories/{categoryID}
+     * @return All categories
+     */
     @GetMapping("/api/categories")
     public List<Category> getCategories() {
-//        List<Category> categories = new ArrayList<>();
-//        categoryRepository.values().forEach(categories::add);
         return categoryDao.findAll();
     }
     
+    /**
+     * Rest endpoint (GET): /api/categories/{categoryID}
+     * @param Integer categoryId
+     * @return Category by id.
+     */
     @GetMapping("/api/categories/{categoryId}")
     public Category getCategories(@PathVariable Integer categoryId) {
         return categoryRepository.getOrDefault(categoryId, null);
     }
     
+     /**
+     * Rest endpoint (POST): /api/categories
+     * @param Category newCategory
+     * @return Category created category.
+     */
     @PostMapping("/api/categories")
     public Category createCategory(@RequestBody Category newCategory) {
         // Create new Category

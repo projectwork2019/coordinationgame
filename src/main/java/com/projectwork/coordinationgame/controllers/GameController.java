@@ -28,6 +28,11 @@ public class GameController {
     private PresentationDAO presentationDao = new PresentationDAO();
     
 
+     /**
+     * Rest endpoint (GET): /api/games
+     * Get all games
+     * @return List<Game> all games in system
+     */
     @GetMapping("/api/games")
     public List<Game> getGames() {
         // create list for games to be returned
@@ -37,6 +42,12 @@ public class GameController {
         return games;
     }
     
+     /**
+     * Rest endpoint (GET): /api/games/{gameId}
+     * Get game by id
+     * @param Integer gameId
+     * @return game if found by id
+     */
     @GetMapping("/api/games/{gameId}")
     public Game getGames(@PathVariable Integer gameId) {
         // Fetch the game from repository
@@ -46,13 +57,19 @@ public class GameController {
         return game;
     }
 
+     /**
+     * Rest endpoint (POST): /api/games
+     * Create new game
+     * @param Game new game object to be created
+     * @return created game
+     */
     @PostMapping("/api/games")
     // @CrossOrigin(origins = "http://localhost:4200")
     public Game createGame(@RequestBody Game game) {
-        System.out.println("POST: Received game data object: " + game.getGameDataObject().toString());
-        //return gameRepository.save(game);
+        // Disable game when created
         game.setEnabled(false);
         gameDao.persist(game);
+        // Add default presentations (normal and mirrored) for created game
         Presentation presentation = new Presentation();
         presentation.setComponentOrder("DEFAULT");
         presentation.setMirror(false);
@@ -66,8 +83,13 @@ public class GameController {
         return game;
     }
     
+     /**
+     * Rest endpoint (GET): /api/games/enable
+     * Enable game with id
+     * @param Integer game id
+     * @return HttpStatus 200 if succesfull,HttpStatus 400 if not 
+     */
     @GetMapping("/api/games/enable")
-    // @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Game> toggleGameEnabled(@RequestParam Integer id) {
         Game game = gameDao.findById(id);
         if(game != null){
@@ -78,30 +100,37 @@ public class GameController {
         return new ResponseEntity<Game>(HttpStatus.BAD_REQUEST);
     }
     
+     /**
+     * Rest endpoint (GET): /api/games/delete
+     * Delete game with id
+     * @param Integer game id
+     * @return HttpStatus 200 if succesfull, HttpStatus 400 if not 
+     */
     @GetMapping("/api/games/delete")
-    // @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Game> deleteGame(@RequestParam Integer id) {
         Game game = gameDao.findById(id);
         if(game != null){
-//            System.out.println("PRESENTATION: " + game.getPresentations().size());
-//            for(Presentation p : game.getPresentations()) {
-//                System.out.println("PRESENTATION: " + p.getPresentationId());
-////                presentationDao.delete(p);
-//            }
             gameDao.delete(game);
             return new ResponseEntity<Game>(game, HttpStatus.OK);
         }
         return new ResponseEntity<Game>(HttpStatus.BAD_REQUEST);
     }
     
+    /**
+     * Rest endpoint (POST): /api/games/categories
+     * Add categories to game
+     * @param Game with categories present
+     * @return HttpStatus 200 if succesfull,HttpStatus 400 if not 
+     */
     @PostMapping("/api/games/categories")
-    // @CrossOrigin(origins = "http://localhost:4200")
     public Game addCategories(@RequestBody Game request) {
-//        System.out.println("POST: Received game data object: " + game.getGameDataObject().toString());
-        //return gameRepository.save(game);
+        // Check if game is found in the database
         Game game = gameDao.findById(request.getGameID());
-        game.setCategories(request.getCategories());
-        gameDao.persist(game);
+        if(game != null){
+            // Add categories to the game
+            game.setCategories(request.getCategories());
+            gameDao.persist(game);
+        }
         return game;
     }
     
