@@ -70,18 +70,18 @@ public class GameSessionController {
         List<Presentation> presentationList = new ArrayList<>();
         Random random = new Random();
         // If no sessions are defined, generate session by selecting 10 random presentations from 10 random games
-        if(settings == null){
-            do{
-            // Get default_session_size worth of presentation from different games, unless less than that games are found in system
-                for(int i = 0; presentationList.size() < DEFAULT_SESSION_SIZE && i < games.size(); i++){
-                    List<Presentation> p = games.get(i).getPresentations();
-                    presentationList.add(p.get(random.nextInt(p.size())));
-                }
-            }
-        // Loop here just in case the system has less games than needed for these settings
-            while(!(presentationList.size() == DEFAULT_SESSION_SIZE));
-            return presentationList;
-        }
+//        if(settings == null){
+//            do{
+//            // Get default_session_size worth of presentation from different games, unless less than that games are found in system
+//                for(int i = 0; presentationList.size() < DEFAULT_SESSION_SIZE && i < games.size(); i++){
+//                    List<Presentation> p = games.get(i).getPresentations();
+//                    presentationList.add(p.get(random.nextInt(p.size())));
+//                }
+//            }
+//        // Loop here just in case the system has less games than needed for these settings
+//            while(!(presentationList.size() == DEFAULT_SESSION_SIZE));
+//            return presentationList;
+//        }
         
         // If settings are found, generate session based on those
         
