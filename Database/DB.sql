@@ -23,6 +23,7 @@ FOREIGN KEY(game_session_id) REFERENCES project_work.game_session);
 
 CREATE TABLE project_work.game (
 game_id SERIAL,
+name VARCHAR(100) UNIQUE NOT NULL,
 enabled BOOLEAN NOT NULL,
 gamedata VARCHAR(4096) NOT NULL,
 PRIMARY KEY (game_id));
