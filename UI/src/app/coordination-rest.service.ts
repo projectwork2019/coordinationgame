@@ -102,11 +102,16 @@ export class CoordinationRestService {
 		map(this.extractData));
 	}
         
-        getCategory(id:number) : Observable<any> {
+    getCategory(id:number) : Observable<any> {
 		return this.http.get(endpoint + "/categories/"+ id).pipe(
 		map(this.extractData));
 	}
-
+	
+	deleteCategory(id:number) : Observable<any> {
+		return this.http.delete(endpoint + "/categories/delete?id=" + id).pipe(
+		map(this.extractData));
+	}
+	
 	updateGameCategories(data : Game) : Observable<any> {
 		return this.http.post(endpoint + "/games/categories", data);
 	}
