@@ -81,9 +81,6 @@ public class CategoryController {
      */
     @PostMapping("/api/categories")
     public Category createCategory(@RequestBody Category newCategory) {
-        // Create new Category
-//        newCategory.setCategory_id(id);
-//        categoryRepository.put(id, newCategory);
        categoryDao.persist(newCategory);
        return newCategory;
     }
