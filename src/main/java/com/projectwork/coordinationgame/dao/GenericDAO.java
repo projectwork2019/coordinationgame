@@ -99,8 +99,20 @@ public class GenericDAO<T> implements DAOInterface<T, Integer> {
 
     @Override
     public void delete(T entity) {
-        openCurrentSession().delete(entity);
-        closeCurrentSession();
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.delete(entity);
+            tx.commit();
+        }
+		catch (Exception e) {
+           if (tx!=null) tx.rollback();
+           throw e;
+        }
+		finally {
+          session.close();
+		}
     }
 
     @Override
