@@ -107,8 +107,9 @@ export class CoordinationRestService {
 		map(this.extractData));
 	}
 	
+	// http method is GET -> Should be changed to DELETE
 	deleteCategory(id:number) : Observable<any> {
-		return this.http.delete(endpoint + "/categories/delete?id=" + id).pipe(
+		return this.http.get(endpoint + "/categories/delete?id=" + id).pipe(
 		map(this.extractData));
 	}
 	
