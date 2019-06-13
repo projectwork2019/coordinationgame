@@ -14,7 +14,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./coord-games-add-category-page.component.css']
 })
 export class CoordGamesAddCategoryPageComponent implements OnInit {
-    
+	
   newCategory:string;
   lastId:number;
   gameId:number;
@@ -24,7 +24,7 @@ export class CoordGamesAddCategoryPageComponent implements OnInit {
   category : Category;
 
   dataSource = new MatTableDataSource<CategoryDisplay>();
-  columnsToDisplay = ['categoryId', 'name'];
+  columnsToDisplay = ['categoryId', 'name', 'deleteCategory'];
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -66,18 +66,27 @@ export class CoordGamesAddCategoryPageComponent implements OnInit {
           console.log(category);
           this.http.addCategory(category).subscribe(data => {
               console.log("Category saved");
+			  this.refresh();
           });
           console.log(this.dataSource);
-          this.refresh();
   }
+  
+	deleteCategory(id:number){
+		console.log("Deletion of: " + id);
+		this.http.deleteCategory(id).subscribe((result) => {
+		console.log(result);
+		this.refresh();
+      });
+	}
+
   
   //refreshes the category page after a new category has been added
    refresh() {
     this.http.getCategories().subscribe((result) => {
+	console.log(result);
     this.dataSource = new MatTableDataSource(result);
     this.dataSource.paginator = this.paginator;
     console.log(this.dataSource);
-      //this.refresh();
     })
   }
   
@@ -96,10 +105,6 @@ export class CoordGamesAddCategoryPageComponent implements OnInit {
             this.game.categories.push(this.category);
 			console.log(data);
                         console.log("Saved");
-//			this.snackBar.open("Game saved", null, {
-//				duration: this.durationInSeconds * 1000,
-//			  });
-//			this.clearGraph();
 		});
   }
   
