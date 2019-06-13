@@ -16,21 +16,20 @@ import java.util.Optional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpEntity;
 
 /**
  *
  * @author Antti Manninen <antti.e.manninen@tuni.fi>
  */
 
-
-/**
-*Controller class for Categories 
-*/
 @RestController
 public class CategoryController {
-    
     private static Map<Integer, Category> categoryRepository = new HashMap<>();
     private static int id;
     
@@ -55,32 +54,36 @@ public class CategoryController {
         }
     }
     
-    /**
-     * Rest endpoint (GET): /api/categories/{categoryID}
-     * @return All categories
-     */
     @GetMapping("/api/categories")
     public List<Category> getCategories() {
+//        List<Category> categories = new ArrayList<>();
+//        categoryRepository.values().forEach(categories::add);
         return categoryDao.findAll();
     }
     
-    /**
-     * Rest endpoint (GET): /api/categories/{categoryID}
-     * @param Integer categoryId
-     * @return Category by id.
-     */
     @GetMapping("/api/categories/{categoryId}")
     public Category getCategories(@PathVariable Integer categoryId) {
         return categoryRepository.getOrDefault(categoryId, null);
     }
     
-     /**
-     * Rest endpoint (POST): /api/categories
-     * @param Category newCategory
-     * @return Category created category.
-     */
+	
+    //Not working I get error of "Not supported"
+    @GetMapping("/api/categories/delete")
+	public ResponseEntity<Category> deleteCategory(Integer id) {
+        Category category = categoryDao.findById(id);
+        if(category != null){
+            categoryDao.delete(category);
+            return new ResponseEntity<Category>(category, HttpStatus.OK);
+        }
+        return new ResponseEntity<Category>(HttpStatus.BAD_REQUEST);
+    }
+	
+	
     @PostMapping("/api/categories")
     public Category createCategory(@RequestBody Category newCategory) {
+        // Create new Category
+//        newCategory.setCategory_id(id);
+//        categoryRepository.put(id, newCategory);
        categoryDao.persist(newCategory);
        return newCategory;
     }
