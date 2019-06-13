@@ -67,7 +67,6 @@ public class CategoryController {
     }
     
 	
-    //Not working I get error of "Not supported"
     @GetMapping("/api/categories/delete")
 	public ResponseEntity<Category> deleteCategory(Integer id) {
         Category category = categoryDao.findById(id);
