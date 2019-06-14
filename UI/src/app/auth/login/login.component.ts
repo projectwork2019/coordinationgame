@@ -17,33 +17,36 @@ export class LoginComponent {
   psw: string; 
   playerId: string;
 
+  credentials = {username: '', password: ''};
+
   constructor(public authService: AuthService, public router: Router) {
-    this.setMessage();
-    this.user = 'gfhjkl'; //temporary code - for testing only. Will be removed later.
-    this.psw = 'a'; //temporary code - for testing only. Will be removed later.
   }
 
   setMessage() {
-    this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
   }
 
   login(username : string, password : string) {
     this.message = 'Trying to log in ...';
     
-    this.user = 'User: ' + username; //temporary code - for testing only. Will be removed later.
-    this.psw = 'Password: ' + password; //temporary code - for testing only. Will be removed later.
-    
+    this.user = username; //temporary code - for testing only. Will be removed later.
+    this.psw = password; //temporary code - for testing only. Will be removed later.
+    this.credentials.username = username;
+    this.credentials.password = password;
     console.log(this.user); //temporary code - for testing only. Will be removed later.
     console.log(this.psw); //temporary code - for testing only. Will be removed later.
     
     //this.psw = document.getElementById(password).value;
 
-    this.authService.login().subscribe(() => {
-     
+    this.authService.authenticate(this.credentials,() => {
+        this.router.navigateByUrl('/coord-games-admin-games-page');
+      });
+      return false;
+    }
+      /*
       this.setMessage();
       if (this.authService.isLoggedIn) {
           
-          this.user = 'User: ' + username; //temporary code - for testing only. Will be removed later.
+          this.user = 'username; //temporary code - for testing only. Will be removed later.
           this.psw = 'Password: ' + password; //temporary code - for testing only. Will be removed later.
 
         // Get the redirect URL from our auth service
@@ -60,16 +63,16 @@ export class LoginComponent {
         // Redirect the user
         this.router.navigate([redirect], navigationExtras);
       }
-    });
+    });*/
   }
 
-  logout() {
+  /*logout() {
     this.authService.logout();
     this.setMessage();
     
     this.router.navigate(['/coord-games-logout-page']);
-  }
-}
+  }*/
+
 
 
 /*

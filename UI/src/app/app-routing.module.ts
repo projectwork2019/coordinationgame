@@ -35,10 +35,12 @@ const appRoutes: Routes = [
   {
     path: 'coord-games-admin-presentation-report-page',
     component: CoordGamesAdminPresentationReportPageComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'coord-games-admin-report-page',
     component: CoordGamesAdminReportPageComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'coord-games-extended-main-pages',
@@ -125,8 +127,9 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes,
       {
-        enableTracing: false, // <-- debugging purposes only
-        preloadingStrategy: SelectivePreloadingStrategyService,
+        //enableTracing: false, // <-- debugging purposes only
+        //preloadingStrategy: SelectivePreloadingStrategyService,
+        useHash: true
       }
     )
   ],

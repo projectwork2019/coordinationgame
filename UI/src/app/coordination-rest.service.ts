@@ -147,5 +147,10 @@ export class CoordinationRestService {
         getPresentationsByGameId(id : number) : Observable<any>{
                 return this.http.get(endpoint + "/games/" + id + "/presentations").pipe(
                 map(this.extractData));
-        }
+				}
+				
+				isAuthenticated() : Observable<any> {
+					return this.http.get(endpoint + "/user").pipe(
+						map(this.extractData));
+				}
 }

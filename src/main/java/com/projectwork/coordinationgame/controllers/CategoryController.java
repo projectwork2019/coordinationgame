@@ -8,6 +8,7 @@ package com.projectwork.coordinationgame.controllers;
 import com.projectwork.coordinationgame.dao.CategoryDAO;
 import com.projectwork.coordinationgame.model.Category;
 import com.projectwork.coordinationgame.model.Game;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -54,6 +56,11 @@ public class CategoryController {
             id++;           
         }
     }
+    
+    @RequestMapping("/api/user")
+  public Principal user(Principal user) {
+    return user;
+  }
     
     /**
      * Rest endpoint (GET): /api/categories/{categoryID}
