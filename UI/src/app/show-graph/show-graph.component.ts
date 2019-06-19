@@ -52,6 +52,8 @@ export class ShowGraphComponent implements OnInit {
 	}
 	
 	ngOnChanges() {
+		// Check mirrored state, set orientation depending on state
+		// "RL" = Right to left, "LR" = Left to right, this is the format supported by ngx-graph
 		if(this.mirrored) {
 			this.orientation = "RL";
 		} else {
@@ -59,16 +61,17 @@ export class ShowGraphComponent implements OnInit {
 		}
 		this.graph = this.childMessage;
 		this.hierarchialGraph = JSON.parse(this.graph.gameDataObject);
-		//this.hierarchialGraph = this.ngxParser.parseGraphJSON(this.graph.gameDataObject);
 		this.updateChart(this.mirrored);
 	}	
 	
-	// Update function
+	// Refresh graph
 	updateChart(mirrored: boolean){
 		this.mirrored = mirrored;
 		this.update$.next(true);
 	}
 	
+
+	//Node selection logic.
 	selectNode(node) {
 		if(this.selectedNode != null){
 			this.selectedNode.selected = false;
@@ -83,6 +86,7 @@ export class ShowGraphComponent implements OnInit {
 		}
 	}
 
+	// Generate tooltips from report data if data exists
 	getTooltip(node){
 		if(this.reportData){
 			let tooltip : string;
@@ -97,6 +101,7 @@ export class ShowGraphComponent implements OnInit {
 		return "";
 	}
 
+	// If this is report page, return true
 	isReport(){
 		if(this.reportData) {
 			return true;

@@ -62,7 +62,7 @@ public class CategoryController {
   }
     
     /**
-     * Rest endpoint (GET): /api/categories/{categoryID}
+     * Rest endpoint (GET): /api/categories
      * @return All categories
      */
     @GetMapping("/api/categories")
@@ -72,12 +72,21 @@ public class CategoryController {
         return categoryDao.findAll();
     }
     
+     /**
+     * Rest endpoint (GET): /api/categories/{categoryID}
+     * @return find a category by id
+     */
     @GetMapping("/api/categories/{categoryId}")
     public Category getCategories(@PathVariable Integer categoryId) {
         return categoryRepository.getOrDefault(categoryId, null);
     }
     
-	
+    
+     /**
+     * Rest endpoint (GET): /api/categories/delete
+     * @param Integer Category id
+     * @return Delete category by id
+     */
     @GetMapping("/api/categories/delete")
 	public ResponseEntity<Category> deleteCategory(Integer id) {
         Category category = categoryDao.findById(id);
@@ -88,12 +97,13 @@ public class CategoryController {
         return new ResponseEntity<Category>(HttpStatus.BAD_REQUEST);
     }
 	
-	
+	 /**
+     * Rest endpoint (POST): /api/categories
+     * @param Category newCategory
+     * @return Add a category
+     */
     @PostMapping("/api/categories")
     public Category createCategory(@RequestBody Category newCategory) {
-        // Create new Category
-//        newCategory.setCategory_id(id);
-//        categoryRepository.put(id, newCategory);
        categoryDao.persist(newCategory);
        return newCategory;
     }

@@ -19,7 +19,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
             .authorizeRequests()
                 .antMatchers("/", "/index.html").permitAll()
-                .antMatchers("/*.js", "/*.html", "/*.css", "/favicon.ico", "/*.txt").permitAll()
+                .antMatchers("/*.js", "/*.html", "/*.css", "/favicon.ico", "/*.txt", "/*.png", "/assets/**", "/*.*").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/gamesessions").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/gamesessions").permitAll()
                 .anyRequest().authenticated()

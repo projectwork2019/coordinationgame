@@ -19,13 +19,15 @@ export class AuthService {
   constructor(private http: HttpClient ) {
   }
 
+  // Authentication function
   authenticate(credentials, callback) {
 
+    // Authentication request. The backend uses spring basic auth, so basic authentication is used here.
     const headers = new HttpHeaders(credentials ? {
         authorization : 'Basic ' + btoa(credentials.username + ':' + credentials.password)
     } : {});
 
-    console.log(headers);
+    // Get authenticated user's details from server. If data is returned (contains name field), the current user is authenticated.
     this.http.get('/api/user', {headers: headers}).subscribe(response => {
         if (response['name']) {
             this.authenticated = true;
@@ -37,22 +39,13 @@ export class AuthService {
 
 }
 
+// Check authentication status of the user
 isAuthenticated() : boolean {
+  // Get the status from authentication method. Authentication request is not done, 
+  // but request for user details are so that we can check if user has authenticated session
   this.authenticate(null, null);
   return this.authenticated;
 }
-
-
-  /*login(credentials): Observable<boolean> {
-
-    const headers = new HttpHeaders(credentials ? {
-      authorization : 'Basic ' + btoa(credentials.username + ':' + credentials.password)
-    } : {});
-    return of(true).pipe(
-      delay(1000),
-      tap(val => this.isLoggedIn = true)
-    );
-  }*/
 
   logout(): void {
 

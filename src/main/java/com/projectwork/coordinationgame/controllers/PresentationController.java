@@ -29,6 +29,12 @@ public class PresentationController {
     
     private PresentationDAO presentationDao = new PresentationDAO();
     
+    
+     /**
+     * Rest endpoint (GET): /api/presentations
+     * get all presentations in system
+     * @return List<Presentation>
+     */
     @GetMapping("/api/presentations")
     public List<Presentation> getPresentations() {
         // create list for games to be returned
@@ -38,6 +44,11 @@ public class PresentationController {
         return presentations;
     }
     
+     /**
+     * Rest endpoint (GET): /api/presentations/{presentationId}
+     * Get presentation by id
+     * @return Presentation
+     */
     @GetMapping("/api/presentations/{presentationId}")
     public Presentation getPresentations (@PathVariable Integer presentationId) {
         // Fetch the game from repository
@@ -47,12 +58,22 @@ public class PresentationController {
         return presentation;
     }
     
+     /**
+     * Rest endpoint (GET): /api/games/{id}/presentations
+     * Get presentations for a game by game ID
+     * @return List<Presentation>
+     */
     @GetMapping("/api/games/{id}/presentations")
     public List<Presentation> getPresentationsByGameId (@PathVariable Integer id) {
         // Fetch the game from repository
         return presentationDao.findByGameId(id);
     }
 
+     /**
+     * Rest endpoint (POST): /api/presentations/
+     * Create a new presentation 
+     * @return Presentation
+     */
     @PostMapping("/api/presentations")
     // @CrossOrigin(origins = "http://localhost:4200")
     public Presentation createPresentation(@RequestBody Presentation presentation) {

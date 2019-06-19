@@ -6,6 +6,12 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+
+/**
+ * Configuration class for rest
+ * 
+ * @author Lephise
+ */
 @Configuration
 public class RestConfig {
     @Bean
